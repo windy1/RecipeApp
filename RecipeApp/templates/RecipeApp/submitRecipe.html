@@ -2,6 +2,11 @@
 
 {% block title %}Submit{% endblock %}
 
+{% load static %}
+{% block scripts %}
+<script src="{% static 'RecipeApp/scripts/addIngredient.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h1>Submit Recipe</h1>
@@ -20,14 +25,14 @@
             <label for="summary">Summary</label>
             <textarea class="form-control" maxlength="1000" name="summary" id="summary"></textarea>
         </div>
-{#        <div class="form-group">#}
-{#            <label for="prepTime">Prep time</label>#}
-{#            <input type="time" class="form-control" name="prepTime" id="prepTime">#}
-{#        </div>#}
-{#        <div class="form-group">#}
-{#            <label for="cookTime">Cook time</label>#}
-{#            <input type="time" class="form-control" name="cookTime" id="cookTime">#}
-{#        </div>#}
+        <div class="form-group">
+            <label for="prepTime">Prep time</label>
+            <input type="text" class="form-control" name="prepTime" id="prepTime" placeholder="1 hour">
+        </div>
+        <div class="form-group">
+            <label for="cookTime">Cook time</label>
+            <input type="text" class="form-control" name="cookTime" id="cookTime" placeholder="1 hour">
+        </div>
         <div class="form-group">
             <label for="servings">Servings</label>
             <input type="number" class="form-control" name="servings" id="servings">
@@ -35,6 +40,18 @@
         <div class="form-group">
             <label for="calories">Calories</label>
             <input type="number" class="form-control" name="calories" id="calories">
+        </div>
+        <div class="form-group">
+            <label for="ingredients">Ingredients</label>
+            <select multiple class="form-control" id="ingredients"></select>
+        </div>
+        <div class="form-group">
+            <div class="form-inline">
+                <input type="text" class="form-control" id="addIngredient" placeholder="Lentils"
+                       aria-describedby="addIngredientHelp">
+                <button type="button" class="btn btn-secondary" id="addIngredientBtn">Add</button>
+            </div>
+            <small id="addIngredientHelp" class="form-text text-muted">Add an ingredient.</small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
