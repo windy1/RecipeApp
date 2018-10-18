@@ -1,0 +1,10 @@
+{% extends 'RecipeApp/content.html' %}
+
+{% block title %}Home | New{% endblock %}
+
+{% block main %}
+<div class="row"><h1>New</h1></div>
+<div class="row">
+    {% include 'RecipeApp/recipeList.html' %}
+</div>
+{% endblock %}

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Recipe
+
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required=True)
@@ -16,3 +18,9 @@ class SignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class SubmitRecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ('name', 'summary', 'servings', 'calories')

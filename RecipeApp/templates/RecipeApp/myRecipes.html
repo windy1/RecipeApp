@@ -1,0 +1,13 @@
+{% extends 'RecipeApp/content.html' %}
+
+{% block title %}Home | My Recipes{% endblock %}
+
+{% block main %}
+<div class="row"><h1>My Recipes</h1></div>
+<div class="row">
+    <a href="{% url 'submit' %}">Create a new recipe</a>
+</div>
+<div class="row">
+    {% include 'RecipeApp/recipeList.html' %}
+</div>
+{% endblock %}

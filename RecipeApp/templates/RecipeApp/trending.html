@@ -1,0 +1,10 @@
+{% extends 'RecipeApp/content.html' %}
+
+{% block title %}Home | Trending{% endblock %}
+
+{% block main %}
+<div class="row"><h1>Trending</h1></div>
+<div class="row">
+    {% include 'RecipeApp/recipeList.html' %}
+</div>
+{% endblock %}

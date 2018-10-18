@@ -1,0 +1,42 @@
+{% extends 'RecipeApp/base.html' %}
+
+{% block title %}Submit{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Submit Recipe</h1>
+
+    {% if form.errors %}
+        {{ form.error_messages }}
+    {% endif %}
+
+    <form action="{% url 'submit' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Recipe name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter a recipe name">
+        </div>
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <textarea class="form-control" maxlength="1000" name="summary" id="summary"></textarea>
+        </div>
+{#        <div class="form-group">#}
+{#            <label for="prepTime">Prep time</label>#}
+{#            <input type="time" class="form-control" name="prepTime" id="prepTime">#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#            <label for="cookTime">Cook time</label>#}
+{#            <input type="time" class="form-control" name="cookTime" id="cookTime">#}
+{#        </div>#}
+        <div class="form-group">
+            <label for="servings">Servings</label>
+            <input type="number" class="form-control" name="servings" id="servings">
+        </div>
+        <div class="form-group">
+            <label for="calories">Calories</label>
+            <input type="number" class="form-control" name="calories" id="calories">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
