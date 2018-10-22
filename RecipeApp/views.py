@@ -1,13 +1,10 @@
-from enum import Enum
-
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Recipe
 from .forms import SignUpForm, SubmitRecipeForm
+from .models import Recipe
 
 
 def index(request):
@@ -64,8 +61,9 @@ def submit(request):
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.user = request.user
-            recipe.created_at = timezone.now()
             recipe.save()
+            form.createIngredients(recipe)
+            form.createDirections(recipe)
             return redirect('myRecipes', request.user.username)
     else:
         form = SubmitRecipeForm()

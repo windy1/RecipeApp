@@ -4,18 +4,14 @@
 
 {% load static %}
 {% block scripts %}
-<script src="{% static 'RecipeApp/scripts/addIngredient.js' %}"></script>
+<script src="{% static 'RecipeApp/scripts/submitRecipe.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <h1>Submit Recipe</h1>
 
-    {% if form.errors %}
-        {{ form.error_messages }}
-    {% endif %}
-
-    <form action="{% url 'submit' %}" method="post">
+    <form action="{% url 'submit' %}" method="post" id="recipeForm">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Recipe name</label>
@@ -43,17 +39,45 @@
         </div>
         <div class="form-group">
             <label for="ingredients">Ingredients</label>
-            <select multiple class="form-control" id="ingredients"></select>
+        </div>
+        <div id="ingredients"></div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary form-control" id="addIngredient">Add ingredient</button>
         </div>
         <div class="form-group">
-            <div class="form-inline">
-                <input type="text" class="form-control" id="addIngredient" placeholder="Lentils"
-                       aria-describedby="addIngredientHelp">
-                <button type="button" class="btn btn-secondary" id="addIngredientBtn">Add</button>
-            </div>
-            <small id="addIngredientHelp" class="form-text text-muted">Add an ingredient.</small>
+            <label for="directions">Directions</label>
+        </div>
+        <div id="directions"></div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary form-control" id="addDirection">Add direction</button>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <!-- Templates used in JS -->
+    <div class="form-row form-group" id="ingredient" style="display: none;">
+        <div class="col-1">
+            <button type="button" class="btn btn-primary btn-remove-recipe">
+                <span class="oi oi-x" title="Remove recipe" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="col-1">
+            <input type="number" class="form-control" name="quantity" id="quantity">
+        </div>
+        <div class="col-10">
+            <input type="text" class="form-control" name="ingName" id="ingName">
+        </div>
+    </div>
+
+    <div class="form-row form-group" id="direction" style="display: none;">
+        <div class="col-1">
+            <button type="button" class="btn btn-primary btn-remove-dir">
+                <span class="oi oi-x" title="Remove direction" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="col-11">
+            <input type="text" name="dirText" id="dirText" class="form-control">
+        </div>
+    </div>
 </div>
 {% endblock %}

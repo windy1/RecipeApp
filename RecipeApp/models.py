@@ -15,7 +15,7 @@ class Recipe(models.Model):
 
 class IngredientName(models.Model):
     created_at = models.DateTimeField()
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
 
 class Ingredient(models.Model):
@@ -23,6 +23,7 @@ class Ingredient(models.Model):
     ingredient = models.ForeignKey(IngredientName, on_delete=models.PROTECT)
     quantity = models.IntegerField()
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    index = models.IntegerField()
 
 
 class Direction(models.Model):
