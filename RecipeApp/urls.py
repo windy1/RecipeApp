@@ -30,6 +30,7 @@ urlpatterns = [
     path('submit/', views.submit, name='submit'),
     path('u/<username>/recipes/', views.myRecipes, name='myRecipes'),
     path('r/<int:recipeId>/', views.recipeDetail, name='recipeDetail'),
+    path('r/<int:recipeId>/review', views.review, name='review'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signUp, name='signup')
 ]

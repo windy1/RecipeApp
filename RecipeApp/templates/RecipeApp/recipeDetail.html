@@ -3,5 +3,41 @@
 {% block title %}Recipe detail{% endblock %}
 
 {% block content %}
-<p>Name: {{ recipe.name }}</p>
+<div class="container">
+    <h1>{{ recipe.name }}</h1>
+    <p>by {{ recipe.user.username }}</p>
+    <p>{{ recipe.summary }}</p>
+    <p>{{ recipe.prepTime }} prep time | {{ recipe.cookTime }} cook time</p>
+    <p>Serves {{ recipe.servings }} | {{ recipe.calories }} calories</p>
+    <p>Rating: {{ recipe.avgRating }}</p>
+    <h5>Ingredients</h5>
+    <ul>
+    {% for ing in ingredients %}
+        <li>{{ ing.quantity }} {{ ing.ingredient.name }}</li>
+    {% endfor %}
+    </ul>
+    <h5>Directions</h5>
+    <ol>
+    {% for dir in directions %}
+        <li>{{ dir.text }}</li>
+    {% endfor %}
+    </ol>
+
+    {% if canReview %}
+    <h5>Leave a review</h5>
+    <form action="{% url 'review' recipe.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <input type="number" class="form-control" name="rating" id="rating">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="text" id="text"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    {% endif %}
+</div>
 {% endblock %}
