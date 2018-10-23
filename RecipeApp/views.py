@@ -19,7 +19,21 @@ def popular(request):
 
 
 def categories(request):
-    return render(request, 'RecipeApp/categories.html', {'explore': 'categories'})
+    categoryList = Category.objects.filter(parent=None)
+    return render(request, 'RecipeApp/categories.html', {'categoryList': categoryList, 'explore': 'categories'})
+
+
+def categoryDetail(request, name):
+    category = get_object_or_404(Category, name=name)
+    subCategories = Category.objects.filter(parent=category).order_by('-name')
+    context = {'category': category, 'explore': 'categories'}
+
+    if subCategories.count() > 0:
+        context['categoryList'] = subCategories
+        return render(request, 'RecipeApp/categories.html', context)
+
+    context['recipeList'] = category.recipe_set.order_by('-avg_rating')
+    return render(request, 'RecipeApp/categoryRecipeList.html', context)
 
 
 def new(request):

@@ -27,6 +27,7 @@ urlpatterns = [
     path('trending/', views.trending, name='trending'),
     path('new/', views.new, name='new'),
     path('categories/', views.categories, name='categories'),
+    path('categories/<name>/', views.categoryDetail, name='categoryDetail'),
     path('submit/', views.submit, name='submit'),
     path('u/<username>/recipes/', views.myRecipes, name='myRecipes'),
     path('r/<int:recipeId>/', views.recipeDetail, name='recipeDetail'),

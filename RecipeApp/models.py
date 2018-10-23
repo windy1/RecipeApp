@@ -1,12 +1,19 @@
-from django.db import models
-from django.db.models import Avg
 from django.contrib.auth.models import User
+from django.db import models
+
+
+class Category(models.Model):
+    created_at = models.DateTimeField()
+    name = models.CharField(max_length=200, unique=True)
+    parent = models.ForeignKey("Category", on_delete=models.PROTECT, null=True, default=None, blank=True)
+    assignable = models.BooleanField(default=False)
 
 
 class Recipe(models.Model):
     created_at = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    categories = models.ManyToManyField(Category)
     summary = models.CharField(max_length=1000)
     prepTime = models.CharField(max_length=200)
     cookTime = models.CharField(max_length=200)
@@ -44,3 +51,9 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     rating = models.IntegerField()
     text = models.CharField(max_length=1000)
+
+
+# class RecipeCategory(models.Model):
+#     created_at = models.DateTimeField()
+#     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
