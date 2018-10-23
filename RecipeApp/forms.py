@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
+from django.conf import settings
 
 from .models import *
 
@@ -106,16 +107,12 @@ class SubmitRecipeForm(forms.ModelForm):
 
 
 class ReviewRecipeForm(forms.ModelForm):
-
-    RATING_MAX = 5
-    RATING_MIN = 0
-
     class Meta:
         model = Review
         fields = ('rating', 'text')
 
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
-        if rating and rating < ReviewRecipeForm.RATING_MIN or rating > ReviewRecipeForm.RATING_MAX:
+        if rating and rating < settings.REVIEWS['rating_min'] or rating > settings.REVIEWS['rating_max']:
             raise forms.ValidationError('The rating is out of bounds.', code='invalid_rating')
         return rating

@@ -18,11 +18,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-sidebar">
+        <div class="col-lg-2 col-sidebar">
             <div class="row row-sidebar">
                 <form action="#" method="get">
                     {% csrf_token %}
-                    <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-secondary mb-3">
+                                <span class="oi oi-magnifying-glass"></span>
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="row row-sidebar">
@@ -56,7 +63,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-10">
             {% block main %}{% endblock %}
         </div>
     </div>

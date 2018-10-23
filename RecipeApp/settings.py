@@ -124,3 +124,24 @@ STATIC_URL = '/static/'
 # Authentication
 
 LOGOUT_REDIRECT_URL = '/'
+
+# Custom settings
+
+REVIEWS = {
+    'rating_max': 5,
+    'rating_min': 0
+}
+
+TRENDING = {
+    'time_window': 120,
+    'review_count': 1
+}
+
+NEW = {
+    'time_window': 86400  # 1 day (seconds)
+}
+
+POPULAR = {
+    'rating_threshold': 4,
+    'review_count_threshold': 1
+}

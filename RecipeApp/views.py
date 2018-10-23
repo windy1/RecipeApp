@@ -12,7 +12,10 @@ def index(request):
 
 
 def popular(request):
-    return render(request, 'RecipeApp/popular.html', {'explore': 'popular'})
+    recipeList = Recipe.objects.filter(
+        review_count__gte=settings.POPULAR['review_count_threshold'],
+        avg_rating__gte=settings.POPULAR['rating_threshold'])
+    return render(request, 'RecipeApp/popular.html', {'recipeList': recipeList, 'explore': 'popular'})
 
 
 def categories(request):
@@ -20,11 +23,14 @@ def categories(request):
 
 
 def new(request):
-    return render(request, 'RecipeApp/new.html', {'explore': 'new'})
+    timeCutoff = timezone.now() - timezone.timedelta(seconds=settings.NEW['time_window'])
+    recipeList = Recipe.objects.filter(created_at__gt=timeCutoff).order_by('-created_at')
+    return render(request, 'RecipeApp/new.html', {'recipeList': recipeList, 'explore': 'new'})
 
 
 def trending(request):
-    return render(request, 'RecipeApp/trending.html', {'explore': 'trending'})
+    recipeList = Recipe.objects.filter(trending_count__gte=settings.TRENDING['review_count'])
+    return render(request, 'RecipeApp/trending.html', {'recipeList': recipeList, 'explore': 'trending'})
 
 
 def signUp(request):
@@ -47,7 +53,7 @@ def recipeDetail(request, recipeId):
     recipe = get_object_or_404(Recipe, pk=recipeId)
     ingredients = recipe.ingredient_set.order_by('-index')
     directions = recipe.direction_set.order_by('-index')
-    canReview = user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0
+    canReview = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0) or True
     context = {
         'recipe': recipe,
         'ingredients': ingredients,
@@ -68,6 +74,17 @@ def review(request, recipeId):
             rvw.user = request.user
             rvw.recipe = recipe
             rvw.save()
+
+            recipe.review_count = recipe.review_set.count()
+            recipe.avg_rating = recipe.review_set.aggregate(Avg('rating'))['rating__avg']
+
+            trendingCutoff = timezone.now() - timezone.timedelta(seconds=settings.TRENDING['time_window'])
+            recipe.trending_count = recipe.review_set.filter(created_at__gt=trendingCutoff).count()
+
+            recipe.save()
+
+            # TODO: Update trending_count periodically in the background as it will need to change as time passes
+
     return redirect('recipeDetail', recipe.id)
 
 

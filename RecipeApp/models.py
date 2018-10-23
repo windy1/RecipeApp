@@ -13,9 +13,9 @@ class Recipe(models.Model):
     servings = models.IntegerField()
     calories = models.IntegerField()
     is_featured = models.BooleanField(default=False)
-
-    def avgRating(self):
-        return self.review_set.aggregate(Avg('rating'))['rating__avg']
+    review_count = models.IntegerField(default=0)
+    avg_rating = models.IntegerField(default=0)
+    trending_count = models.IntegerField(default=0)
 
 
 class IngredientName(models.Model):
