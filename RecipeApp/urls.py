@@ -40,5 +40,7 @@ urlpatterns = [
     path('r/<int:recipeId>/review', views.review, name='review'),
 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.signUp, name='signup')
+    path('accounts/signup/', views.signUp, name='signup'),
+
+    path('api/', include('RecipeAPI.urls'))
 ]

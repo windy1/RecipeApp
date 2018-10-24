@@ -142,7 +142,7 @@ class SubmitRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'summary', 'prepTime', 'cookTime', 'servings', 'calories')
+        fields = ('name', 'summary', 'prep_time', 'cook_time', 'servings', 'calories')
 
 
 class ReviewRecipeForm(forms.ModelForm):
