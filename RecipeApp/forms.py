@@ -7,6 +7,9 @@ from .models import *
 
 
 class SignUpForm(UserCreationForm):
+    """
+    See: registration/signUp.html template
+    """
     email = forms.EmailField(max_length=254, required=True)
 
     class Meta:
@@ -30,28 +33,43 @@ class IngredientData:
 class SubmitRecipeForm(forms.ModelForm):
 
     def is_valid(self):
+        # force a clean of the form
         self.full_clean()
         return super().is_valid()
 
     def clean(self):
-        # TODO: more validation
+        # TODO: more validation?
         self._cleanIngredients()
         self._cleanDirections()
         return super().clean()
 
     def _cleanIngredients(self):
+        """
+        Collect all the ingredient data submitted and verify that it is valid.
+        """
         ingredients = {}
         ingNum = 1
         nameField = 'ingName%d' % ingNum
+        # While there is a numbered ingredient name value
         while self.data.get(nameField):
             ingName = self.data[nameField]
             quantityField = 'quantity%d' % ingNum
 
             self.fields[nameField] = forms.CharField()
-            self.fields[quantityField] = forms.CharField()
+            self.fields[quantityField] = forms.IntegerField()
 
-            if not self.data.get(quantityField):
-                self.add_error(quantityField, 'Missing quantity for ingredient: %s' % ingName)
+            quantityVal = self.data.get(quantityField)
+            if not quantityVal:
+                raise forms.ValidationError(
+                    'Missing quantity for ingredient: %(name)',
+                    params={'name': ingName},
+                    code='missing_quantity'
+                )
+            elif int(quantityVal) < 1:
+                raise forms.ValidationError(
+                    'Invalid value for quantity.',
+                    code='invalid_quantity'
+                )
             elif IngredientName.objects.filter(name=ingName).count() == 0:
                 self.add_error(nameField, 'No such ingredient %s exists' % ingName)
             else:
@@ -63,15 +81,26 @@ class SubmitRecipeForm(forms.ModelForm):
         self.cleaned_data['ingredients'] = ingredients
 
     def _cleanDirections(self):
+        """
+        Collect all the direction data submitted and verify that it is valid.
+        """
         directions = {}
         dirNum = 1
         textField = 'dirText%d' % dirNum
         while self.data.get(textField):
             dirText = self.data[textField]
             self.fields[textField] = forms.CharField()
+
+            if len(dirText) > 1000:
+                raise forms.ValidationError(
+                    'Directions cannot be larger than 1000 characters.',
+                    code='invalid_direction'
+                )
+
             directions[dirNum] = dirText
             dirNum += 1
             textField = 'dirText%d' % dirNum
+
         self.cleaned_data['directions'] = directions
 
     def save(self, commit=True):
@@ -82,6 +111,11 @@ class SubmitRecipeForm(forms.ModelForm):
         return recipe
 
     def createIngredients(self, recipe):
+        """
+        Creates the ingredients submitted in the form. New Recipe must be saved in database before this is called.
+
+        :param recipe: recipe of ingredients
+        """
         ingredients = self.cleaned_data['ingredients']
         for ingNum in ingredients:
             ing = ingredients[ingNum]
@@ -93,6 +127,11 @@ class SubmitRecipeForm(forms.ModelForm):
                 index=ingNum)
 
     def createDirections(self, recipe):
+        """
+        Creates the directions submitted in the form. New Recipe must be saved in database before this is called.
+
+        :param recipe: recipe of directions
+        """
         directions = self.cleaned_data['directions']
         for dirNum in directions:
             Direction.objects.create(
@@ -107,12 +146,13 @@ class SubmitRecipeForm(forms.ModelForm):
 
 
 class ReviewRecipeForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ('rating', 'text')
 
     def clean_rating(self):
         rating = self.cleaned_data.get('rating')
         if rating and rating < settings.REVIEWS['rating_min'] or rating > settings.REVIEWS['rating_max']:
             raise forms.ValidationError('The rating is out of bounds.', code='invalid_rating')
         return rating
+
+    class Meta:
+        model = Review
+        fields = ('rating', 'text')

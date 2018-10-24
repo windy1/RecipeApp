@@ -51,9 +51,3 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     rating = models.IntegerField()
     text = models.CharField(max_length=1000)
-
-
-# class RecipeCategory(models.Model):
-#     created_at = models.DateTimeField()
-#     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE)

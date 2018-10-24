@@ -21,17 +21,24 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', views.index, name='index'),
+
     path('featured/', views.index, name='featured'),
     path('popular/', views.popular, name='popular'),
     path('trending/', views.trending, name='trending'),
     path('new/', views.new, name='new'),
+
     path('categories/', views.categories, name='categories'),
     path('categories/<name>/', views.categoryDetail, name='categoryDetail'),
+
     path('submit/', views.submit, name='submit'),
+
     path('u/<username>/recipes/', views.myRecipes, name='myRecipes'),
+
     path('r/<int:recipeId>/', views.recipeDetail, name='recipeDetail'),
     path('r/<int:recipeId>/review', views.review, name='review'),
+
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signUp, name='signup')
 ]
