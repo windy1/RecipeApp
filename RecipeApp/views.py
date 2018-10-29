@@ -22,20 +22,20 @@ def popular(request):
 
 def categories(request):
     category_list = Category.objects.filter(parent=None)
-    return render(request, 'RecipeApp/categories.html', {'categoryList': category_list, 'explore': 'categories'})
+    return render(request, 'RecipeApp/category/category_list.html', {'category_list': category_list, 'explore': 'category'})
 
 
 def category_detail(request, name):
     category = get_object_or_404(Category, name=name)
     sub_categories = Category.objects.filter(parent=category).order_by('-name')
-    context = {'category': category, 'explore': 'categories'}
+    context = {'category': category, 'explore': 'category'}
 
     if sub_categories.count() > 0:
-        context['categoryList'] = sub_categories
-        return render(request, 'RecipeApp/categories.html', context)
+        context['category_list'] = sub_categories
+        return render(request, 'RecipeApp/category/category_list.html', context)
 
     context['recipe_list'] = category.recipe_set.order_by('-avg_rating')
-    return render(request, 'RecipeApp/category_recipe_list.html', context)
+    return render(request, 'RecipeApp/category/category_detail.html', context)
 
 
 def new(request):
@@ -76,7 +76,7 @@ def recipe_detail(request, recipe_id):
         'directions': directions,
         'can_review': can_review
     }
-    return render(request, 'RecipeApp/recipe_detail.html', context)
+    return render(request, 'RecipeApp/recipe/recipe_detail.html', context)
 
 
 @login_required
@@ -107,7 +107,7 @@ def review(request, recipe_id):
 def my_recipes(request, username):
     user = get_object_or_404(User, username=username)
     recipes = user.recipe_set.all()
-    return render(request, 'RecipeApp/my_recipes.html', {'recipe_list': recipes, 'explore': 'myRecipes'})
+    return render(request, 'RecipeApp/user/my_recipes.html', {'recipe_list': recipes, 'explore': 'myRecipes'})
 
 
 @login_required
@@ -118,6 +118,7 @@ def submit(request):
             recipe = form.save(commit=False)
             recipe.user = request.user
             recipe.save()
+            recipe.categories.set(form.cleaned_data['categories'])
             form.create_ingredients(recipe)
             form.create_directions(recipe)
             return redirect('my_recipes', request.user.username)
@@ -125,7 +126,6 @@ def submit(request):
         form = SubmitRecipeForm()
 
     context = {
-        'form': form,
-        'categories': Category.objects.filter(assignable=True)
+        'form': form
     }
-    return render(request, 'RecipeApp/submit_recipe.html', context)
+    return render(request, 'RecipeApp/recipe/submit_recipe.html', context)

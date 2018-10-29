@@ -31,7 +31,23 @@ class IngredientData:
 
 
 class SubmitRecipeForm(forms.ModelForm):
-    categories = forms.SelectMultiple()
+
+    time_units = [('minutes', 'minutes'), ('hours', 'hours'), ('days', 'days')]
+
+    prep_time_num = forms.IntegerField(min_value=1, max_value=60)
+    prep_time_unit = forms.ChoiceField(choices=time_units)
+    cook_time_num = forms.IntegerField(min_value=1, max_value=60)
+    cook_time_unit = forms.ChoiceField(choices=time_units)
+
+    def __init__(self, data=None):
+        super().__init__(data)
+        self.fields['prep_time_unit'].widget.attrs.update({'class': 'form-control'})
+        self.fields['cook_time_unit'].widget.attrs.update({'class': 'form-control'})
+        self.fields['categories'].queryset = Category.objects.filter(assignable=True)
+        self.fields['categories'].widget.attrs.update({
+            'class': 'form-control',
+            'aria-describedby': 'category-help'
+        })
 
     def is_valid(self):
         # force a clean of the form
@@ -110,6 +126,8 @@ class SubmitRecipeForm(forms.ModelForm):
     def save(self, commit=True):
         recipe = super().save(commit=False)
         recipe.created_at = timezone.now()
+        recipe.prep_time = '%s %s' % (self.cleaned_data['prep_time_num'], self.cleaned_data['prep_time_unit'])
+        recipe.cook_time = '%s %s' % (self.cleaned_data['cook_time_num'], self.cleaned_data['cook_time_unit'])
         if commit:
             recipe.save()
         return recipe
@@ -146,7 +164,7 @@ class SubmitRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'summary', 'prep_time', 'cook_time', 'servings', 'calories')
+        fields = ('name', 'summary', 'servings', 'calories', 'categories')
 
 
 class ReviewRecipeForm(forms.ModelForm):

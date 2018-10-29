@@ -25,6 +25,13 @@
     {% endfor %}
     </ol>
 
+    <h5>Categories</h5>
+    <ol>
+    {% for category in recipe.categories.all %}
+        <li>{{ category.display_name }}</li>
+    {% endfor %}
+    </ol>
+
     {% if canReview %}
         <h5>Leave a review</h5>
         <form action="{% url 'review' recipe.id %}" method="post">

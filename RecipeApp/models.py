@@ -4,9 +4,13 @@ from django.db import models
 
 class Category(models.Model):
     created_at = models.DateTimeField()
+    name = models.CharField(max_length=200, unique=True)
     display_name = models.CharField(max_length=200, unique=True)
     parent = models.ForeignKey("Category", on_delete=models.PROTECT, null=True, default=None, blank=True)
     assignable = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.display_name
 
 
 class Recipe(models.Model):

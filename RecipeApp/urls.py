@@ -29,8 +29,8 @@ urlpatterns = [
     path('trending/', views.trending, name='trending'),
     path('new/', views.new, name='new'),
 
-    path('categories/', views.categories, name='categories'),
-    path('categories/<name>/', views.category_detail, name='category_detail'),
+    path('category/', views.categories, name='category'),
+    path('category/<name>/', views.category_detail, name='category_detail'),
 
     path('submit/', views.submit, name='submit'),
 

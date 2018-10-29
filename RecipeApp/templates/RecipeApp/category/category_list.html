@@ -6,8 +6,8 @@
 <div class="container-fluid">
     <h1>Categories</h1>
     <ul>
-    {% for category in categoryList %}
-        <li><a href="{% url 'category_detail' category.name %}">{{ category.name }}</a></li>
+    {% for category in category_list %}
+        <li><a href="{% url 'category_detail' category.name %}">{{ category.display_name }}</a></li>
     {% endfor %}
     </ul>
 </div>
