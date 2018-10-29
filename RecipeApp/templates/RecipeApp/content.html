@@ -55,8 +55,8 @@
             </div>
             <div class="row row-sidebar">
                 <div class="list-group">
-                    <a class="list-group-item {% if explore == 'myRecipes' %}active{% endif %}"
-                       href="{% url 'myRecipes' request.user.username %}">Recipes</a>
+                    <a class="list-group-item {% if explore == 'my_recipes' %}active{% endif %}"
+                       href="{% url 'my_recipes' request.user.username %}">Recipes</a>
                     <a class="list-group-item" href="#">Profile</a>
                     <a class="list-group-item" href="#">Preferences</a>
                 </div>

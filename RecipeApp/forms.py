@@ -8,7 +8,7 @@ from .models import *
 
 class SignUpForm(UserCreationForm):
     """
-    See: registration/signUp.html template
+    See: registration/signup.html template
     """
     email = forms.EmailField(max_length=254, required=True)
 
@@ -31,6 +31,7 @@ class IngredientData:
 
 
 class SubmitRecipeForm(forms.ModelForm):
+    categories = forms.SelectMultiple()
 
     def is_valid(self):
         # force a clean of the form
@@ -39,67 +40,70 @@ class SubmitRecipeForm(forms.ModelForm):
 
     def clean(self):
         # TODO: more validation?
-        self._cleanIngredients()
-        self._cleanDirections()
+        self._clean_ingredients()
+        self._clean_directions()
         return super().clean()
 
-    def _cleanIngredients(self):
+    def _clean_ingredients(self):
         """
         Collect all the ingredient data submitted and verify that it is valid.
         """
         ingredients = {}
-        ingNum = 1
-        nameField = 'ingName%d' % ingNum
+        ing_num = 1
+        name_field = 'ing_name%d' % ing_num
         # While there is a numbered ingredient name value
-        while self.data.get(nameField):
-            ingName = self.data[nameField]
-            quantityField = 'quantity%d' % ingNum
+        while self.data.get(name_field):
+            ing_name = self.data[name_field]
+            quantity_field = 'quantity%d' % ing_num
 
-            self.fields[nameField] = forms.CharField()
-            self.fields[quantityField] = forms.IntegerField()
+            self.fields[name_field] = forms.CharField()
+            self.fields[quantity_field] = forms.IntegerField()
 
-            quantityVal = self.data.get(quantityField)
-            if not quantityVal:
+            quantity_val = self.data.get(quantity_field)
+            if not quantity_val:
                 raise forms.ValidationError(
                     'Missing quantity for ingredient: %(name)',
-                    params={'name': ingName},
+                    params={'name': ing_name},
                     code='missing_quantity'
                 )
-            elif int(quantityVal) < 1:
+            elif int(quantity_val) < 1:
                 raise forms.ValidationError(
                     'Invalid value for quantity.',
                     code='invalid_quantity'
                 )
-            elif IngredientName.objects.filter(name=ingName).count() == 0:
-                self.add_error(nameField, 'No such ingredient %s exists' % ingName)
+            elif IngredientName.objects.filter(name=ing_name).count() == 0:
+                IngredientName.objects.create(
+                    created_at=timezone.now(),
+                    name=ing_name
+                )
             else:
-                ingredients[ingNum] = IngredientData(name=ingName, quantity=self.data[quantityField])
+                ingredients[ing_num] = IngredientData(name=ing_name, quantity=self.data[quantity_field])
 
-            ingNum += 1
-            nameField = 'ingName%d' % ingNum
+            ing_num += 1
+            name_field = 'ing_name%d' % ing_num
 
         self.cleaned_data['ingredients'] = ingredients
 
-    def _cleanDirections(self):
+    def _clean_directions(self):
         """
         Collect all the direction data submitted and verify that it is valid.
         """
         directions = {}
-        dirNum = 1
-        textField = 'dirText%d' % dirNum
-        while self.data.get(textField):
-            dirText = self.data[textField]
-            self.fields[textField] = forms.CharField()
+        dir_num = 1
+        text_field = 'dir_text%d' % dir_num
+        while self.data.get(text_field):
+            dir_text = self.data[text_field]
+            self.fields[text_field] = forms.CharField()
 
-            if len(dirText) > 1000:
+            if len(dir_text) > 1000:
                 raise forms.ValidationError(
                     'Directions cannot be larger than 1000 characters.',
                     code='invalid_direction'
                 )
 
-            directions[dirNum] = dirText
-            dirNum += 1
-            textField = 'dirText%d' % dirNum
+            directions[dir_num] = dir_text
+            dir_num += 1
+            text_field = 'dir_text%d' % dir_num
 
         self.cleaned_data['directions'] = directions
 
@@ -110,7 +114,7 @@ class SubmitRecipeForm(forms.ModelForm):
             recipe.save()
         return recipe
 
-    def createIngredients(self, recipe):
+    def create_ingredients(self, recipe):
         """
         Creates the ingredients submitted in the form. New Recipe must be saved in database before this is called.
 
@@ -126,7 +130,7 @@ class SubmitRecipeForm(forms.ModelForm):
                 recipe=recipe,
                 index=ingNum)
 
-    def createDirections(self, recipe):
+    def create_directions(self, recipe):
         """
         Creates the directions submitted in the form. New Recipe must be saved in database before this is called.
 

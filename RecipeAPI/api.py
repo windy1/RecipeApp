@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from RecipeApp.models import Recipe, Category, Ingredient, Review
+from RecipeApp.models import Recipe, Category, Ingredient, Review, IngredientName
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -51,3 +51,9 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Review
         fields = ('created_at', 'user', 'recipe', 'rating', 'text')
+
+
+class IngredientNameSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = IngredientName
+        fields = ('created_at', 'name')

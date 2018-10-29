@@ -6,6 +6,7 @@ from .api import *
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'username'
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -21,3 +22,9 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+
+class IngredientNameViewSet(viewsets.ModelViewSet):
+    serializer_class = IngredientNameSerializer
+    queryset = IngredientName.objects.all()
+    lookup_field = 'name'

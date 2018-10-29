@@ -30,17 +30,17 @@ urlpatterns = [
     path('new/', views.new, name='new'),
 
     path('categories/', views.categories, name='categories'),
-    path('categories/<name>/', views.categoryDetail, name='categoryDetail'),
+    path('categories/<name>/', views.category_detail, name='category_detail'),
 
     path('submit/', views.submit, name='submit'),
 
-    path('u/<username>/recipes/', views.myRecipes, name='myRecipes'),
+    path('u/<username>/recipes/', views.my_recipes, name='my_recipes'),
 
-    path('r/<int:recipeId>/', views.recipeDetail, name='recipeDetail'),
-    path('r/<int:recipeId>/review', views.review, name='review'),
+    path('r/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
+    path('r/<int:recipe_id>/review', views.review, name='review'),
 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.signUp, name='signup'),
+    path('accounts/signup/', views.sign_up, name='signup'),
 
     path('api/', include('RecipeAPI.urls'))
 ]

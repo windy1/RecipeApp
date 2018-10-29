@@ -10,12 +10,14 @@
     <p>{{ recipe.prep_time }} prep time | {{ recipe.cook_time }} cook time</p>
     <p>Serves {{ recipe.servings }} | {{ recipe.calories }} calories</p>
     <p>Rating: {{ recipe.avg_rating }}</p>
+
     <h5>Ingredients</h5>
     <ul>
     {% for ing in ingredients %}
         <li>{{ ing.quantity }} {{ ing.ingredient.name }}</li>
     {% endfor %}
     </ul>
+
     <h5>Directions</h5>
     <ol>
     {% for dir in directions %}
@@ -24,20 +26,20 @@
     </ol>
 
     {% if canReview %}
-    <h5>Leave a review</h5>
-    <form action="{% url 'review' recipe.id %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="rating">Rating</label>
-            <input type="number" class="form-control" name="rating" id="rating">
-        </div>
-        <div class="form-group">
-            <textarea class="form-control" name="text" id="text"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
+        <h5>Leave a review</h5>
+        <form action="{% url 'review' recipe.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" class="form-control" name="rating" id="rating">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="text" id="text"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     {% endif %}
 </div>
 {% endblock %}
