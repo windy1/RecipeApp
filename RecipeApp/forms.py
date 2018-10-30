@@ -148,7 +148,8 @@ class SubmitRecipeForm(forms.ModelForm):
                 ingredient=IngredientName.objects.get(name=ing.name),
                 quantity=ing.quantity,
                 recipe=recipe,
-                index=ingNum)
+                index=ingNum
+            )
 
     def create_directions(self, recipe):
         """
@@ -162,7 +163,8 @@ class SubmitRecipeForm(forms.ModelForm):
                 created_at=timezone.now(),
                 text=directions[dirNum],
                 index=dirNum,
-                recipe=recipe)
+                recipe=recipe
+            )
 
     class Meta:
         model = Recipe

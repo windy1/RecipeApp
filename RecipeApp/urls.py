@@ -23,13 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.index, name='index'),
-
     path('featured/', views.index, name='featured'),
     path('popular/', views.popular, name='popular'),
     path('trending/', views.trending, name='trending'),
     path('new/', views.new, name='new'),
 
-    path('category/', views.categories, name='category'),
+    path('category/', views.categories, name='categories'),
     path('category/<name>/', views.category_detail, name='category_detail'),
 
     path('submit/', views.submit, name='submit'),
@@ -40,7 +39,7 @@ urlpatterns = [
     path('r/<int:recipe_id>/review', views.review, name='review'),
 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.sign_up, name='signup'),
+    path('accounts/signup/', views.signup, name='signup'),
 
     path('api/', include('RecipeAPI.urls'))
 ]

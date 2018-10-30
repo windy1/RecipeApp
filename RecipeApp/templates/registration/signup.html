@@ -7,7 +7,13 @@
     <h1>Sign up</h1>
 
     {% if form.errors %}
-        {{ form.error_messages }}
+        <div class="alert alert-danger">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        </div>
     {% endif %}
 
     <form action="{% url 'signup' %}" method="post">

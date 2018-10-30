@@ -49,14 +49,11 @@ def trending(request):
     return render(request, 'RecipeApp/trending.html', {'recipe_list': recipe_list, 'explore': 'trending'})
 
 
-def sign_up(request):
+def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
+            user = form.save()
             login(request, user)
             return redirect('index')
     else:
@@ -124,8 +121,4 @@ def submit(request):
             return redirect('my_recipes', request.user.username)
     else:
         form = SubmitRecipeForm()
-
-    context = {
-        'form': form
-    }
-    return render(request, 'RecipeApp/recipe/submit_recipe.html', context)
+    return render(request, 'RecipeApp/recipe/submit_recipe.html', {'form': form})
