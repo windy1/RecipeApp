@@ -87,13 +87,15 @@ class SubmitRecipeForm(forms.ModelForm):
                     'Invalid value for quantity.',
                     code='invalid_quantity'
                 )
-            elif IngredientName.objects.filter(name=ing_name).count() == 0:
+            else:
+                ingredients[ing_num] = IngredientData(name=ing_name, quantity=self.data[quantity_field])
+
+            # create the ingredient if it doesn't exist in the db
+            if IngredientName.objects.filter(name=ing_name).count() == 0:
                 IngredientName.objects.create(
                     created_at=timezone.now(),
                     name=ing_name
                 )
-            else:
-                ingredients[ing_num] = IngredientData(name=ing_name, quantity=self.data[quantity_field])
 
             ing_num += 1
             name_field = 'ing_name%d' % ing_num
