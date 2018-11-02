@@ -1,0 +1,10 @@
+{% extends 'core/content.html' %}
+
+{% block title %}Categories | {{ category.name }}{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <h1>{{ category.name }}</h1>
+    {% include 'core/recipe/recipe_list.html' %}
+</div>
+{% endblock %}

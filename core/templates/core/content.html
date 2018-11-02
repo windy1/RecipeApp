@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container-fluid container-main">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="logo"></div>
+        </div>
+        <div class="col-lg-6">
+            <div class="btn-group float-right" role="group">
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'login' %}" role="button" class="btn btn-primary">Log in</a>
+                    <a href="{% url 'signup' %}" role="button" class="btn btn-secondary">Sign up</a>
+                {% else %}
+                    <a href="{% url 'logout' %}" role="button" class="btn btn-secondary">Sign out</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 col-sidebar">
+            <div class="row row-sidebar">
+                <form action="{% url 'search' %}" method="get">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q" id="q" placeholder="Search"
+                               aria-describedby="advanced-search" required>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-secondary mb-3">
+                                <span class="oi oi-magnifying-glass"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="advanced-search" class="form-text text-muted">
+                        <a href="#">Advanced Search</a>
+                    </small>
+                </form>
+            </div>
+            <div class="row row-sidebar">
+                <h5>Explore</h5>
+            </div>
+            <div class="row row-sidebar">
+                <div class="list-group">
+                    <a class="list-group-item {% if explore == 'featured' %}active{% endif %}"
+                       href="{% url 'featured' %}">Featured</a>
+                    <a class="list-group-item {% if explore == 'popular' %}active{% endif %}"
+                       href="{% url 'popular' %}">Popular</a>
+                    <a class="list-group-item {% if explore == 'trending' %}active{% endif %}"
+                       href="{% url 'trending' %}">Trending</a>
+                    <a class="list-group-item {% if explore == 'new' %}active{% endif %}"
+                       href="{% url 'new' %}">New</a>
+                    <a class="list-group-item {% if explore == 'category' %}active{% endif %}"
+                       href="{% url 'categories' %}">Categories</a>
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="row row-sidebar">
+                <h5>My Kitchen</h5>
+            </div>
+            <div class="row row-sidebar">
+                <div class="list-group">
+                    <a class="list-group-item {% if explore == 'user_recipes' %}active{% endif %}"
+                       href="{% url 'user_recipes' request.user.username %}">Recipes</a>
+                    <a class="list-group-item" href="#">Profile</a>
+                    <a class="list-group-item" href="#">Preferences</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-10">
+            {% block main %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
