@@ -13,8 +13,18 @@ def index(request):
 
 
 def popular(request):
-    # FIXME
-    recipe_list = []
+    recipe_list = Recipe.objects.raw(
+        """
+        SELECT   rec.*, AVG(rev.rating) AS avg_rating, COUNT(rev.id) AS review_count 
+        FROM     core_recipe AS rec
+        JOIN     core_review AS rev ON rev.recipe_id = rec.id
+        GROUP BY rec.id
+        HAVING   avg_rating >= %s
+        AND      review_count >= %s
+        ORDER BY review_count DESC, avg_rating DESC
+        """,
+        [settings.POPULAR['rating_threshold'], settings.POPULAR['review_count_threshold']]
+    )
     return render(request, 'core/popular.html', {'recipe_list': recipe_list, 'explore': 'popular'})
 
 
@@ -56,7 +66,7 @@ def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     ingredients = recipe.ingredient_set.order_by('-index')
     directions = recipe.direction_set.order_by('-index')
-    can_review = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0)  # or True
+    can_review = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0)  or True
     context = {
         'recipe': recipe,
         'ingredients': ingredients,
