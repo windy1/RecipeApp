@@ -29,8 +29,19 @@ def popular(request):
 
 
 def trending(request):
-    # FIXME
-    recipe_list = []
+    recipe_list = Recipe.objects.raw(
+        """
+        SELECT   rec.*, COUNT(rev.id) AS review_count 
+        FROM     core_recipe AS rec
+        JOIN     core_review AS rev 
+        ON       rev.recipe_id = rec.id
+        AND      (julianday(CURRENT_TIMESTAMP) - julianday(rev.created_at)) * 86400.0 <= %s
+        GROUP BY rec.id
+        HAVING   review_count >= %s
+        ORDER BY review_count DESC
+        """,
+        [settings.TRENDING['time_window'], settings.TRENDING['review_count']]
+    )
     return render(request, 'core/trending.html', {'recipe_list': recipe_list, 'explore': 'trending'})
 
 
