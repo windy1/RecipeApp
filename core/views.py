@@ -123,15 +123,15 @@ def search(request):
 @login_required
 def submit(request):
     if request.method == 'POST':
-        form = SubmitRecipeForm(request.POST)
+        form = SubmitRecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.user = request.user
             recipe.save()
             recipe.categories.set(form.cleaned_data['categories'])
-            form.create_ingredients(recipe)
-            form.create_directions(recipe)
-            return redirect('user_recipes', request.user.username)
+            form.save_ingredients(recipe)
+            form.save_directions(recipe)
+            return redirect('recipe_detail', recipe.id)
     else:
         form = SubmitRecipeForm()
     return render(request, 'core/recipe/submit_recipe.html', {'form': form})

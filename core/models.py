@@ -5,6 +5,10 @@ from django.db.models import Avg
 from django.utils import timezone
 
 
+def user_directory_path(instance, filename):
+    return 'users/{0}/{1}'.format(instance.user.username, filename)
+
+
 class Category(models.Model):
     created_at = models.DateTimeField()
     name = models.CharField(max_length=200, unique=True)
@@ -22,6 +26,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length=200)
     categories = models.ManyToManyField(Category)
     summary = models.CharField(max_length=1000)
+    image = models.ImageField(upload_to=user_directory_path, default=None, blank=True, null=True)
     prep_time = models.CharField(max_length=200)
     cook_time = models.CharField(max_length=200)
     servings = models.IntegerField()
@@ -31,15 +36,13 @@ class Recipe(models.Model):
     def avg_rating(self):
         return self.review_set.aggregate(Avg('rating'))['rating__avg']
 
-    def is_trending(self):
-        trending_cutoff = timezone.now() - timezone.timedelta(seconds=settings.TRENDING['time_window'])
-        trending_count = self.review_set.filter(created_at__gt=trending_cutoff).count()
-        return trending_count >= settings.TRENDING['review_count']
-
 
 class IngredientName(models.Model):
     created_at = models.DateTimeField()
     name = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Ingredient(models.Model):

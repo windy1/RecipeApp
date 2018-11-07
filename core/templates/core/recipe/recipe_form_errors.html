@@ -2,24 +2,7 @@
     <div class="alert alert-danger">
     {% for field in form %}
         {% for error in field.errors %}
-            <p>
-                <strong>
-                    {% if field.name == 'name' %}
-                        Recipe name:
-                    {% elif field.name == 'summary' %}
-                        Summary:
-                    {% elif field.name == 'prep_time_num' or field.name == 'prep_time_unit' %}
-                        Prep time:
-                    {% elif field.name == 'cook_time_num' or field.name == 'cook_time_unit' %}
-                        Cook time:
-                    {% elif field.name == 'servings' %}
-                        Servings:
-                    {% elif field.name == 'calories' %}
-                        Calories:
-                    {% endif %}
-                </strong>
-                {{ error }}
-            </p>
+            <p><strong>{{ field.label }}:</strong> {{ error }}</p>
         {% endfor %}
     {% endfor %}
     </div>

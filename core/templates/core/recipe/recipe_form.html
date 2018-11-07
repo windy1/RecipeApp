@@ -1,17 +1,23 @@
 {% include 'core/recipe/recipe_form_errors.html' %}
 
-<form action="{% url 'submit' %}" method="post" id="recipe_form">
+<form action="{% url 'submit' %}" method="post" id="recipe_form" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form-group">
         <label for="name">Recipe name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Enter a recipe name"
-               value="{{ form.name.value }}">
+               value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image" aria-describedby="image-help">
+        <small id="image-help" class="form-text text-muted">(Optional) Submit an image to represent your recipe.</small>
     </div>
 
     <div class="form-group">
         <label for="summary">Summary</label>
-        <textarea class="form-control" maxlength="1000" name="summary" id="summary">{{ form.summary.value }}</textarea>
+        <textarea class="form-control" maxlength="1000" name="summary" id="summary"></textarea>
     </div>
 
     <div class="form-group">

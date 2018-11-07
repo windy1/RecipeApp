@@ -1,7 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.utils import timezone
-from django.conf import settings
 
 from .models import *
 
@@ -39,8 +37,8 @@ class SubmitRecipeForm(forms.ModelForm):
     cook_time_num = forms.IntegerField(min_value=1, max_value=60)
     cook_time_unit = forms.ChoiceField(choices=time_units)
 
-    def __init__(self, data=None):
-        super().__init__(data)
+    def __init__(self, post=None, files=None):
+        super().__init__(data=post, files=files)
         self.fields['prep_time_unit'].widget.attrs.update({'class': 'form-control'})
         self.fields['cook_time_unit'].widget.attrs.update({'class': 'form-control'})
         self.fields['categories'].queryset = Category.objects.filter(assignable=True)
@@ -134,7 +132,7 @@ class SubmitRecipeForm(forms.ModelForm):
             recipe.save()
         return recipe
 
-    def create_ingredients(self, recipe):
+    def save_ingredients(self, recipe):
         """
         Creates the ingredients submitted in the form. New Recipe must be saved in database before this is called.
 
@@ -151,7 +149,7 @@ class SubmitRecipeForm(forms.ModelForm):
                 index=ingNum
             )
 
-    def create_directions(self, recipe):
+    def save_directions(self, recipe):
         """
         Creates the directions submitted in the form. New Recipe must be saved in database before this is called.
 
@@ -168,7 +166,7 @@ class SubmitRecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('name', 'summary', 'servings', 'calories', 'categories')
+        fields = ('name', 'summary', 'servings', 'calories', 'categories', 'image')
 
 
 class ReviewRecipeForm(forms.ModelForm):

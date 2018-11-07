@@ -68,3 +68,4 @@ fabric.properties
 *.sqlite3
 venv
 **/__pycache__/**
+media/
