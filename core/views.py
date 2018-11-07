@@ -77,7 +77,7 @@ def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     ingredients = recipe.ingredient_set.order_by('-index')
     directions = recipe.direction_set.order_by('-index')
-    can_review = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0)  or True
+    can_review = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0) or True
     context = {
         'recipe': recipe,
         'ingredients': ingredients,

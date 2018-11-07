@@ -1,8 +1,6 @@
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Avg
-from django.utils import timezone
 
 
 def user_directory_path(instance, filename):
