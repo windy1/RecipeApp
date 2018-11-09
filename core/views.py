@@ -2,9 +2,12 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
+from django.utils import timezone
 
 from .forms import *
 from .models import Recipe
+from .raw_queries import RawQueries
 
 
 def index(request):
@@ -14,15 +17,7 @@ def index(request):
 
 def popular(request):
     recipe_list = Recipe.objects.raw(
-        """
-        SELECT   rec.*, AVG(rev.rating) AS avg_rating, COUNT(rev.id) AS review_count 
-        FROM     core_recipe AS rec
-        JOIN     core_review AS rev ON rev.recipe_id = rec.id
-        GROUP BY rec.id
-        HAVING   avg_rating >= %s
-        AND      review_count >= %s
-        ORDER BY review_count DESC, avg_rating DESC
-        """,
+        RawQueries.popular_select,
         [settings.POPULAR['rating_threshold'], settings.POPULAR['review_count_threshold']]
     )
     return render(request, 'core/popular.html', {'recipe_list': recipe_list, 'explore': 'popular'})
@@ -30,16 +25,7 @@ def popular(request):
 
 def trending(request):
     recipe_list = Recipe.objects.raw(
-        """
-        SELECT   rec.*, COUNT(rev.id) AS review_count 
-        FROM     core_recipe AS rec
-        JOIN     core_review AS rev 
-        ON       rev.recipe_id = rec.id
-        AND      (julianday(CURRENT_TIMESTAMP) - julianday(rev.created_at)) * 86400.0 <= %s
-        GROUP BY rec.id
-        HAVING   review_count >= %s
-        ORDER BY review_count DESC
-        """,
+        RawQueries.trending_select,
         [settings.TRENDING['time_window'], settings.TRENDING['review_count']]
     )
     return render(request, 'core/trending.html', {'recipe_list': recipe_list, 'explore': 'trending'})
