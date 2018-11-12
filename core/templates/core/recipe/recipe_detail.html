@@ -11,6 +11,11 @@
     <p>Serves {{ recipe.servings }} | {{ recipe.calories }} calories</p>
     <p>Rating: {{ recipe.avg_rating }}</p>
 
+    {% load static %}
+    {% if recipe.image %}
+        <img src="{% static recipe.image.url %}">
+    {% endif %}
+
     <h5>Ingredients</h5>
     <ul>
     {% for ing in ingredients %}
