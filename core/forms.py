@@ -39,6 +39,10 @@ class SubmitRecipeForm(forms.ModelForm):
     cook_time_num = forms.IntegerField(min_value=1, max_value=60)
     cook_time_unit = forms.ChoiceField(choices=time_units)
 
+    class Meta:
+        model = Recipe
+        fields = ('name', 'summary', 'servings', 'calories', 'categories', 'image')
+
     def __init__(self, post=None, files=None):
         super().__init__(data=post, files=files)
         self.fields['prep_time_unit'].widget.attrs.update({'class': 'form-control'})
@@ -165,10 +169,6 @@ class SubmitRecipeForm(forms.ModelForm):
                 index=dirNum,
                 recipe=recipe
             )
-
-    class Meta:
-        model = Recipe
-        fields = ('name', 'summary', 'servings', 'calories', 'categories', 'image')
 
 
 class ReviewRecipeForm(forms.ModelForm):
