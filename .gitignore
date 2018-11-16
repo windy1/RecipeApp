@@ -69,3 +69,4 @@ fabric.properties
 venv
 **/__pycache__/**
 core/static/media/
+.DS_Store
