@@ -32,7 +32,11 @@ class Recipe(models.Model):
     is_featured = models.BooleanField(default=False)
 
     def avg_rating(self):
-        return self.review_set.aggregate(Avg('rating'))['rating__avg']
+        result = self.review_set.aggregate(Avg('rating'))['rating__avg']
+        if result is None:
+            return 0
+        else:
+            return result
 
 
 class IngredientName(models.Model):

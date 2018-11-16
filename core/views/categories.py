@@ -20,5 +20,5 @@ def category_detail(request, name):
         return render(request, 'core/category/category_list.html', context)
 
     # list the category's sub-categories
-    context['recipe_list'] = category.recipe_set.order_by('-avg_rating')
+    context['recipe_list'] = sorted(category.recipe_set.all(), key=lambda r: r.avg_rating(), reverse=True)
     return render(request, 'core/category/category_detail.html', context)
