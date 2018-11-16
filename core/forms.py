@@ -8,8 +8,11 @@ from .models import *
 
 class SignUpForm(UserCreationForm):
     """
-    See: registration/signup.html template
+    Form submitted when a user signs up for a new account
+
+    See: templates/registration/signup.html template
     """
+
     email = forms.EmailField(max_length=254, required=True)
 
     class Meta:
@@ -25,15 +28,25 @@ class SignUpForm(UserCreationForm):
 
 
 class IngredientData:
+    """
+    Contains form data for submitted ingredients
+    """
     def __init__(self, quantity=None, name=None):
         self.quantity = quantity
         self.name = name
 
 
 class SubmitRecipeForm(forms.ModelForm):
+    """
+    Form submitted when a user creates a new Recipe.
 
+    See: templates/core/recipe/recipe_submit.html template
+    """
+
+    # the units that are accepted by the form
     time_units = [('minutes', 'minutes'), ('hours', 'hours'), ('days', 'days')]
 
+    # fields
     prep_time_num = forms.IntegerField(min_value=1, max_value=60)
     prep_time_unit = forms.ChoiceField(choices=time_units)
     cook_time_num = forms.IntegerField(min_value=1, max_value=60)
@@ -59,7 +72,6 @@ class SubmitRecipeForm(forms.ModelForm):
         return super().is_valid()
 
     def clean(self):
-        # TODO: more validation?
         self._clean_ingredients()
         self._clean_directions()
         return super().clean()
@@ -71,14 +83,17 @@ class SubmitRecipeForm(forms.ModelForm):
         ingredients = {}
         ing_num = 1
         name_field = 'ing_name%d' % ing_num
-        # While there is a numbered ingredient name value
+
+        # loop through each ing_name<n> field
         while self.data.get(name_field):
             ing_name = self.data[name_field]
             quantity_field = 'quantity%d' % ing_num
 
+            # create fields in the form
             self.fields[name_field] = forms.CharField()
             self.fields[quantity_field] = forms.IntegerField()
 
+            # validate the quantity
             quantity_val = self.data.get(quantity_field)
             if not quantity_val:
                 raise forms.ValidationError(
@@ -92,9 +107,10 @@ class SubmitRecipeForm(forms.ModelForm):
                     code='invalid_quantity'
                 )
             else:
+                # data is valid, add to ingredient list
                 ingredients[ing_num] = IngredientData(name=ing_name, quantity=self.data[quantity_field])
 
-            # create the ingredient if it doesn't exist in the db
+            # create the ingredient name reference if it doesn't exist in the db
             if IngredientName.objects.filter(name=ing_name).count() == 0:
                 IngredientName.objects.create(
                     created_at=timezone.now(),
@@ -113,16 +129,19 @@ class SubmitRecipeForm(forms.ModelForm):
         directions = {}
         dir_num = 1
         text_field = 'dir_text%d' % dir_num
+
+        # loop through each dir_text<n>
         while self.data.get(text_field):
             dir_text = self.data[text_field]
             self.fields[text_field] = forms.CharField()
-
+            # validate the text
             if len(dir_text) > 1000:
                 raise forms.ValidationError(
                     'Directions cannot be larger than 1000 characters.',
                     code='invalid_direction'
                 )
 
+            # data is valid, add direction to list
             directions[dir_num] = dir_text
             dir_num += 1
             text_field = 'dir_text%d' % dir_num
@@ -172,8 +191,14 @@ class SubmitRecipeForm(forms.ModelForm):
 
 
 class ReviewRecipeForm(forms.ModelForm):
+    """
+    Form submitted when a user submits a review on a recipe.
+
+    See: templates/recipe/recipe_detail.html template
+    """
 
     def clean_rating(self):
+        # verify the rating is in the configured range
         rating = self.cleaned_data.get('rating')
         if rating and rating < settings.REVIEWS['rating_min'] or rating > settings.REVIEWS['rating_max']:
             raise forms.ValidationError('The rating is out of bounds.', code='invalid_rating')

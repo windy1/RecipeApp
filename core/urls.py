@@ -18,32 +18,29 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from . import views
+from core.views import categories, main, recipes
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.index, name='index'),
-    path('featured/', views.index, name='featured'),
-    path('popular/', views.popular, name='popular'),
-    path('trending/', views.trending, name='trending'),
-    path('new/', views.new, name='new'),
-
-    path('category/', views.categories, name='categories'),
-    path('category/<name>/', views.category_detail, name='category_detail'),
-
-    path('submit/', views.submit, name='submit'),
-
-    path('search/', views.search, name='search'),
-
-    path('u/<username>/recipes/', views.user_recipes, name='user_recipes'),
-
-    path('r/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
-    path('r/<int:recipe_id>/review', views.review, name='review'),
+    path('', main.index, name='index'),
+    path('featured/', main.index, name='featured'),
+    path('popular/', main.popular, name='popular'),
+    path('trending/', main.trending, name='trending'),
+    path('new/', main.new, name='new'),
+    path('search/', main.search, name='search'),
 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup/', main.signup, name='signup'),
+
+    path('categories/', categories.categories, name='categories'),
+    path('categories/<name>/', categories.category_detail, name='category_detail'),
+
+    path('submit/', recipes.submit, name='submit'),
+    path('users/<username>/recipes/', recipes.user_recipes, name='user_recipes'),
+    path('recipes/<int:recipe_id>/', recipes.recipe_detail, name='recipe_detail'),
+    path('recipes/<int:recipe_id>/review', recipes.review, name='review'),
 
     path('api/', include('api.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
