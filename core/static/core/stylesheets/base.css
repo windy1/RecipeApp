@@ -1,22 +1,107 @@
-.logo {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    background: red;
-    margin-left: 20px;
+/***** Header ******/
+.header{
+    background-color: #3eb1ff;
+    margin-left: 0px;
+    height: 60px;
 }
 
-.container-main {
-    padding-top: 20px;
-}
-
-.row-sidebar {
+.searchbar_container, .login_signup_buttons{
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.col-sidebar {
-    padding-left: 50px;
+.login_signup_buttons{
+    position: absolute;
+    right: 1%;
+}
+.searchbar_container{
+    margin-left: 20%;
+}
+#searchbar, .searchbar_container{
+    width: 600px;
+
 }
 
-#ingredients .form-row > .col-1 {
+.magnifyin_glass{
+    background-color: rgba(33, 32, 33, 0.29);
+    margin-left: -61px;
+    border: none;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px ;
+    width: 10%;
+    margin-top: 1px;
+    height: 36px;
 }
+.magnifyin_glass:hover{
+    background-color: rgba(0, 92, 135, 0.47);
+}
+.magnifyin_glass:active{
+    background-color: rgba(0, 89, 188, 0.47);
+}
+/***** Header END *****/
+
+
+/******* Body ******/
+.featured_section {
+    height: 300px;
+    background-color: #6b6e69;
+}
+
+/* Featured Popular Trending New Catergory bottons css start*/
+.button_container{
+    margin-left: 9%;
+    width: 100%;
+}
+.quick_filter_buttons_row{
+    background-color: #3499ff;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.quick_filter_buttons{
+    position: center;
+    width: 17.6%;
+    background-color: #3499ff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    color: white;
+    font-size: 180%;
+    font-weight: bolder;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+.quick_filter_buttons:hover {
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2), 0 3px 5px 0 rgba(0,0,0,0.19);
+}
+.quick_filter_buttons:active {
+    background-color: #40b1ff;
+}
+
+/*filter button css end */
+
+
+
+/* Recipe display css start */
+.recipe_container{
+    margin-left: 0px;
+}
+
+.recipe_block{
+    background-color: #a8cbff;
+    height: 250px;
+    margin: 20px;
+}
+.recipe_rating_description{
+    position: relative;
+    bottom: 0px;
+    background-color: #4065ff;
+    width: 250px;
+    height: 100px;
+}
+/* Recipe display css end */

@@ -1,0 +1,77 @@
+/***** Header ******/
+#header{
+    background-color: #3eb1ff;
+    max-height: 100px;
+}
+
+.searchbar_container, #login_signup_buttons{
+    padding-top: 5px;
+}
+
+#searchbar{
+    width: 600px;
+    margin-left: 20%;
+}
+
+#login_signup_buttons{
+    margin-left: 20%;
+}
+.row-sidebar {
+
+}
+
+.col-sidebar {
+
+}
+
+#ingredients .form-row > .col-1 {
+}
+
+/******* Body ******/
+.featured_section {
+    height: 300px;
+    background-color: #6b6e69;
+}
+
+/* Featured Popular Trending New Catergory bottons css start*/
+.button_container{
+    margin-left: 9%;
+}
+.quick_filter_buttons_row{
+    height: 60%;
+    background-color: #3499ff;
+}
+.quick_filter_buttons {
+    padding: 0.7% 1.5% 0.7% 1.5%;
+    width: 17.6%;
+    background-color: #3499ff;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 210%;
+    font-weight: bolder;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+.quick_filter_buttons:hover {
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2), 0 3px 5px 0 rgba(0,0,0,0.19);
+}
+.quick_filter_buttons:active {
+    background-color: #40b1ff;
+}
+.quick_filter_buttons:target {
+    border-bottom: 5px solid #f9ff00;
+}
+/*filter button css end */
+
+
+
+/* Recipe display css start */
+.recipe_block{
+    background-color: #fff419;
+}
+
+/* Recipe display css end */

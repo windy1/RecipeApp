@@ -1,9 +1,12 @@
 {% if recipe_list %}
-    <ul>
+<div class="row">
     {% for recipe in recipe_list %}
-        <li><a href={% url 'recipe_detail' recipe.id %}>{{ recipe.name }}</a></li>
+        <div class="col-md-2 recipe_block">
+            <a href={% url 'recipe_detail' recipe.id %}>{{ recipe.name }}</a>
+        </div>
     {% endfor %}
-    </ul>
+</div>
+
 {% else %}
     <p>No recipes are available.</p>
 {% endif %}
