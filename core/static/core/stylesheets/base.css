@@ -1,3 +1,10 @@
+/*Disable horizantal scroll */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: -moz-hidde-unscrollable;
+}
+
 /******************************************** Header *********************************************/
 .header{
     background-color: #3eb1ff;
@@ -191,10 +198,34 @@ a:hover, a:visited, a:link, a:active
     margin-left: 0px;
 }
 
+
+
 .recipe_block{
+    overflow: hidden;
     background-color: #a8cbff;
+    border-color: #020080;
+    border-width: 5px;
+    border-style: solid;
     height: 250px;
     margin: 20px;
+    border-radius: 10px;
+}
+.recipe_block_view{
+    margin-left: -15px;
+    width: 199px;
+    height: 150px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: all .5s ease;
+}
+
+.recipe_block_view:hover{
+    margin-left: -40px ;
+    margin-top: -30px;
+    width: 250px;
+    height: 180px;
+
+
 }
 .recipe_rating_description{
     position: relative;
@@ -269,7 +300,5 @@ div.relative{
     width: 100%;
     border: 5px solid black
 }
-#rating{
-    font-size:40px;
-}
+
 /* Recipe detail page END*/

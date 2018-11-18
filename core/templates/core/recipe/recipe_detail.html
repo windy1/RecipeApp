@@ -16,9 +16,7 @@
     </div>
     {% load static %}
     {% if recipe.image %}
-
-            <img class="recipeviewimage" src="{% static recipe.image.url %}">
-
+        <img class="recipeviewimage" src="{% static recipe.image.url %}">
     {% endif %}
 </div>
 
@@ -28,7 +26,7 @@
 
 <div class="container">
     <div id="board2">
-        <div class="text">
+        <div >
             <h1>
 
         {% for category in recipe.categories.all %}
@@ -49,7 +47,7 @@
 
     <div class="container">
     <div id="board3">
-        <div class="text">
+        <div >
             <h1>
                 <ul>
     {% for ing in ingredients %}
@@ -67,7 +65,7 @@
     </div>
     <div class="container">
     <div id="board4">
-        <div class="text">
+        <div >
             <h1>
 
     {% for dir in directions %}
