@@ -1,12 +1,41 @@
 {% if recipe_list %}
+
+
 <div class="row">
-    {% for recipe in recipe_list %}
+    {% for recipe in recipe_list  %}
         <a class="col-md-2 recipe_block" href={% url 'recipe_detail' recipe.id %}>
-        {% load static %}
-          {% if recipe.image %}
+            {% load static %}
+            {% if recipe.image %}
                  <img class="recipe_block_view" src="{% static recipe.image.url %}">
-          {% endif %}
-            <h6 class="text-center">{{ recipe.name }}</h6>
+            {% endif %}
+            <h6 class="text-dark recipe_block_recipe_title">{{ recipe.name }}</h6>
+            <div id ="recipe_block_info">
+                {% block script %}
+                    <script type="text/javascript">
+                        /*
+                        The code blow gets the avg rating of the recipe from models.p, then multiplies it by 30
+                        to get a value that can represent the correct number of start it then adds that value into
+                        the css file as a width variable of .start-rating-top class this class highlight the stars
+                        in a gold yellow color.
+
+                        To test if it works when there are no ratings just hardcode a rating value between 0-5 in
+                        models.py in the avg_rating method in the Recipe class. EX: if result is None: return 2.5
+                        */
+
+                        var starRating = {{ recipe.avg_rating }}*30;
+                        // set the width of the stars to be highlighted gold yellow
+                        $('.star-ratings-top').width(starRating+'%');
+                    </script>
+                {% endblock %}
+                <div class="star-ratings">
+                    <div class="star-ratings-top"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+                </div>
+                <p>
+                    By:{{ recipe.user.username }}<br>
+                    {{ recipe.summary }}<br>
+                </p>
+            </div>
         </a>
     {% endfor %}
 </div>

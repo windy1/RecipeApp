@@ -197,9 +197,6 @@ a:hover, a:visited, a:link, a:active
 .recipe_container{
     margin-left: 0px;
 }
-
-
-
 .recipe_block{
     overflow: hidden;
     background-color: #a8cbff;
@@ -224,16 +221,46 @@ a:hover, a:visited, a:link, a:active
     margin-top: -30px;
     width: 250px;
     height: 180px;
-
-
 }
-.recipe_rating_description{
+.recipe_block_recipe_title{
+    margin-left: -10px;
+}
+#recipe_block_info{
+    margin-top: -13px;
+    margin-left: -5px;
+    color: #1b1e21;
+    font-weight: normal;
+    font-size: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.star-ratings {
+    unicode-bidi: bidi-override;
+    color: #4e504e;
+    font-size: 15px;
+    height: 15px;
+    width: 50px;
+    margin-left: -2px;
     position: relative;
-    bottom: 0px;
-    background-color: #4065ff;
-    width: 250px;
-    height: 100px;
+    padding-bottom: 18px;
 }
+.star-ratings-top {
+    color: gold;
+    position: absolute;
+    z-index: 1;
+    display:block;
+    overflow: hidden;
+}
+.star-ratings-bottom {
+    z-index: 0;
+}
+
+/*.recipe_rating_description{*/
+    /*position: relative;*/
+    /*bottom: 0px;*/
+    /*background-color: #4065ff;*/
+    /*width: 250px;*/
+    /*height: 100px;*/
+/*}*/
 /* Recipe display css end */
 
 

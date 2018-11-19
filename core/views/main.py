@@ -9,14 +9,8 @@ from core.raw_queries import RawQueries
 from core.forms import SearchForm, SignUpForm
 
 
-#Converts any array into a 2D list with n number of elements in each column
-def to_matrix(l, n):
-    return [l[i:i + n] for i in range(0, len(l), n)]
-
-
 def index(request):
     recipe_list = Recipe.objects.filter(is_featured=True).order_by('-created_at')
-   # recipe_grid = to_matrix(recipe_list, 4)
     return render(request, 'core/featured.html', {'recipe_list': recipe_list, 'explore': 'featured'})
 
 
