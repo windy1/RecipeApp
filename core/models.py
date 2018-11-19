@@ -34,7 +34,7 @@ class Recipe(models.Model):
     def avg_rating(self):
         result = self.review_set.aggregate(Avg('rating'))['rating__avg']
         if result is None:
-            return 3
+            return 0
         else:
             return result
 
