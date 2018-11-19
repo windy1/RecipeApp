@@ -16,7 +16,6 @@
 
 </head>
 <body>
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -50,7 +49,7 @@
 
 <div class = "row  header">
 
-    <img id = "logo" src="{% static 'media/logo.png' %}">
+    <a href="{% url 'index' %}"><img id = "logo" src="{% static 'media/logo.png' %}"></a>
 
     <div id = "browse_button_container">
         <div class="dropdown dropdown_container">

@@ -174,8 +174,8 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 }
 .recipe_block{
     overflow: hidden;
-    background-color: #99e4ff;
-    border-color: #0ad3ff;
+    background-color: #e4fcff;
+    border-color: #dff8ff;
     border-width: 5px;
     border-style: solid;
     height: 290px;
