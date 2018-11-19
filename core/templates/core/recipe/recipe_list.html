@@ -8,7 +8,7 @@
             {% if recipe.image %}
                  <img class="recipe_block_view" src="{% static recipe.image.url %}">
             {% endif %}
-            <h6 class="text-dark recipe_block_recipe_title">{{ recipe.name }}</h6>
+            <p class="text-dark recipe_block_recipe_title">{{ recipe.name }}</p>
             <div id ="recipe_block_info">
                 {% block script %}
                     <script type="text/javascript">
