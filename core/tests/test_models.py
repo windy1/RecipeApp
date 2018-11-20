@@ -6,6 +6,9 @@ from core.models import Recipe, Category, Review
 
 
 class RecipeTestCase(TestCase):
+    """
+    A test case for the functionality of the Recipe model.
+    """
 
     def setUp(self):
         user = User.objects.create(username='test_user')
@@ -30,5 +33,8 @@ class RecipeTestCase(TestCase):
         Review.objects.create(created_at=timezone.now(), user=user, recipe=recipe, rating=0, text='review_2_text')
 
     def test_avg_rating(self):
+        """
+        Tests the aggregate function avg_rating in the Recipe model.
+        """
         recipe = Recipe.objects.get(name='test_recipe')
         self.assertEqual(recipe.avg_rating(), 2.5)

@@ -7,6 +7,9 @@ from core.models import Category, IngredientName
 
 
 class SubmitRecipeFormTestCase(TestCase):
+    """
+    A test case for the functionality of the SubmitRecipeForm class.
+    """
 
     def setUp(self):
         Category.objects.create(
@@ -29,6 +32,9 @@ class SubmitRecipeFormTestCase(TestCase):
         IngredientName.objects.create(created_at=timezone.now(), name='test_ing_1')
 
     def test_submit(self):
+        """
+        Tests a submission of the form that is expected to be successful.
+        """
         post = self.post_data()
         form = SubmitRecipeForm(post)
         self.assertTrue(form.is_valid())
@@ -45,12 +51,18 @@ class SubmitRecipeFormTestCase(TestCase):
         self.assertIsNotNone(recipe.direction_set.get(index=2))
 
     def test_not_assignable_category(self):
+        """
+        Test a submission of a form where a category with the __assignable__ flag set to False is submitted.
+        """
         post = self.post_data()
         post['categories'].append(2)
         form = SubmitRecipeForm(post)
         self.assertFalse(form.is_valid())
 
     def test_missing_quantity(self):
+        """
+        Test a submission of a form where an ingredient is missing a quantity value.
+        """
         post = self.post_data()
         del post['quantity1']
         form = SubmitRecipeForm(post)

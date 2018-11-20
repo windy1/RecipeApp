@@ -1,30 +1,34 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 
-from core.models import Recipe, Review
 from core.forms import ReviewRecipeForm, SubmitRecipeForm
+from core.models import Recipe
 
 
 def recipe_detail(request, recipe_id):
+    """
+    Displays a detailed view of the recipe as specified in the URL.
+    """
     user = request.user
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     ingredients = recipe.ingredient_set.order_by('-index')
     directions = recipe.direction_set.order_by('-index')
-    # TODO: allow users to submit a review on their own recipe?
-    can_review = (user.is_authenticated and Review.objects.filter(user=user, recipe=recipe).count() == 0) or True
     context = {
         'recipe': recipe,
         'ingredients': ingredients,
         'directions': directions,
-        'can_review': can_review
+        'can_review': recipe.user_can_review(user)
     }
     return render(request, 'core/recipe/recipe_detail.html', context)
 
 
 @login_required
-def review(request, recipe_id):
+def submit_review(request, recipe_id):
+    """
+    Submits a review for the recipe as specified in the URL.
+    """
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.method == 'POST':
         form = ReviewRecipeForm(request.POST)
@@ -39,13 +43,19 @@ def review(request, recipe_id):
 
 
 def user_recipes(request, username):
+    """
+    Displays a list of all recipes created by the user as specified in the URL.
+    """
     user = get_object_or_404(User, username=username)
     recipes = user.recipe_set.all()
     return render(request, 'core/user/user_recipes.html', {'recipe_list': recipes, 'explore': 'user_recipes'})
 
 
 @login_required
-def submit(request):
+def submit_recipe(request):
+    """
+    Submits a new recipe for creation.
+    """
     if request.method == 'POST':
         form = SubmitRecipeForm(request.POST, request.FILES)
         if form.is_valid():

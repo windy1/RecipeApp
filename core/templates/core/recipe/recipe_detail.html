@@ -81,7 +81,7 @@
     {% if can_review %}
         <div class="relative">
         <h1>Leave a review</h1>
-        <form action="{% url 'review' recipe.id %}" method="post">
+        <form action="{% url 'submit_review' recipe.id %}" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <textarea class="form-control" name="text" id="text"></textarea>

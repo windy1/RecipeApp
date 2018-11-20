@@ -1,5 +1,7 @@
 class RawQueries:
-
+    """
+    A collection of raw SQL queries used in the application.
+    """
     popular_select = """
         SELECT   rec.*, AVG(rev.rating) AS avg_rating, COUNT(rev.id) AS review_count 
         FROM     core_recipe AS rec

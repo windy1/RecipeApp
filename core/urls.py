@@ -37,10 +37,10 @@ urlpatterns = [
     path('categories/', categories.categories, name='categories'),
     path('categories/<name>/', categories.category_detail, name='category_detail'),
 
-    path('submit/', recipes.submit, name='submit'),
+    path('submit/', recipes.submit_recipe, name='submit_recipe'),
     path('users/<username>/recipes/', recipes.user_recipes, name='user_recipes'),
     path('recipes/<int:recipe_id>/', recipes.recipe_detail, name='recipe_detail'),
-    path('recipes/<int:recipe_id>/review', recipes.review, name='review'),
+    path('recipes/<int:recipe_id>/review', recipes.submit_review, name='submit_review'),
 
     path('api/', include('api.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

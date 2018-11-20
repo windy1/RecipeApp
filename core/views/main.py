@@ -10,11 +10,18 @@ from core.forms import SearchForm, SignUpForm
 
 
 def index(request):
+    """
+    Displays the main content view with recipes with the __featured__ flag set to True.
+    """
     recipe_list = Recipe.objects.filter(is_featured=True).order_by('-created_at')
     return render(request, 'core/featured.html', {'recipe_list': recipe_list, 'explore': 'featured'})
 
 
 def popular(request):
+    """
+    Displays the main content view with "popular" recipes. A recipe is considered "popular" if it has at least the
+    amount of reviews as configured and has a average rating of at least the configured value.
+    """
     recipe_list = Recipe.objects.raw(
         RawQueries.popular_select,
         [settings.POPULAR['rating_threshold'], settings.POPULAR['review_count_threshold']]
@@ -23,6 +30,10 @@ def popular(request):
 
 
 def trending(request):
+    """
+    Displays the main content view with "trending" recipes. A recipe is considered "trending" when it has received the
+    configured amount of review within the configured time window.
+    """
     recipe_list = Recipe.objects.raw(
         RawQueries.trending_select,
         [settings.TRENDING['time_window'], settings.TRENDING['review_count']]
@@ -31,12 +42,19 @@ def trending(request):
 
 
 def new(request):
+    """
+    Displays the main content view with new recipes. A recipe is considered new when it's age is younger than the
+    configured value.
+    """
     time_cutoff = timezone.now() - timezone.timedelta(seconds=settings.NEW['time_window'])
     recipe_list = Recipe.objects.filter(created_at__gt=time_cutoff).order_by('-created_at')
     return render(request, 'core/new.html', {'recipe_list': recipe_list, 'explore': 'new'})
 
 
 def search(request):
+    """
+    Submits a search query and returns a list of the resulting recipes.
+    """
     form = SearchForm(request.GET)
     if form.is_valid():
         query = form.cleaned_data['q']
@@ -49,6 +67,9 @@ def search(request):
 
 
 def signup(request):
+    """
+    Submits the form to register for the site.
+    """
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -58,4 +79,3 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-

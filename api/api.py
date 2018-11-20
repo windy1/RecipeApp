@@ -10,18 +10,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('username', 'date_joined', 'recipe_set')
 
 
-# noinspection PyMethodMayBeStatic
 class RecipeSerializer(serializers.ModelSerializer):
     ingredients = serializers.SerializerMethodField()
     directions = serializers.SerializerMethodField()
 
-    def get_ingredients(self, model):
+    @staticmethod
+    def get_ingredients(model):
         res = []
         for ing in model.ingredient_set.all():
             res.append({'name': ing.ingredient.name, 'quantity': ing.quantity, 'index': ing.index})
         return res
 
-    def get_directions(self, model):
+    @staticmethod
+    def get_directions(model):
         res = []
         for direction in model.direction_set.all():
             res.append({'text': direction.text, 'index': direction.index})

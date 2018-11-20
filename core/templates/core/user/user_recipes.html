@@ -5,7 +5,7 @@
 {% block main %}
 <div class="container-fluid">
     <h1>My Recipes</h1>
-    <a href="{% url 'submit' %}">Create a new recipe</a>
+    <a href="{% url 'submit_recipe' %}">Create a new recipe</a>
     {% include 'core/recipe/recipe_list.html' %}
 </div>
 {% endblock %}

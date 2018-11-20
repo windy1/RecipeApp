@@ -1,6 +1,6 @@
 {% include 'core/recipe/recipe_form_errors.html' %}
 
-<form action="{% url 'submit' %}" method="post" id="recipe_form" enctype="multipart/form-data">
+<form action="{% url 'submit_recipe' %}" method="post" id="recipe_form" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form-group">

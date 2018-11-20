@@ -4,12 +4,19 @@ from core.models import Category
 
 
 def categories(request):
+    """
+    Displays all root-level categories available for browsing.
+    """
     category_list = Category.objects.filter(parent=None)
     context = {'category_list': category_list, 'explore': 'category'}
     return render(request, 'core/category/category_list.html', context)
 
 
 def category_detail(request, name):
+    """
+    Displays a selected category, as specified by the URL. If the category has sub-categories, those will be displayed
+    instead of recipes in that category.
+    """
     category = get_object_or_404(Category, name=name)
     sub_categories = Category.objects.filter(parent=category).order_by('-name')
     context = {'category': category, 'explore': 'category'}
