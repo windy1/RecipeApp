@@ -1,30 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.conf import settings
 
-from .models import *
-
-
-class SignUpForm(UserCreationForm):
-    """
-    Form submitted when a user signs up for a new account
-
-    See: templates/registration/signup.html template
-    """
-
-    email = forms.EmailField(max_length=254, required=True)
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+from core.models import Recipe, Category, IngredientName, Direction, Ingredient, Review
 
 
 class IngredientData:
@@ -38,9 +16,9 @@ class IngredientData:
 
 class SubmitRecipeForm(forms.ModelForm):
     """
-    Form submitted when a user creates a new Recipe.
+    Form submitted when a users creates a new Recipe.
 
-    See: templates/core/recipe/recipe_submit.html template
+    See: templates/core/recipes/recipe_submit.html template
     """
 
     # the units that are accepted by the form
@@ -63,7 +41,7 @@ class SubmitRecipeForm(forms.ModelForm):
         self.fields['categories'].queryset = Category.objects.filter(assignable=True)
         self.fields['categories'].widget.attrs.update({
             'class': 'form-control',
-            'aria-describedby': 'category-help'
+            'aria-describedby': 'categories-help'
         })
 
     def is_valid(self):
@@ -161,7 +139,7 @@ class SubmitRecipeForm(forms.ModelForm):
         """
         Creates the ingredients submitted in the form. New Recipe must be saved in database before this is called.
 
-        :param recipe: recipe of ingredients
+        :param recipe: recipes of ingredients
         """
         ingredients = self.cleaned_data['ingredients']
         for ingNum in ingredients:
@@ -178,7 +156,7 @@ class SubmitRecipeForm(forms.ModelForm):
         """
         Creates the directions submitted in the form. New Recipe must be saved in database before this is called.
 
-        :param recipe: recipe of directions
+        :param recipe: recipes of directions
         """
         directions = self.cleaned_data['directions']
         for dirNum in directions:
@@ -192,9 +170,9 @@ class SubmitRecipeForm(forms.ModelForm):
 
 class ReviewRecipeForm(forms.ModelForm):
     """
-    Form submitted when a user submits a review on a recipe.
+    Form submitted when a users submits a review on a recipes.
 
-    See: templates/recipe/recipe_detail.html template
+    See: templates/recipes/recipe_detail.html template
     """
 
     def clean_rating(self):
@@ -207,7 +185,3 @@ class ReviewRecipeForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('rating', 'text')
-
-
-class SearchForm(forms.Form):
-    q = forms.CharField(required=True)

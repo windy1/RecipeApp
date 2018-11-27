@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>{{ profile.user.username }}</h1>
+
+    {% if request.user == profile.user %}
+        <a href="{% url 'preferences' %}" class="btn btn-primary">View preferences</a>
+    {% endif %}
+
+    <h2>Bio</h2>
+    <p>{{ profile.bio }}</p>
+</div>
+{% endblock %}

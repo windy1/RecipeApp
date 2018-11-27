@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                 ('calories', models.IntegerField()),
                 ('is_featured', models.BooleanField(default=False)),
                 ('categories', models.ManyToManyField(to='core.Category')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('users', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -74,8 +74,8 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField()),
                 ('rating', models.IntegerField()),
                 ('text', models.CharField(max_length=1000)),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.Recipe')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('recipes', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.Recipe')),
+                ('users', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
@@ -85,12 +85,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='ingredient',
-            name='recipe',
+            name='recipes',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.Recipe'),
         ),
         migrations.AddField(
             model_name='direction',
-            name='recipe',
+            name='recipes',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.Recipe'),
         ),
     ]

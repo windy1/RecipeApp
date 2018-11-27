@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
 
-   {% load static %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'core/bootstrap/dist/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'core/open-iconic/font/css/open-iconic-bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'core/stylesheets/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
 </head>
+
 <body>
+
+    {% include 'core/header.html' %}
+
+    {% block content %}{% endblock %}
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -23,14 +25,15 @@
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
     <script src="{% static 'core/bootstrap/dist/js/bootstrap.js' %}"></script>
-    <script>
-        var scrollEventHandler = function()
-        {
-          window.scroll(0, window.pageYOffset)
-        }
 
+    <!-- TODO: organize into files, script in HTML is messy and difficult to maintain -->
+    <script>
+        let scrollEventHandler = function() {
+            window.scroll(0, window.pageYOffset)
+        };
         window.addEventListener("scroll", scrollEventHandler, false);
     </script>
+
     <script>
         $(document).ready(function(){
         $(".dropdown").hover(
@@ -45,109 +48,8 @@
         );
         });
     </script>
-{% block scripts %}{% endblock %}
 
-<div class = "row  header">
+    {% block scripts %}{% endblock %}
 
-    <a href="{% url 'index' %}"><img id = "logo" src="{% static 'media/logo.png' %}"></a>
-
-    <div id = "browse_button_container">
-        <div class="dropdown dropdown_container">
-            <a href="#" class="dropdown-toggle browse_button" data-toggle="dropdown">BROWSE</a>
-            <ul class="dropdown-menu mega-dropdown-menu">
-                <li class="col-sm-3">
-                    <ul>
-                        <li class="dropdown-header">Category 1</li>
-                        <li><a href="#">Col 1 Row 1</a></li>
-                        <li><a href="#">Col 1 Row 2</a></li>
-                        <li><a href="#">Col 1 Row 3</a></li>
-                        <li><a href="#">Col 1 Row 4</a></li>
-
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Category 2</li>
-                        <li><a href="#">Col 1 Row 5</a></li>
-                        <li><a href="#">Col 1 Row 6</a></li>
-
-                    </ul>
-                </li>
-                <li class="col-sm-3">
-                    <ul>
-                        <li class="dropdown-header">Category 3</li>
-                        <li><a href="#">Col 2 Row 1</a></li>
-                        <li><a href="#">Col 2 Row 2</a></li>
-                        <li><a href="#">Col 2 Row 3</a></li>
-                        <li><a href="#">Col 2 Row 4</a></li>
-
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Category 4</li>
-                        <li><a href="#">Col 2 Row 5</a></li>
-                        <li><a href="#">Col 2 Row 6</a></li>
-                    </ul>
-                </li>
-                <li class="col-sm-3">
-                    <ul>
-                        <li class="dropdown-header">Category 5</li>
-                        <li><a href="#">Col 3 Row 1</a></li>
-                        <li><a href="#">Col 3 Row 2</a></li>
-                        <li><a href="#">Col 3 Row 3</a></li>
-                        <li><a href="#">Col 3 Row 4</a></li>
-
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Category 6</li>
-                        <li><a href="#">Col 3 Row 5</a></li>
-                        <li><a href="#">Col 3 Row 6</a></li>
-                    </ul>
-                </li>
-                <li class="col-sm-3">
-                    <ul>
-                        <li class="dropdown-header">Category 7</li>
-                        <li><a href="#">Col 4 Row 1</a></li>
-                        <li><a href="#">Col 4 Row 2</a></li>
-                        <li><a href="#">Col 4 Row 3</a></li>
-                        <li><a href="#">Col 4 Row 4</a></li>
-
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Category 8</li>
-                        <li><a href="#">Col 4 Row 5</a></li>
-                        <li><a href="#">Col 4 Row 6</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="searchbar_container">
-        <form action="{% url 'search' %}" method="get">
-            {% csrf_token %}
-            <div class="input-group-append">
-                <input type="text" class="form-control" id = "searchbar" name="q" placeholder="Search" aria-describedby="advanced-search" required>
-                <button type="submit" class="magnifyin_glass">
-                    <span class="oi oi-magnifying-glass"></span>
-                </button>
-            </div>
-        </form>
-    </div>
-
-    <span class="btn-group login_signup_buttons_container" role="group">
-        {% if not request.user.is_authenticated %}
-            <a href="{% url 'login' %}" role="button" class=" login_signup_buttons">Log in</a>
-            <a href="{% url 'signup' %}" role="button" class="btn btn-secondary login_signup_buttons">Sign up</a>
-        {% else %}
-                <div class="btn btn-primary login_signup_buttons dropdown">
-                  <a href="#" class="dropdown-toggle" id = "my_account_button" data-toggle="dropdown" role="button" aria-expanded="false">My account</a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Profile</a></li>
-                      <li class="divider"></li>
-                    <li><a href="{% url 'user_recipes' request.user.username %}">My Recipes</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Preferences</a></li>
-                  </ul>
-                </div>
-             <a href="{% url 'logout' %}" role="button" class="btn btn-secondary login_signup_buttons">Sign out</a>
-        {% endif %}
-    </span>
-</div>
-{% block content %}{% endblock %}
-
-</body>
+    </body>
 </html>

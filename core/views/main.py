@@ -1,12 +1,11 @@
-from django.shortcuts import render, redirect
 from django.conf import settings
-from django.utils import timezone
 from django.db.models import Q
-from django.contrib.auth import login
+from django.shortcuts import render
+from django.utils import timezone
 
+from core.forms.users import SearchForm
 from core.models import Recipe
 from core.raw_queries import RawQueries
-from core.forms import SearchForm, SignUpForm
 
 
 def index(request):
@@ -14,41 +13,41 @@ def index(request):
     Displays the main content view with recipes with the __featured__ flag set to True.
     """
     recipe_list = Recipe.objects.filter(is_featured=True).order_by('-created_at')
-    return render(request, 'core/featured.html', {'recipe_list': recipe_list, 'explore': 'featured'})
+    return render(request, 'core/main/featured.html', {'recipe_list': recipe_list, 'explore': 'featured'})
 
 
 def popular(request):
     """
-    Displays the main content view with "popular" recipes. A recipe is considered "popular" if it has at least the
+    Displays the main content view with "popular" recipes. A recipes is considered "popular" if it has at least the
     amount of reviews as configured and has a average rating of at least the configured value.
     """
     recipe_list = Recipe.objects.raw(
         RawQueries.popular_select,
         [settings.POPULAR['rating_threshold'], settings.POPULAR['review_count_threshold']]
     )
-    return render(request, 'core/popular.html', {'recipe_list': recipe_list, 'explore': 'popular'})
+    return render(request, 'core/main/popular.html', {'recipe_list': recipe_list, 'explore': 'popular'})
 
 
 def trending(request):
     """
-    Displays the main content view with "trending" recipes. A recipe is considered "trending" when it has received the
+    Displays the main content view with "trending" recipes. A recipes is considered "trending" when it has received the
     configured amount of review within the configured time window.
     """
     recipe_list = Recipe.objects.raw(
         RawQueries.trending_select,
         [settings.TRENDING['time_window'], settings.TRENDING['review_count']]
     )
-    return render(request, 'core/trending.html', {'recipe_list': recipe_list, 'explore': 'trending'})
+    return render(request, 'core/main/trending.html', {'recipe_list': recipe_list, 'explore': 'trending'})
 
 
 def new(request):
     """
-    Displays the main content view with new recipes. A recipe is considered new when it's age is younger than the
+    Displays the main content view with new recipes. A recipes is considered new when it's age is younger than the
     configured value.
     """
     time_cutoff = timezone.now() - timezone.timedelta(seconds=settings.NEW['time_window'])
     recipe_list = Recipe.objects.filter(created_at__gt=time_cutoff).order_by('-created_at')
-    return render(request, 'core/new.html', {'recipe_list': recipe_list, 'explore': 'new'})
+    return render(request, 'core/main/new.html', {'recipe_list': recipe_list, 'explore': 'new'})
 
 
 def search(request):
@@ -63,19 +62,4 @@ def search(request):
         )
     else:
         recipe_list = []
-    return render(request, 'core/search_results.html', {'recipe_list': recipe_list})
-
-
-def signup(request):
-    """
-    Submits the form to register for the site.
-    """
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('index')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'core/main/search_results.html', {'recipe_list': recipe_list})

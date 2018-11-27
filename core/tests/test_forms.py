@@ -15,13 +15,13 @@ class SubmitRecipeFormTestCase(TestCase):
         Category.objects.create(
             created_at=timezone.now(),
             name='test_category_1',
-            display_name='Test category 1',
+            display_name='Test categories 1',
             assignable=True
         )
         Category.objects.create(
             created_at=timezone.now(),
             name='test_category_2',
-            display_name='Test category 2',
+            display_name='Test categories 2',
             assignable=False
         )
         User.objects.create(
@@ -52,7 +52,7 @@ class SubmitRecipeFormTestCase(TestCase):
 
     def test_not_assignable_category(self):
         """
-        Test a submission of a form where a category with the __assignable__ flag set to False is submitted.
+        Test a submission of a form where a categories with the __assignable__ flag set to False is submitted.
         """
         post = self.post_data()
         post['categories'].append(2)

@@ -1,10 +1,10 @@
-{% extends 'core/content.html' %}
+{% extends 'core/main/content.html' %}
 
 {% block title %}Home | Popular{% endblock %}
 
 {% block main %}
 <div class="container-fluid">
     <h1>Popular</h1>
-    {% include 'core/recipe/recipe_list.html' %}
+    {% include 'core/recipes/recipe_list.html' %}
 </div>
 {% endblock %}

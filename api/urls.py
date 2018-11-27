@@ -7,7 +7,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register('users', views.UserViewSet)
 router.register('recipes', views.RecipeViewSet)
-router.register('category', views.CategoryViewSet)
+router.register('categories', views.CategoryViewSet)
 router.register('reviews', views.ReviewViewSet)
 router.register('ingredients', views.IngredientNameViewSet)
 

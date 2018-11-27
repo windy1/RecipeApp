@@ -1,13 +1,14 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Avg
+from django.utils import timezone
 
 
 def get_user_file_path(user, filename):
     """
-    Returns the path to the file for the specified user.
+    Returns the path to the file for the specified users.
 
-    :param user: user to look for
+    :param user: users to look for
     :param filename: the filename
     :return: path to upload location
     """
@@ -16,7 +17,7 @@ def get_user_file_path(user, filename):
 
 class Recipe(models.Model):
     """
-    A user-uploaded recipe. Recipes can be created by registered users and are the core feature of the application.
+    A users-uploaded recipes. Recipes can be created by registered users and are the core feature of the application.
     """
     created_at = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,11 +42,14 @@ class Recipe(models.Model):
         has_reviewed = Review.objects.filter(user=user, recipe=self).count() > 0
         return (user.is_authenticated and not has_reviewed and self.user is not user) or user.is_superuser
 
+    def __str__(self):
+        return '%s by %s' % (self.name, self.user.username)
+
 
 class Ingredient(models.Model):
     """
-    An ingredient in a user-submitted recipe. Each ingredient has a name entry, quantity, and index in the order of
-    appearance in the recipe.
+    An ingredient in a users-submitted recipes. Each ingredient has a name entry, quantity, and index in the order of
+    appearance in the recipes.
     """
     created_at = models.DateTimeField()
     ingredient = models.ForeignKey('IngredientName', on_delete=models.PROTECT)
@@ -56,8 +60,8 @@ class Ingredient(models.Model):
 
 class Direction(models.Model):
     """
-    A single direction for a recipe. Directions tell the user "how" to make the recipe. Each direction has a description
-    text and index in the order of appearance.
+    A single direction for a recipes. Directions tell the users "how" to make the recipes. Each direction has a
+    description text and index in the order of appearance.
     """
     created_at = models.DateTimeField()
     text = models.CharField(max_length=1000)
@@ -67,7 +71,7 @@ class Direction(models.Model):
 
 class Category(models.Model):
     """
-    A recipe category. Recipes may have multiple categories and categories can also have children categories. Not all
+    A recipes categories. Recipes may have multiple categories and categories can also have children categories. Not all
     categories can be assigned to recipes as marked by the __assignable__ field. This is so that categories can also
     serve as an empty container for children categories for browsing.
     """
@@ -95,7 +99,7 @@ class IngredientName(models.Model):
 
 class Review(models.Model):
     """
-    A user-submitted review on a recipe. Every user can submit one review on each recipe that is not their own. Each
+    A users-submitted review on a recipes. Every users can submit one review on each recipes that is not their own. Each
     review has a description and number rating between one and five.
     """
     created_at = models.DateTimeField()
@@ -103,3 +107,23 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     rating = models.IntegerField()
     text = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return 'Review for recipes #%d by %s' % (self.recipe.id, self.user.username)
+
+
+class UserProfile(models.Model):
+    """
+    User profile data that is displayed on the assoiated user's profile page.
+    """
+    created_at = models.DateTimeField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    image = models.ImageField(upload_to=get_user_file_path, default=None, blank=True, null=True)
+    bio = models.CharField(max_length=1000, default=None, blank=True, null=True)
+
+    @staticmethod
+    def get_or_create(user):
+        return UserProfile.objects.get_or_create(user=user, defaults={'created_at': timezone.now()})
+
+    def __str__(self):
+        return 'User profile for %s' % self.user.username

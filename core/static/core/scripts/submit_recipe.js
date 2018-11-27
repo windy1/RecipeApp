@@ -10,7 +10,7 @@ $(function() {
         let ing_name = ing.find('#ing_name');
         ing.find('#quantity').attr('id', 'quantity' + ing_num).attr('name', 'quantity' + ing_num);
         ing_name.attr('id', 'ing_name' + ing_num).attr('name', 'ing_name' + ing_num);
-        bind_remove_btn(ing.find('.btn-remove-recipe'));
+        bind_remove_btn(ing.find('.btn-remove-recipes'));
         bind_ingredient_lookup(ing_name);
         $('#ingredients').append(ing);
     });

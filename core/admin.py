@@ -1,11 +1,12 @@
 from django.contrib import admin
 
-from .models import Recipe, Ingredient, Direction, Category, IngredientName, Review
+from core import models
 
 
-admin.site.register(Recipe)
-admin.site.register(Ingredient)
-admin.site.register(Direction)
-admin.site.register(Category)
-admin.site.register(IngredientName)
-admin.site.register(Review)
+admin.site.register(models.Recipe)
+admin.site.register(models.Ingredient)
+admin.site.register(models.Direction)
+admin.site.register(models.Category)
+admin.site.register(models.IngredientName)
+admin.site.register(models.Review)
+admin.site.register(models.UserProfile)

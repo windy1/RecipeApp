@@ -15,7 +15,7 @@ class RecipeTestCase(TestCase):
         cat = Category.objects.create(
             created_at=timezone.now(),
             name='test_category',
-            display_name='Test category',
+            display_name='Test categories',
             assignable=True
         )
         recipe = Recipe.objects.create(

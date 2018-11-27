@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from core.views import categories, main, recipes
+from core.views import categories, main, recipes, accounts, users
 
 
 urlpatterns = [
@@ -31,14 +31,17 @@ urlpatterns = [
     path('new/', main.new, name='new'),
     path('search/', main.search, name='search'),
 
+    path('accounts/signup/', accounts.signup, name='signup'),
+    path('accounts/preferences/', accounts.preferences, name='preferences'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', main.signup, name='signup'),
+
+    path('users/<username>/', users.user_profile, name='user_profile'),
+    path('users/<username>/recipes/', users.user_recipes, name='user_recipes'),
 
     path('categories/', categories.categories, name='categories'),
     path('categories/<name>/', categories.category_detail, name='category_detail'),
 
     path('submit/', recipes.submit_recipe, name='submit_recipe'),
-    path('users/<username>/recipes/', recipes.user_recipes, name='user_recipes'),
     path('recipes/<int:recipe_id>/', recipes.recipe_detail, name='recipe_detail'),
     path('recipes/<int:recipe_id>/review', recipes.submit_review, name='submit_review'),
 

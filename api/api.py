@@ -31,8 +31,8 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = (
-            'created_at', 'user', 'name', 'category', 'summary', 'prep_time', 'cook_time', 'servings', 'calories',
-            'is_featured', 'review_count', 'avg_rating', 'category', 'ingredients', 'directions', 'review_set'
+            'created_at', 'users', 'name', 'categories', 'summary', 'prep_time', 'cook_time', 'servings', 'calories',
+            'is_featured', 'review_count', 'avg_rating', 'categories', 'ingredients', 'directions', 'review_set'
         )
 
 
@@ -51,7 +51,7 @@ class IngredientSerializer(serializers.HyperlinkedModelSerializer):
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Review
-        fields = ('created_at', 'user', 'recipe', 'rating', 'text')
+        fields = ('created_at', 'users', 'recipes', 'rating', 'text')
 
 
 class IngredientNameSerializer(serializers.HyperlinkedModelSerializer):

@@ -1,4 +1,4 @@
-{% extends 'core/content.html' %}
+{% extends 'core/main/content.html' %}
 
 {% block title %}Home | My Recipes{% endblock %}
 
@@ -6,6 +6,6 @@
 <div class="container-fluid">
     <h1>My Recipes</h1>
     <a href="{% url 'submit_recipe' %}">Create a new recipe</a>
-    {% include 'core/recipe/recipe_list.html' %}
+    {% include 'core/recipes/recipe_list.html' %}
 </div>
 {% endblock %}
