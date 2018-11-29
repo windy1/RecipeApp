@@ -2,9 +2,12 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Avg
 from django.utils import timezone
+from django.conf import settings
+
+from core.utils import partition
 
 
-def get_user_file_path(user, filename):
+def user_file_path(user, filename):
     """
     Returns the path to the file for the specified users.
 
@@ -24,7 +27,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length=200)
     categories = models.ManyToManyField('Category')
     summary = models.CharField(max_length=1000)
-    image = models.ImageField(upload_to=get_user_file_path, default=None, blank=True, null=True)
+    image = models.ImageField(upload_to=user_file_path, default=None, blank=True, null=True)
     prep_time = models.CharField(max_length=200)
     cook_time = models.CharField(max_length=200)
     servings = models.IntegerField()
@@ -81,6 +84,16 @@ class Category(models.Model):
     parent = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, default=None, blank=True)
     assignable = models.BooleanField(default=False)
 
+    @staticmethod
+    def family_tree(partitioned=True, n=settings.CATEGORIES['browse_row_length']):
+        result = {}
+        for root_cat in Category.objects.filter(parent=None):
+            children = Category.objects.filter(parent=root_cat)
+            result[root_cat] = children
+        if partitioned:
+            result = list(partition(list(result.items()), n))
+        return result
+
     def __str__(self):
         return self.display_name
 
@@ -118,7 +131,7 @@ class UserProfile(models.Model):
     """
     created_at = models.DateTimeField()
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    image = models.ImageField(upload_to=get_user_file_path, default=None, blank=True, null=True)
+    image = models.ImageField(upload_to=user_file_path, default=None, blank=True, null=True)
     bio = models.CharField(max_length=1000, default=None, blank=True, null=True)
 
     @staticmethod

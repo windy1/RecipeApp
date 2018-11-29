@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
 
-from core.forms import SubmitRecipeForm
+from core.forms.recipes import SubmitRecipeForm
 from core.models import Category, IngredientName
 
 

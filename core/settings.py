@@ -160,3 +160,7 @@ POPULAR = {
     'rating_threshold': 4,
     'review_count_threshold': 1
 }
+
+CATEGORIES = {
+    'browse_row_length': 4
+}

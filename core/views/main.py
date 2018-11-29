@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from core.forms.users import SearchForm
 from core.models import Recipe
-from core.raw_queries import RawQueries
+from core.utils import RawQueries
 
 
 def index(request):

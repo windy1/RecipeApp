@@ -20,4 +20,5 @@ def user_recipes(request, username):
     """
     user = get_object_or_404(User, username=username)
     recipes = user.recipe_set.all()
-    return render(request, 'core/users/user_recipes.html', {'recipe_list': recipes, 'explore': 'user_recipes'})
+    context = {'recipe_list': recipes, 'user': user, 'explore': 'user_recipes'}
+    return render(request, 'core/users/user_recipes.html', context)

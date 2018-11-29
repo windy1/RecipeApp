@@ -18,7 +18,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 /******************************************** Header *********************************************/
 .header{
     background-color: #3eb1ff;
-    margin-left: 0px;
+    margin-left: 0;
     height: 90px;
 }
 

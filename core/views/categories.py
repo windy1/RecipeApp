@@ -14,8 +14,8 @@ def categories(request):
 
 def category_detail(request, name):
     """
-    Displays a selected categories, as specified by the URL. If the categories has sub-categories, those will be displayed
-    instead of recipes in that categories.
+    Displays a selected categories, as specified by the URL. If the categories has sub-categories, those will be
+    displayed instead of recipes in that categories.
     """
     category = get_object_or_404(Category, name=name)
     sub_categories = Category.objects.filter(parent=category).order_by('-name')
