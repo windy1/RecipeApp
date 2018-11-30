@@ -17,7 +17,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 
 /******************************************** Header *********************************************/
 .header{
-    background-color: #3eb1ff;
+    background-color: white;
     margin-left: 0;
     height: 90px;
 }
@@ -72,7 +72,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 #browse_button_container{
     margin-top: var(--header_top_margin);
     margin-left: 1%;
-    background-color: white;
+    background-color: orange;
     width: 100px;
     height: var(--header_obj_heights);
     border-radius: 3px;
@@ -123,6 +123,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 
 /*-----SLIDE SHOW begin -------*/
 
+
 /*-----Slide Show End ----- */
 
 .featured_section {
@@ -158,9 +159,9 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
     color: white;
     box-shadow: 0 3px 5px 0 rgba(0,0,0,0.2), 0 3px 5px 0 rgba(0,0,0,0.19);
 }
-.quick_filter_buttons:active {
-    color: white;
-    background-color: #40b1ff;
+.quick_filter_buttons.active {
+    border-bottom: 3px solid yellow;
+
 }
 /*filter button css end */
 
@@ -228,6 +229,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
     z-index: 1;
     display:block;
     overflow: hidden;
+    width: 0;
 }
 .star-ratings-bottom {
     z-index: 0;

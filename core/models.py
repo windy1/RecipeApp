@@ -37,9 +37,12 @@ class Recipe(models.Model):
     def avg_rating(self):
         result = self.review_set.aggregate(Avg('rating'))['rating__avg']
         if result is None:
-            return 0
+            return 3
         else:
             return result
+
+    def avg_percent_rating(self):
+        return str(self.avg_rating() * 30) + '%'
 
     def user_can_review(self, user):
         has_reviewed = Review.objects.filter(user=user, recipe=self).count() > 0

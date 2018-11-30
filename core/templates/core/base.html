@@ -10,13 +10,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'core/stylesheets/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 </head>
 
 <body>
 
     {% include 'core/header.html' %}
-
-    {% block content %}{% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -26,30 +29,12 @@
             crossorigin="anonymous"></script>
     <script src="{% static 'core/bootstrap/dist/js/bootstrap.js' %}"></script>
 
-    <!-- TODO: organize into files, script in HTML is messy and difficult to maintain -->
-    <script>
-        let scrollEventHandler = function() {
-            window.scroll(0, window.pageYOffset)
-        };
-        window.addEventListener("scroll", scrollEventHandler, false);
-    </script>
-
-    <script>
-        $(document).ready(function(){
-        $(".dropdown").hover(
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-                $(this).toggleClass('open');
-            },
-            function() {
-                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-                $(this).toggleClass('open');
-            }
-        );
-        });
-    </script>
+    <!-- Completed: organize into files, script in HTML is messy and difficult to maintain -->
+    <script src="{% static 'core/scripts/browse_horizantal_scroll_disabler.js' %}"></script>
+    <script  src="{% static 'core/scripts/dropdown_menu.js' %}"></script>
 
     {% block scripts %}{% endblock %}
+    {% block content %}{% endblock %}
 
-    </body>
+</body>
 </html>
