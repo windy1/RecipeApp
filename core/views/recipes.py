@@ -15,7 +15,7 @@ def recipe_detail(request, recipe_id):
     ingredients = recipe.ingredient_set.order_by('-index')
     directions = recipe.direction_set.order_by('-index')
     context = {
-        'recipes': recipe,
+        'recipe': recipe,
         'ingredients': ingredients,
         'directions': directions,
         'can_review': recipe.user_can_review(user)

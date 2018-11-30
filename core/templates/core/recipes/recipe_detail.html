@@ -80,24 +80,24 @@
 
     {% if can_review %}
         <div class="relative">
-        <h1>Leave a review</h1>
-        <form action="{% url 'submit_review' recipe.id %}" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <textarea class="form-control" name="text" id="text"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="rating"id="rating">Rating</label>
-                <input type="number" class="form-control" name="rating" id="rating">
-            </div>
+            <h1>Leave a review</h1>
+            <form action="{% url 'submit_review' recipe.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea class="form-control" name="text" id="text"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating"id="rating">Rating</label>
+                    <input type="number" class="form-control" name="rating" id="rating">
+                </div>
 
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
-        {% endif %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
+    {% endif %}
 
 
 
