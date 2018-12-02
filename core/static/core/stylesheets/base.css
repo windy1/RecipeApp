@@ -163,7 +163,7 @@ img {vertical-align: middle;}
 /* Recipe display css start */
 
 .recipe_container{
-    margin-top: -15px;
+    margin-top: 5px;
     margin-left: 5px !important;
 }
 .recipe_block{
@@ -199,7 +199,7 @@ img {vertical-align: middle;}
     margin-left: 5px;
 }
 #recipe_block_info{
-    margin-top: -13px;
+    margin-top: -20px;
     margin-left: 10px;
     color: #1b1e21;
     font-weight: normal;
