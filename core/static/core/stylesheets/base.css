@@ -348,21 +348,36 @@ img {vertical-align: middle;}
 
 
 /* Recipe detail page Start*/
+
+.holder{
+    height:100%;
+    width: 100%;
+    border: 6px #eea298;
+    border-style: groove;
+    background-color: rgba(238, 191, 94, 0.05);
+
+
+}
+
 .board {
   margin: 10px;
-  height: 450px;
-  width: 450px;
+  height: 490px;
+  width: 500px;
   font-weight: bold;
-  color: black;
-  text-align: center;
-    border: 5px solid black ;
+    text-align: center;
   float:right;
+    border: 7px dashed #60abee;
+
+
 }
 
 .recipeviewimage{
-     max-width: 920px;
-     max-height: 600px;
+    max-width:500px;
+    max-height:500px;
+    padding-top: 10px;
+
 }
+
 #recipename{
     padding:40px;
     text-align: center;
@@ -376,15 +391,15 @@ img {vertical-align: middle;}
 #name{
     font-size:20px;
 }
-.recipeviewimage{
-    padding-top: 10px;
-    height: 460px;
 
-}
 #board2{
     height: 330px;
     width: 100%;
-    border: 5px solid black
+    color:black;
+    font-style: oblique;
+    border: 5px solid #73b8ee;
+    background-color: #b8daff;
+
 }
 div.relative{
     position:relative;
@@ -399,14 +414,20 @@ div.relative{
     font-size:40px;
 }
 #board3{
-    height: 290px;
+    height: 320px;
     width: 100%;
-    border: 5px solid black
+    font-family:fantasy;
+    color:black;
+    border: 5px solid rgba(238, 191, 9, 0.8);
+    background-color: rgba(240, 200, 148, 0.39);
 }
 #board4{
     height: 150px;
     width: 100%;
-    border: 5px solid black
+    font-family: "Times New Roman", Times, serif;;
+    color:black;
+    border: 5px solid #eea03a;
+    background-color: #f0d292;
 }
 
 /* Recipe detail page END*/
