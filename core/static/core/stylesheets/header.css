@@ -20,7 +20,7 @@
 }
 .login_signup_buttons_container{
     position: absolute !important;
-    right: 1%;
+    right: 2%;
 }
 .login_signup_buttons{
     margin-top: var(--header_top_margin);
@@ -68,47 +68,38 @@
     margin-left: 1.5%;
     width: 100px;
     height: var(--header_obj_heights);
-    border-radius: 3px;
-    /*padding: 10px;*/
 }
 
 .browse_button{
-    /*color: black;*/
-    /*font-size: 15px;*/
-    /*margin-left: 10px;*/
-    /*position: center;*/
     height: var(--header_obj_heights);
 }
 
-.dropdown_container{
-   margin-left: -10px;
-   padding-bottom: 26px;
+.dropdown-menu {
+    left: 50%;
+    right: auto;
+    text-align: center;
+    transform: translate(-50%, 0);
+    width: 740px;
+    margin-left: -5px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px;
 }
-.mega-dropdown-menu {
-    width: 750px;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+
+.dropdown_container > tr > td {
+    padding: 10px;
+    margin: 0;
+    list-style: none;
 }
-.mega-dropdown-menu > li > ul {
-  padding: 10px;
-  margin: 0;
-}
-.mega-dropdown-menu > li > ul > li {
-  list-style: none;
-}
-.mega-dropdown-menu > li > ul > li > a {
+
+.dropdown_container > tr > td > a {
   display: block;
   color: #222;
-  padding: 3px 5px;
 }
-.mega-dropdown-menu > li > ul > li > a:hover {
-    background-color: #dddddd;
-}
-.mega-dropdown-menu .dropdown-header {
-  font-size: 18px;
+.dropdown_container .dropdown-header {
+
   color: #2846ff;
-  padding: 5px 60px 5px 5px;
-  line-height: 30px;
+
 }
 
 /*------- DROP DOWN MENU END ------*/
