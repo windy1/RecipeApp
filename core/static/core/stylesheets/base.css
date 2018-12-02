@@ -17,16 +17,16 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 
 /******************************************** Header *********************************************/
 .header{
-    background-color: #1d87ff;
+    background-color: white;
     margin-left: 0;
     height: 90px;
 }
 
 #logo{
-    margin-left: 15px;
-    margin-top: -10px;
-    width: 300px;
-    height: 110px;
+    margin-left: 20px;
+    padding: 10px;
+    width: 75px;
+    height: 90px;
 }
 .login_signup_buttons_container{
     position: absolute !important;
@@ -71,17 +71,19 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 
 #browse_button_container{
     margin-top: var(--header_top_margin);
-    margin-left: 1%;
-    background-color: orange;
+    margin-left: 15%;
     width: 100px;
     height: var(--header_obj_heights);
     border-radius: 3px;
-    padding: 10px;
+    /*padding: 10px;*/
 }
+
 .browse_button{
-    color: #005cbf;
+    color: black;
     font-size: 15px;
     margin-left: 10px;
+    position: center;
+    height: var(--header_obj_heights);
 }
 .dropdown_container{
    margin-left: -10px;
