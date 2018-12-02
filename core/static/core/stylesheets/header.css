@@ -77,30 +77,28 @@
 .dropdown-menu {
     left: 50%;
     right: auto;
-    text-align: center;
+
     transform: translate(-50%, 0);
     width: 740px;
-    margin-left: -5px;
     margin-top: 15px;
     border-radius: 5px;
     border: 1px;
 }
 
-.dropdown_container > tr > td {
-    padding: 10px;
-    margin: 0;
-    list-style: none;
+.dropdown-menu .dropdown_category_text{
+    text-align: center;
+}
+.dropdown-menu .menu_item{
+    color: black;
+    text-align: right;
+    padding-left: 80px;
 }
 
-.dropdown_container > tr > td > a {
-  display: block;
-  color: #222;
+.dropdown_category_text{
+    color: var(--secondary);
+    font-size: 18px;
 }
-.dropdown_container .dropdown-header {
 
-  color: #2846ff;
-
-}
 
 /*------- DROP DOWN MENU END ------*/
 
