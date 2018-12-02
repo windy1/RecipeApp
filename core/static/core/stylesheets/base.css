@@ -10,9 +10,25 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
     text-decoration: none !important;
 }
 
-:root {
-    --primary: #ff8500 !important;
+.explore-select {
+    padding-left: 50px;
+    font-size: 25px;
 }
+
+.explore-select .list-group-item {
+    border-radius: 0;
+    border: none;
+}
+
+.explore-select .list-group-item.active {
+    background-color: white;
+    border-left: 3px solid var(--primary);
+}
+
+.btn-primary {
+    color: white;
+}
+
 
 /****************************************** Body *********************************************/
 
@@ -29,6 +45,7 @@ img {vertical-align: middle;}
     margin: auto;
     height: 300px;
     overflow: hidden;
+    border-bottom: 1px solid #c2c2c2;
 }
 
 /* Next & previous buttons */
@@ -168,11 +185,9 @@ img {vertical-align: middle;}
 }
 .recipe_block{
     overflow: hidden;
-    background-color: #e4fcff;
-    border-color: #dff8ff;
-    border-width: 5px;
-    border-style: solid;
-    height: 290px;
+    background-color: white;
+    border: 1px solid var(--secondary);
+    height: 300px;
     width: 300px;
     margin: 5px;
     border-radius: 10px;
@@ -183,6 +198,7 @@ img {vertical-align: middle;}
     height: 225px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-bottom: 1px solid var(--secondary);
     transition: all .5s ease;
 }
 
@@ -303,3 +319,14 @@ div.relative{
 }
 
 /* Recipe detail page END*/
+
+.footer {
+    text-align: center;
+    min-height: 100px;
+    width: 100%;
+    border-top: 1px solid #c2c2c2;
+    background-color: #dfdfdf;
+    margin-top: 300px;
+    padding: 20px;
+    font-size: 11px;
+}

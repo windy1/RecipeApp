@@ -9,10 +9,11 @@
     background-color: white;
     margin-left: 0;
     height: 90px;
+    border-bottom: 1px solid #c2c2c2;
 }
 
 #logo{
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     padding: 10px;
     width: 75px;
     height: 90px;
@@ -31,13 +32,17 @@
 }
 .searchbar_container{
     margin-top: var(--header_top_margin);
-    margin-left: 2%;
+    /*margin-left: 2%;*/
 }
 #searchbar, .searchbar_container{
-    width: 600px;
+    /*width: 600px;*/
     height: var( --header_obj_heights);
-
 }
+
+.searchbar_container .input-group {
+    width: 600px;
+}
+
 .magnifyin_glass{
     background-color: rgba(33, 32, 33, 0.29);
     margin-left: -61px;
@@ -60,7 +65,7 @@
 
 #browse_button_container{
     margin-top: var(--header_top_margin);
-    margin-left: 15%;
+    margin-left: 1.5%;
     width: 100px;
     height: var(--header_obj_heights);
     border-radius: 3px;

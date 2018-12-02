@@ -6,20 +6,35 @@
     <!-- Completed please put logo in core/static/images :) -->
     <a href="{% url 'index' %}"><img id="logo" src="{% static 'images/Logo1.jpg' %}"></a>
 
+    <div class="searchbar_container">
+        <form action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" id="searchbar" name="q" placeholder="Search"
+                       aria-describedby="advanced-search" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary">
+                        <span class="oi oi-magnifying-glass"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div id = "browse_button_container">
         <div class="dropdown dropdown_container">
-            <a href="#" class="btn btn-primary dropdown-toggle browse_button" data-toggle="dropdown">BROWSE</a>
+            <a href="#" class="btn btn-primary dropdown-toggle browse_button" data-toggle="dropdown">Browse</a>
             <ul class="dropdown-menu mega-dropdown-menu">
                 <li class="col-lg-3">
                     <ul>
-                        <li class="dropdown-header">Category 1</li>
+                        <li >Category 1</li>
                         <li><a href="#">Col 1 Row 1</a></li>
                         <li><a href="#">Col 1 Row 2</a></li>
                         <li><a href="#">Col 1 Row 3</a></li>
                         <li><a href="#">Col 1 Row 4</a></li>
 
                         <li class="divider"></li>
-                        <li class="dropdown-header">Category 2</li>
+                        <li>Category 2</li>
                         <li><a href="#">Col 1 Row 5</a></li>
                         <li><a href="#">Col 1 Row 6</a></li>
 
@@ -27,60 +42,48 @@
                 </li>
                 <li class="col-lg-3">
                     <ul>
-                        <li class="dropdown-header">Category 3</li>
+                        <li >Category 3</li>
                         <li><a href="#">Col 2 Row 1</a></li>
                         <li><a href="#">Col 2 Row 2</a></li>
                         <li><a href="#">Col 2 Row 3</a></li>
                         <li><a href="#">Col 2 Row 4</a></li>
 
                         <li class="divider"></li>
-                        <li class="dropdown-header">Category 4</li>
+                        <li >Category 4</li>
                         <li><a href="#">Col 2 Row 5</a></li>
                         <li><a href="#">Col 2 Row 6</a></li>
                     </ul>
                 </li>
                 <li class="col-lg-3">
                     <ul>
-                        <li class="dropdown-header">Category 5</li>
+                        <li >Category 5</li>
                         <li><a href="#">Col 3 Row 1</a></li>
                         <li><a href="#">Col 3 Row 2</a></li>
                         <li><a href="#">Col 3 Row 3</a></li>
                         <li><a href="#">Col 3 Row 4</a></li>
 
                         <li class="divider"></li>
-                        <li class="dropdown-header">Category 6</li>
+                        <li >Category 6</li>
                         <li><a href="#">Col 3 Row 5</a></li>
                         <li><a href="#">Col 3 Row 6</a></li>
                     </ul>
                 </li>
                 <li class="col-lg-3">
                     <ul>
-                        <li class="dropdown-header">Category 7</li>
+                        <li >Category 7</li>
                         <li><a href="#">Col 4 Row 1</a></li>
                         <li><a href="#">Col 4 Row 2</a></li>
                         <li><a href="#">Col 4 Row 3</a></li>
                         <li><a href="#">Col 4 Row 4</a></li>
 
                         <li class="divider"></li>
-                        <li class="dropdown-header">Category 8</li>
+                        <li >Category 8</li>
                         <li><a href="#">Col 4 Row 5</a></li>
                         <li><a href="#">Col 4 Row 6</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
-    </div>
-
-    <div class="searchbar_container">
-        <form action="{% url 'search' %}" method="get">
-            {% csrf_token %}
-            <div class="input-group-append">
-                <input type="text" class="form-control" id = "searchbar" name="q" placeholder="Search" aria-describedby="advanced-search" required>
-                <button type="submit" class="magnifyin_glass">
-                    <span class="oi oi-magnifying-glass"></span>
-                </button>
-            </div>
-        </form>
     </div>
 
     <span class="btn-group login_signup_buttons_container" role="group">

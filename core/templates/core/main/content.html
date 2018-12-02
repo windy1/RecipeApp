@@ -24,25 +24,26 @@
     <br>
 
     <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
-
-    <div class = "row quick_filter_buttons_row">
-        <div class="button_container">
-            <a class="quick_filter_buttons {% if explore == 'featured' %}active{% endif %}" href="{% url 'featured' %}">Featured</a>
-            <a class="quick_filter_buttons {% if explore == 'popular' %}active{% endif %}" href="{% url 'popular' %}">Popular</a>
-            <a class="quick_filter_buttons {% if explore == 'trending' %}active{% endif %}" href="{% url 'trending' %}">Trending</a>
-            <a class="quick_filter_buttons {% if explore == 'new' %}active{% endif %}" href="{% url 'new' %}">New</a>
-            <a class="quick_filter_buttons {% if explore == 'categories' %}active{% endif %}" href="{% url 'categories' %}">Categories</a>
+    <div class="row">
+        <div class="col-2 explore-select">
+            <ul class="list-group">
+                <li class="list-group-item {% if explore == 'featured' %}active{% endif %}"><a href="{% url 'featured' %}">Featured</a></li>
+                <li class="list-group-item {% if explore == 'popular' %}active{% endif %}"><a href="{% url 'popular' %}">Popular</a></li>
+                <li class="list-group-item {% if explore == 'trending' %}active{% endif %}"><a href="{% url 'trending' %}">Trending</a></li>
+                <li class="list-group-item {% if explore == 'new' %}active{% endif %}"><a href="{% url 'new' %}">New</a></li>
+            </ul>
+        </div>
+        <div class="col-10">
+            <div class="row container-fluid recipe_container">
+                {% block main %}{% endblock %}
+            </div>
         </div>
     </div>
-
-<div class="row container-fluid recipe_container">
-    {% block main %}{% endblock %}
-</div>
 
     <script>
         var slideIndex = 1;
