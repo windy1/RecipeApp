@@ -358,8 +358,8 @@ img {vertical-align: middle;}
 }
 
 .recipeviewimage{
-     max-width: 620px;
-     max-height: 500px;
+     max-width: 920px;
+     max-height: 600px;
 }
 #recipename{
     padding:40px;
@@ -380,7 +380,7 @@ img {vertical-align: middle;}
 
 }
 #board2{
-    height: 290px;
+    height: 330px;
     width: 100%;
     border: 5px solid black
 }
