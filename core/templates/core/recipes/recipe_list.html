@@ -2,7 +2,7 @@
 
 
 <div class="row">
-    {% for recipe in recipe_list  %}
+    {% for recipe in recipe_list %}
         <a class="recipe_block" href={% url 'recipe_detail' recipe.id %}>
             {% load static %}
             {% if recipe.image %}

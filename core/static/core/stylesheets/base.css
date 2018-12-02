@@ -128,7 +128,7 @@ img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-    background: #0c5460;
+    background: #dff8ff;
     width: 100%;
     position: relative;
     margin: auto;
@@ -202,9 +202,9 @@ img {vertical-align: middle;}
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 2s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 2s;
 }
 
 @-webkit-keyframes fade {
