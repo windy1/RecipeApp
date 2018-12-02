@@ -1,0 +1,105 @@
+:root{
+    --header_top_margin: 30px;
+    --header_obj_heights: 40px;
+}
+
+/******************************************** Header *********************************************/
+
+.header{
+    background-color: white;
+    margin-left: 0;
+    height: 90px;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+#logo{
+    /*margin-left: 20px;*/
+    padding: 10px;
+    width: 75px;
+    height: 90px;
+}
+.login_signup_buttons_container{
+    position: absolute !important;
+    right: 2%;
+}
+.login_signup_buttons{
+    margin-top: var(--header_top_margin);
+    height: var( --header_obj_heights);
+}
+#my_account_button{
+    color: white;
+
+}
+.searchbar_container{
+    margin-top: var(--header_top_margin);
+    /*margin-left: 2%;*/
+}
+#searchbar, .searchbar_container{
+    /*width: 600px;*/
+    height: var( --header_obj_heights);
+}
+
+.searchbar_container .input-group {
+    width: 600px;
+}
+
+.magnifyin_glass{
+    background-color: rgba(33, 32, 33, 0.29);
+    margin-left: -61px;
+    border: none;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px ;
+    width: 10%;
+    margin-top: 1px;
+    height: 38px;
+}
+.magnifyin_glass:hover{
+    background-color: rgb(104, 198, 255);
+}
+.magnifyin_glass:active{
+    background-color: rgb(29, 135, 255);
+}
+
+
+/*-------- DROP DOWN MENU START ------*/
+
+#browse_button_container{
+    margin-top: var(--header_top_margin);
+    margin-left: 1.5%;
+    width: 100px;
+    height: var(--header_obj_heights);
+}
+
+.browse_button{
+    height: var(--header_obj_heights);
+}
+
+.dropdown-menu {
+    left: 50%;
+    right: auto;
+
+    transform: translate(-50%, 0);
+    width: 740px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px;
+}
+
+.dropdown-menu .dropdown_category_text{
+    text-align: center;
+}
+.dropdown-menu .menu_item{
+    color: black;
+    text-align: right;
+    padding-left: 80px;
+}
+
+.dropdown_category_text{
+    color: var(--secondary);
+    font-size: 18px;
+}
+
+
+/*------- DROP DOWN MENU END ------*/
+
+/*************************************** Header END ***********************************/

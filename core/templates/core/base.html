@@ -1,19 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
 
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'core/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/bootstrap/custom/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'core/open-iconic/font/css/open-iconic-bootstrap.css' %}">
+
     <link rel="stylesheet" type="text/css" href="{% static 'core/stylesheets/base.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'core/stylesheets/header.css' %}">
 
 </head>
 
@@ -21,11 +18,19 @@
 
     {% include 'core/header.html' %}
 
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <span class="text-muted">
+                &copy; 2018 Muhammet Barut, Walker Crouse, Ziming Dong<br>
+                A Final Project for CS 205, Fall 2018, Prof. Jason Hibbeler
+            </span>
+        </div>
+    </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
     <script src="{% static 'core/bootstrap/dist/js/bootstrap.js' %}"></script>
 
@@ -34,7 +39,6 @@
     <script  src="{% static 'core/scripts/dropdown_menu.js' %}"></script>
 
     {% block scripts %}{% endblock %}
-    {% block content %}{% endblock %}
 
 </body>
 </html>

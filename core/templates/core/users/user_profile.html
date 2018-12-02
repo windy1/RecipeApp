@@ -1,10 +1,13 @@
 {% extends 'core/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container-fluid">
     <h1>{{ profile.user.username }}</h1>
 
     {% if request.user == profile.user %}
+
+            <img src="{% static profile.image.url %}">
+
         <a href="{% url 'preferences' %}" class="btn btn-primary">View preferences</a>
     {% endif %}
 

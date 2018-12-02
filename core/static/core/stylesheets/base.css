@@ -9,116 +9,25 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 {
     text-decoration: none !important;
 }
-:root{
-    --header_top_margin: 30px;
-    --header_obj_heights: 40px;
+
+.explore-select {
+    padding-left: 50px;
+    font-size: 25px;
 }
 
-
-/******************************************** Header *********************************************/
-.header{
-    background-color: white;
-    margin-left: 0;
-    height: 90px;
-}
-
-#logo{
-    margin-left: 20px;
-    padding: 10px;
-    width: 75px;
-    height: 90px;
-}
-.login_signup_buttons_container{
-    position: absolute !important;
-    right: 1%;
-}
-.login_signup_buttons{
-    margin-top: var(--header_top_margin);
-    height: var( --header_obj_heights);
-}
-#my_account_button{
-    color: white;
-
-}
-.searchbar_container{
-    margin-top: var(--header_top_margin);
-    margin-left: 2%;
-}
-#searchbar, .searchbar_container{
-    width: 600px;
-    height: var( --header_obj_heights);
-
-}
-.magnifyin_glass{
-    background-color: rgba(33, 32, 33, 0.29);
-    margin-left: -61px;
+.explore-select .list-group-item {
+    border-radius: 0;
     border: none;
-    border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px ;
-    width: 10%;
-    margin-top: 1px;
-    height: 38px;
-}
-.magnifyin_glass:hover{
-    background-color: rgb(104, 198, 255);
-}
-.magnifyin_glass:active{
-    background-color: rgb(29, 135, 255);
 }
 
-
-/*-------- DROP DOWN MENU START ------*/
-
-#browse_button_container{
-    margin-top: var(--header_top_margin);
-    margin-left: 15%;
-    width: 100px;
-    height: var(--header_obj_heights);
-    border-radius: 3px;
-    /*padding: 10px;*/
+.explore-select .list-group-item.active {
+    background-color: white;
+    border-left: 3px solid var(--primary);
 }
 
-.browse_button{
-    color: black;
-    font-size: 15px;
-    margin-left: 10px;
-    position: center;
-    height: var(--header_obj_heights);
+.btn-primary {
+    color: white;
 }
-.dropdown_container{
-   margin-left: -10px;
-   padding-bottom: 26px;
-}
-.mega-dropdown-menu {
-    width: 750px;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
-.mega-dropdown-menu > li > ul {
-  padding: 10px;
-  margin: 0;
-}
-.mega-dropdown-menu > li > ul > li {
-  list-style: none;
-}
-.mega-dropdown-menu > li > ul > li > a {
-  display: block;
-  color: #222;
-  padding: 3px 5px;
-}
-.mega-dropdown-menu > li > ul > li > a:hover {
-    background-color: #dddddd;
-}
-.mega-dropdown-menu .dropdown-header {
-  font-size: 18px;
-  color: #2846ff;
-  padding: 5px 60px 5px 5px;
-  line-height: 30px;
-}
-
-/*------- DROP DOWN MENU END ------*/
-
-/*************************************** Header END ***********************************/
 
 
 /****************************************** Body *********************************************/
@@ -136,6 +45,7 @@ img {vertical-align: middle;}
     margin: auto;
     height: 300px;
     overflow: hidden;
+    border-bottom: 1px solid #c2c2c2;
 }
 
 /* Next & previous buttons */
@@ -270,16 +180,14 @@ img {vertical-align: middle;}
 /* Recipe display css start */
 
 .recipe_container{
-    margin-top: -15px;
+    margin-top: 5px;
     margin-left: 5px !important;
 }
 .recipe_block{
     overflow: hidden;
-    background-color: #e4fcff;
-    border-color: #dff8ff;
-    border-width: 5px;
-    border-style: solid;
-    height: 290px;
+    background-color: white;
+    border: 1px solid var(--secondary);
+    height: 300px;
     width: 300px;
     margin: 5px;
     border-radius: 10px;
@@ -290,6 +198,7 @@ img {vertical-align: middle;}
     height: 225px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-bottom: 1px solid var(--secondary);
     transition: all .5s ease;
 }
 
@@ -306,7 +215,7 @@ img {vertical-align: middle;}
     margin-left: 5px;
 }
 #recipe_block_info{
-    margin-top: -13px;
+    margin-top: -20px;
     margin-left: 10px;
     color: #1b1e21;
     font-weight: normal;
@@ -431,3 +340,14 @@ div.relative{
 }
 
 /* Recipe detail page END*/
+
+.footer {
+    text-align: center;
+    min-height: 100px;
+    width: 100%;
+    border-top: 1px solid #c2c2c2;
+    background-color: #dfdfdf;
+    margin-top: 300px;
+    padding: 20px;
+    font-size: 11px;
+}
