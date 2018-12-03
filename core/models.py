@@ -88,14 +88,8 @@ class Category(models.Model):
     assignable = models.BooleanField(default=False)
 
     @staticmethod
-    def family_tree(partitioned=True, n=settings.CATEGORIES['browse_row_length']):
-        result = {}
-        for root_cat in Category.objects.filter(parent=None):
-            children = Category.objects.filter(parent=root_cat)
-            result[root_cat] = children
-        if partitioned:
-            result = list(partition(list(result.items()), n))
-        return result
+    def category_table(categoryName):
+        return
 
     def __str__(self):
         return self.display_name
