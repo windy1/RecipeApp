@@ -6,7 +6,7 @@
 
     {% if request.user == profile.user %}
 
-            <img src="{% static profile.image.url %}">
+{#            <img src="{% static profile.image.url %}">#}
 
         <a href="{% url 'preferences' %}" class="btn btn-primary">View preferences</a>
     {% endif %}

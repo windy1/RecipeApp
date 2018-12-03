@@ -77,27 +77,26 @@
 .dropdown-menu {
     left: 50%;
     right: auto;
-
     transform: translate(-50%, 0);
     width: 740px;
-    margin-top: 15px;
+    margin-top: 2px;
     border-radius: 5px;
     border: 1px;
 }
 
 .dropdown-menu .dropdown_category_text{
     text-align: center;
+    color: var(--secondary);
+    font-size: 18px;
+    padding-top: 20px;
 }
+
 .dropdown-menu .menu_item{
     color: black;
     text-align: right;
-    padding-left: 80px;
+    padding: 2px 0px 2px 80px;
 }
 
-.dropdown_category_text{
-    color: var(--secondary);
-    font-size: 18px;
-}
 
 
 /*------- DROP DOWN MENU END ------*/

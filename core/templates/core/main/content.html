@@ -3,30 +3,56 @@
 {% block content %}
 
     <div class="slideshow-container">
-    {% for recipe in recipe_list %}
-        <div class="mySlides fade">
-          <div class="numbertext">{{ forloop.counter }} / 3</div>
+            <!-- Full-width images with number and caption text -->
+          <div class="mySlides">
+            <img style="width: 100%" src="{% static 'images/slideshow/intro.jpg' %}">
+            <div class="intro_text_line1 animated fadeInDown slow">A Recipe</div><br>
+            <div class="intro_text_line2 animated fadeInLeft slow">For Everyone</div>
+          </div>
 
-            {% if forloop.first %}
-                <img style="width:100%" src="{% static recipe.image.url %}">
-            {% elif forloop.counter0 %}
-                <img style="width:100%" src="{% static recipe.image.url %}">
-            {% endif %}
+          <div class="mySlides">
+            <img style="width: 100%"  src="{% static 'images/slideshow/dessert.jpg' %}">
+             <div class="dessert_text_line1 animated slideInRight slow">Making sweet</div><br>
+             <div class="dessert_text_line2 animated slideInLeft slow">things happen</div>
+             <div class="dessert_text_line3 animated bounceInDown slower">!</div>
+          </div>
 
-          <div class="text">Caption Text</div>
+          <div class="mySlides">
+            <img style="width: 100%"  src="{% static 'images/slideshow/vegan.jpg' %}">
+             <div class="vegan_text_line1 animated flipInX slow">Amazing</div><br>
+             <div class="vegan_text_line2 animated flipInX slow">Vegan</div><br>
+             <div class="vegan_text_line2 animated flipInX slow">Recipes</div>
+          </div>
+
+          <div class="mySlides">
+            <img style="width: 100%"  src="{% static 'images/slideshow/meat.jpg' %}">
+            <div class="meat_text_line1 meat animated bounceInRight slower">Meat!</div><br>
+            <div class="meat_text_line2 meat animated bounceInLeft slower">Meat!</div><br>
+            <div class="meat_text_line3 meat animated bounceInRight slower">Meat!</div><br>
+            <div class="meat_text_line4 meat animated bounceInLeft slower">Meat!</div><br>
+            <div class="meat_text_line5 meat animated zoomInLeft slower">Meat!</div><br>
+            <div class="meat_text_line6 meat animated zoomInRight slower">Meat!</div><br>
+          </div>
+
+          <div class="mySlides">
+              <img style="width: 100%"  src="{% static 'images/slideshow/drinks.jpg' %}">
+              <div class="drinks_text_line1 drinks animated fadeInDown slow">Drink</div>
+              <div class="drinks_text_line2 drinks animated fadeInDown slow">Recipes</div>
+              <div class="drinks_text_line3 drinks animated fadeInUp slow">For All</div>
+              <div class="drinks_text_line4 drinks animated fadeInUp slow">Occasions</div>
+          </div>
+
+          <!-- Next and previous buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-    {% endfor %}
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    </div>
-    <br>
 
     <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
     </div>
 
     <div class="row">
@@ -46,35 +72,49 @@
     </div>
 
     <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
+    // Uncomment the script below and comment out the other portion to be able to use the
+    // arrows to move throught the slide show
+    {#var slideIndex = 1;#}
+    {#showSlides(slideIndex);#}
+    {##}
+    {#// Next/previous controls#}
+    {#function plusSlides(n) {#}
+    {#  showSlides(slideIndex += n);#}
+    {##}
+    {#// Thumbnail image controls#}
+    {#function currentSlide(n) {#}
+    {#  showSlides(slideIndex = n);#}
+    {##}
+    {#function showSlides(n) {#}
+    {#  var i;#}
+    {#  var slides = document.getElementsByClassName("mySlides");#}
+    {#  var dots = document.getElementsByClassName("dot");#}
+    {#  if (n > slides.length) {slideIndex = 1}#}
+    {#  if (n < 1) {slideIndex = slides.length}#}
+    {#  for (i = 0; i < slides.length; i++) {#}
+    {#      slides[i].style.display = "none";#}
+    {#  }#}
+    {#  for (i = 0; i < dots.length; i++) {#}
+    {#      dots[i].className = dots[i].className.replace(" active", "");#}
+    {#  }#}
+    {#  slides[slideIndex-1].style.display = "block";#}
+    {#  dots[slideIndex-1].className += " active";#}
 
-        // Next/previous controls
-        function plusSlides(n) {
-          showSlides(slideIndex += n);
+
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 5000); // Change image every 2 seconds
         }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-          showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-          var i;
-          var slides = document.getElementsByClassName("mySlides");
-          var dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";
-          }
-          for (i = 0; i < dots.length; i++) {
-              dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";
-          dots[slideIndex-1].className += " active";
-        }
-
     </script>
 
 {% endblock %}
