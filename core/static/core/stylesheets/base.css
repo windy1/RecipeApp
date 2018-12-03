@@ -272,6 +272,7 @@ img {vertical-align: middle;}
 
 .recipe_container{
     margin-top: -40px;
+
 }
 .recipe_block{
     overflow: hidden;
@@ -349,6 +350,9 @@ img {vertical-align: middle;}
 
 /* Recipe detail page Start*/
 
+#ingredients{
+    font-size: 30px;
+}
 .holder{
     height:100%;
     width: 100%;
@@ -361,7 +365,7 @@ img {vertical-align: middle;}
 
 .board {
   margin: 10px;
-  height: 490px;
+  height: 510px;
   width: 600px;
   font-weight: bold;
     text-align: center;
@@ -375,12 +379,17 @@ img {vertical-align: middle;}
     padding-left:40px;
     max-width:500px;
     max-height:500px;
-    padding-top: 10px;
+    padding-top: 4px;
+
+}
+#description1{
+    font-size: 25px;
+    padding-top:5px;
 
 }
 
 #recipename{
-    padding:40px;
+    padding-top:40px;
     text-align: center;
     font-size:50px;
 }
@@ -390,7 +399,8 @@ img {vertical-align: middle;}
     font-size: 25px;
 }
 #name{
-    font-size:40px;
+    padding-top: 20px;
+    font-size:20px;
 }
 
 #board2{
@@ -411,7 +421,10 @@ div.relative{
 }
 
 #rating{
-    font-size:35px;
+    font-size:25px;
+
+    padding-top:15px;
+
 }
 #cat{
     font-size:40px;
@@ -422,7 +435,7 @@ div.relative{
     font-family:fantasy;
     color:black;
     padding-left: 77px;
-    padding-top: 40px;
+    padding-top: 30px;
     /*border: 5px solid rgba(238, 191, 9, 0.8);
     background-color: rgba(240, 200, 148, 0.39);*/
 }
@@ -437,6 +450,11 @@ div.relative{
 
 }
 .row{
+    padding-left: 210px;
+    padding-top: 20px;
+    
+}
+.row2{
     padding-left: 50px;
     padding-top: 20px;
 }
@@ -444,7 +462,7 @@ div.relative{
 
 .recipe_info{
     padding-left: 55px;
-    font-size: 30px;
+    font-size: 27px;
 }
 
 #cal{
@@ -456,9 +474,8 @@ div.relative{
     left: 93px;
     padding-left: 145px;
 
-    
-
 }
+
 .hr{
     display: block;
     margin-left: auto;
@@ -466,6 +483,33 @@ div.relative{
     border-style: inset;
     border-width:2px;
     border-color:lightsteelblue;
+}
+
+#board5{
+    border-right: 2px solid #464740;
+    padding-right: 40px;
+    height: 45px;
+}
+
+#board6{
+    border-right: 2px solid #464740;
+    padding-right: 169px;
+    height: 45px;
+}
+
+.board7{
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+#ingsize{
+    font-size: 30px;
+}
+#dirsize{
+    font-size: 30px;
+}
+#rat{
+    font-size: 35px;
 }
 
 /* Recipe detail page END*/

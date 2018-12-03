@@ -1,51 +1,58 @@
 {% extends 'core/base.html' %}
-
+  {% load static %}
 <!--author: Ziming Dong-->
 
 {% block title %}Recipe detail{% endblock %}
 
 {% block content %}
 
-<div class="holder">
-<div class="container">
+
+<div class="row container-fluid">
+        <div>
+          {% if recipe.image %}
+                <img class="recipeviewimage" src="{% static recipe.image.url %}">
+          {% endif %}
+        </div>
 
     <div class="board">
-        <h1 id="recipename"> {{ recipe.name }} </h1>
-        <p id="name"><span>👨‍🍳</span> By-{{ recipe.user.username }}</p>
-        <h1 id="rating"> <span>🌟</span> Rating: {{ recipe.avg_rating }}</h1>
-        <h2 id="description">Description: {{ recipe.summary }}</h2>
+
+        <h5 id="recipename"> {{ recipe.name }} </h5>
+        <h2 id="rat">{{ recipe.avg_rating }}</h2>
+        <p id="name"><span>👨‍🍳</span> Recipe by: {{ recipe.user.username }}</p>
+        <h6 id="description1"><span>"</span>{{ recipe.summary }}<span>"</span></h6>
     </div>
-    {% load static %}
-    {% if recipe.image %}
-        <img class="recipeviewimage" src="{% static recipe.image.url %}">
-    {% endif %}
+
 </div>
 
-    <div class="relative">
-    <h1> References:</h1>
-    </div>
 
+<hr class="hr">
 <div class="container">
-    <div id="board2">
-        <div class = "row">
+    <div class = "row board7">
 {#            <h1>#}
 {##}
 {#        {% for category in recipe.categories.all %}#}
 {#            <div class = "recipe_info" >Categories：[ {{ category.display_name }} ]</div>#}
 {#        {% endfor %}#}
 {#            </h1>#}
+            <div id="board5">
             <p class= "recipe_info"><span>⏰</span> Prepare Time: {{ recipe.prep_time }}</p>
-            <p class = "recipe_info"><span>🥄</span> Servings: {{ recipe.servings }} </p></div>
-            <div class = "row" id="row2">
-            <p class = "recipe_info"><span>⏰</span> Cook Time: {{ recipe.cook_time }}</p>
-            <p class = "recipe_info" id="cal"><span>🥄</span> Calories: {{ recipe.calories }} </p>
-
         </div>
+            <p class = "recipe_info"><span>⏰</span> Cook Time: {{ recipe.cook_time }}</p></div>
+
+    <div class= "row">
+    <div id = "board6">
+        <p class = "recipe_info"><span>🥄</span> Servings: {{ recipe.servings }} </p>
     </div>
+        <p class = "recipe_info"><span>🥄</span> Calories: {{ recipe.calories }} </p>
+
+     </div>
 </div>
+
+
+
 <hr class="hr">
     <div class="Ing">
-        <h1> <span>🥘‍</span>Ingredients:</h1>
+        <h1 id="ingsize"> <span>🥘‍</span>Ingredients:</h1>
     </div>
 
     <div class="container">
@@ -64,7 +71,7 @@
 
 <hr class="hr">
     <div class="relative">
-        <h1> <span>📖</span> Directions:</h1>
+        <h1 id="ingsize"> <span>📖</span> Directions:</h1>
     </div>
     <div class="container">
     <div id="board4">
@@ -72,7 +79,7 @@
             <p>
 
     {% for dir in directions %}
-        <div>{{ dir.text }}</div>
+        <h1 id="dirsize">{{ dir.text }}</h1>
     {% endfor %}
 
 
@@ -85,7 +92,7 @@
 
     {% if can_review %}
         <div class="col-6 relative">
-            <h1>Leave a review   <span>✍️</span></h1>
+            <h1 id="rating">Leave a review   <span>✍️</span></h1>
             <form action="{% url 'submit_review' recipe.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
@@ -104,7 +111,7 @@
         </div>
 
 
-</div>
+
     {% endif %}
 
 
