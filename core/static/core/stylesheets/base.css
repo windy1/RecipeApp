@@ -271,16 +271,17 @@ img {vertical-align: middle;}
 .board {
   margin: 10px;
   height: 490px;
-  width: 500px;
+  width: 600px;
   font-weight: bold;
     text-align: center;
   float:right;
-    border: 7px dashed #60abee;
-
+    border-style:none;
+    padding-right:80px;
 
 }
 
 .recipeviewimage{
+    padding-left:40px;
     max-width:500px;
     max-height:500px;
     padding-top: 10px;
@@ -298,22 +299,24 @@ img {vertical-align: middle;}
     font-size: 25px;
 }
 #name{
-    font-size:20px;
+    font-size:40px;
 }
 
 #board2{
-    height: 330px;
+
+    height: 200px;
     width: 100%;
     color:black;
-    font-style: oblique;
-    border: 5px solid #73b8ee;
-    background-color: #b8daff;
+
+    /*border: 5px solid #73b8ee;
+    background-color: #b8daff;*/
 
 }
 div.relative{
     position:relative;
-    left: 83px;
-    padding-top: 28px;
+    left: 93px;
+    padding-top: 30px;
+    padding-left: 145px;
 }
 
 #rating{
@@ -327,16 +330,51 @@ div.relative{
     width: 100%;
     font-family:fantasy;
     color:black;
-    border: 5px solid rgba(238, 191, 9, 0.8);
-    background-color: rgba(240, 200, 148, 0.39);
+    padding-left: 77px;
+    padding-top: 40px;
+    /*border: 5px solid rgba(238, 191, 9, 0.8);
+    background-color: rgba(240, 200, 148, 0.39);*/
 }
 #board4{
-    height: 150px;
+    height: 250px;
     width: 100%;
     font-family: "Times New Roman", Times, serif;;
     color:black;
-    border: 5px solid #eea03a;
-    background-color: #f0d292;
+    font-size: 30px;
+    padding-left: 80px;
+
+
+}
+.row{
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+
+.recipe_info{
+    padding-left: 55px;
+    font-size: 30px;
+}
+
+#cal{
+    padding-right: 30px;
+
+}
+.Ing{
+    position:relative;
+    left: 93px;
+    padding-left: 145px;
+
+    
+
+}
+.hr{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width:2px;
+    border-color:lightsteelblue;
 }
 
 /* Recipe detail page END*/
@@ -347,7 +385,7 @@ div.relative{
     width: 100%;
     border-top: 1px solid #c2c2c2;
     background-color: #dfdfdf;
-    margin-top: 300px;
+    margin-top: 200px;
     padding: 20px;
     font-size: 11px;
 }

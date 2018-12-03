@@ -11,8 +11,8 @@
 
     <div class="board">
         <h1 id="recipename"> {{ recipe.name }} </h1>
-        <p id="name">By-{{ recipe.user.username }}</p>
-        <h1 id="rating"> Rating: {{ recipe.avg_rating }}</h1>
+        <p id="name"><span>👨‍🍳</span> By-{{ recipe.user.username }}</p>
+        <h1 id="rating"> <span>🌟</span> Rating: {{ recipe.avg_rating }}</h1>
         <h2 id="description">Description: {{ recipe.summary }}</h2>
     </div>
     {% load static %}
@@ -27,23 +27,25 @@
 
 <div class="container">
     <div id="board2">
-        <div >
-            <h1>
+        <div class = "row">
+{#            <h1>#}
+{##}
+{#        {% for category in recipe.categories.all %}#}
+{#            <div class = "recipe_info" >Categories：[ {{ category.display_name }} ]</div>#}
+{#        {% endfor %}#}
+{#            </h1>#}
+            <p class= "recipe_info"><span>⏰</span> Prepare Time: {{ recipe.prep_time }}</p>
+            <p class = "recipe_info"><span>🥄</span> Servings: {{ recipe.servings }} </p></div>
+            <div class = "row" id="row2">
+            <p class = "recipe_info"><span>⏰</span> Cook Time: {{ recipe.cook_time }}</p>
+            <p class = "recipe_info" id="cal"><span>🥄</span> Calories: {{ recipe.calories }} </p>
 
-        {% for category in recipe.categories.all %}
-            <div id="cat">Categories：[ {{ category.display_name }} ]</div>
-        {% endfor %}
-            </h1>
-            <h1>Prepare Time: {{ recipe.prep_time }}</h1>
-            <h1>Cook Time: {{ recipe.cook_time }}</h1>
-            <h1>Servings: {{ recipe.servings }}</h1>
-            <h1>Calories: {{ recipe.calories }}</h1>
         </div>
     </div>
 </div>
-
-    <div class="relative">
-    <h1> Ingredients:</h1>
+<hr class="hr">
+    <div class="Ing">
+        <h1> <span>🥘‍</span>Ingredients:</h1>
     </div>
 
     <div class="container">
@@ -60,35 +62,37 @@
     </div>
 </div>
 
-
+<hr class="hr">
     <div class="relative">
-    <h1> Directions:</h1>
+        <h1> <span>📖</span> Directions:</h1>
     </div>
     <div class="container">
     <div id="board4">
         <div >
-            <h1>
+            <p>
 
     {% for dir in directions %}
         <div>{{ dir.text }}</div>
     {% endfor %}
 
 
-            </h1>
+            </p>
         </div>
     </div>
 </div>
 
+<hr class="hr">
+
     {% if can_review %}
         <div class="col-6 relative">
-            <h1>Leave a review</h1>
+            <h1>Leave a review   <span>✍️</span></h1>
             <form action="{% url 'submit_review' recipe.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <textarea class="form-control" name="text" id="text"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="rating"id="rating">Rating</label>
+                    <label for="rating"id="rating">  Rating  </label>  <span>★</span>  <span>★</span>  <span>★</span>  <span>★</span> <span>☆</span>
                     <input type="number" class="form-control" name="rating" id="rating">
                 </div>
 
