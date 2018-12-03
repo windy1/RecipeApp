@@ -11,7 +11,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
 }
 
 .explore-select {
-    padding-left: 50px;
+    padding-left: 10px;
     font-size: 25px;
 }
 
@@ -271,23 +271,22 @@ img {vertical-align: middle;}
 /* Recipe display css start */
 
 .recipe_container{
-    margin-top: 5px;
-    margin-left: 10px !important;
+    margin-top: -40px;
 }
 .recipe_block{
     overflow: hidden;
     background-color: white;
     border: 1px solid var(--secondary);
-    height: 320px;
-    width: 320px;
+    height: 300px;
+    width: 300px;
     margin-left: 15px;
     margin-top: 15px;
     border-radius: 10px;
 }
 .recipe_block_view{
     margin-left: -15px;
-    width: 360px;
-    height: 260px;
+    width: 350px;
+    height: 240px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid var(--secondary);

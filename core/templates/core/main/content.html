@@ -56,7 +56,7 @@
     </div>
 
     <div class="row">
-        <div class="col-2 explore-select">
+        <div class="col-1 explore-select">
             <ul class="list-group">
                 <li class="list-group-item {% if explore == 'featured' %}active{% endif %}"><a href="{% url 'featured' %}">Featured</a></li>
                 <li class="list-group-item {% if explore == 'popular' %}active{% endif %}"><a href="{% url 'popular' %}">Popular</a></li>
@@ -64,10 +64,8 @@
                 <li class="list-group-item {% if explore == 'new' %}active{% endif %}"><a href="{% url 'new' %}">New</a></li>
             </ul>
         </div>
-        <div class="col-10">
-            <div class="row container-fluid recipe_container">
+        <div class="col-10 container-fluid recipe_container">
                 {% block main %}{% endblock %}
-            </div>
         </div>
     </div>
 
