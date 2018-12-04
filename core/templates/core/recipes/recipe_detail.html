@@ -5,50 +5,59 @@
 {% block title %}Recipe detail{% endblock %}
 
 {% block content %}
+<div class="container-fluid recipe-detail">
+    <div class="row">
 
-
-    <div class="row container-fluid">
-
-        <div class = "contect_img_container">
-            {% if recipe.image %}
-                <img src="{% static recipe.image.url %}">
-            {% endif %}
+        <div class="col-4 col-recipe-img">
+            <div class="contect_img_container">
+                {% if recipe.image %}
+                    <img src="{% static recipe.image.url %}" alt="Recipe image">
+                {% endif %}
+            </div>
         </div>
 
-        <div class="title_rating_description_container">
-                <h1 class="recipe_title" > {{ recipe.name }} </h1>
+{#        <div class = "contect_img_container">#}
+{#            {% if recipe.image %}#}
+{#                <img src="{% static recipe.image.url %}" alt="Recipe image">#}
+{#            {% endif %}#}
+{#        </div>#}
 
-                <div class="star-ratings star-rating-content-page ">
-                    <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                    <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
-                </div>
-             <p class="user_name"> By: {{ recipe.user.username }}</p>
-             <p id="description">Description: {{ recipe.summary }}</p>
+        <div class="col-8">
+            <h2>{{ recipe.name }}</h2>
+            <!-- TODO: Stars go here -->
+            <i class="text-muted">by {{ recipe.user.username }}</i>
+            <p class="text-muted">{{ recipe.summary }}</p>
         </div>
+
+{#        <div class="title_rating_description_container">#}
+{#                <h1 class="recipe_title" > {{ recipe.name }} </h1>#}
+{##}
+{#                <div class="star-ratings star-rating-content-page ">#}
+{#                    <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>#}
+{#                    <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>#}
+{#                </div>#}
+{#             <p class="user_name"> By: {{ recipe.user.username }}</p>#}
+{#             <p id="description">Description: {{ recipe.summary }}</p>#}
+{#        </div>#}
     </div>
 
     <div class = "row recipe_quick_info_container">
-
         <div class = "recipe_quick_info">
             <p class = "quick_info_text">{{ recipe.prep_time }} </p>
             <p>Prep (min)</p>
         </div>
-
         <div class = "recipe_quick_info">
             <p class = "quick_info_text">{{ recipe.cook_time }}</p>
             <p>Cook (min)</p>
         </div>
-
         <div class = "recipe_quick_info">
             <p class = "quick_info_text">{{ recipe.servings }} </p>
             <p>Servings</p>
         </div>
-
         <div class = "recipe_quick_info" style="border: none">
             <p class = "quick_info_text">{{ recipe.calories }}</p>
             <p>Calories</p>
         </div>
-
     </div>
 
 
@@ -59,9 +68,9 @@
     <hr class="hr">
 
     <div class = "ingredient_direction_section_container" >
-        <ul>
+        <ul class="list-group">
             {% for ing in ingredients %}
-                <li id="ingredients">{{ ing.quantity }} {{ ing.ingredient.name }}</li>
+                <li class="list-group-item">{{ ing.quantity }} {{ ing.ingredient.name }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -74,9 +83,11 @@
     <hr class="hr">
 
     <div class = "ingredient_direction_section_container">
-        {% for dir in directions %}
-            <div>{{ dir.text }}</div>
-        {% endfor %}
+        <ul class="list-group">
+            {% for dir in directions %}
+                <li class="list-group-item">{{ dir.text }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
 
@@ -85,17 +96,16 @@
 
     {% if can_review %}
         <div class="review_container">
-            <h1>Leave a review</h1>
+            <h5>Leave a review</h5>
             <form action="{% url 'submit_review' recipe.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <textarea class="form-control" name="text" id="text" placeholder="What did you think of this recipe?"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="rating"id="rating">  Rating  </label>  <span>★</span>  <span>★</span>  <span>★</span>  <span>★</span> <span>☆</span>
+                    <label for="rating" id="rating">  Rating  </label>  <span>★</span>  <span>★</span>  <span>★</span>  <span>★</span> <span>☆</span>
                     <input type="number" class="form-control" name="rating" id="rating">
                 </div>
-
+                <div class="form-group">
+                    <textarea class="form-control" name="text" id="text" placeholder="What did you think of this recipe?"></textarea>
+                </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -104,6 +114,5 @@
         </div>
     {% endif %}
 
-
-
+</div>
 {% endblock %}

@@ -367,23 +367,31 @@ img {vertical-align: middle;}
     text-align: center;
     margin-top: 3%;
 }
-.contect_img_container{
-    margin-left: 20px;
-    border: 1px solid rgba(12, 84, 96, 0.61);
-    width: 45%;
-    height: 380px;
-    border-radius: 10px;
-    overflow: hidden;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.col-recipe-img {
+
 }
 
-.contect_img_container img{
-    flex-shrink: 0;
-    max-width: 180%;
-    max-height: 380px;
+.contect_img_container{
+    /*margin-left: 20px;*/
+    border: 1px solid #c2c2c2;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    /*display: block;*/
+    /*margin: auto;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.contect_img_container img {
+    display: block;
+    margin: auto;
+    max-height: 350px;
+    transition: 2s;
+    transform: translate(-25%, -15%);
 }
 
 .contect_img_container img:hover{
@@ -392,17 +400,24 @@ img {vertical-align: middle;}
 }
 
 .recipe_quick_info_container{
-    margin-top: 10px;
+    margin-top: 30px;
     padding: 10px;
-    background-color: var(--primary);
+    background-color: rgba(253, 126, 20, 0.85);
+    border-top: 1px solid #c2c2c2;
+    border-bottom: 1px solid #c2c2c2;
     max-height: 120px;
 }
+
+.recipe-detail {
+    margin-bottom: 200px;
+}
+
 .recipe_quick_info{
     text-align: center;
     color: white;
+    padding-left: 5%;
+    padding-right: 5%;
     border-right: 1px solid rgb(255, 255, 255);
-    padding-left: 9%;
-    padding-right: 9%;
 }
 
 .quick_info_text{
@@ -438,8 +453,10 @@ img {vertical-align: middle;}
     padding-bottom: -10px;
 }
 
-.ingredient_direction_section_container{
-    min-height: 300px;
+.ingredient_direction_section_container {
+    /*min-height: 300px;*/
+    padding: 0 40px;
+    margin-bottom: 100px;
 }
 
 .review_container{
@@ -496,13 +513,10 @@ img {vertical-align: middle;}
 
 /***** User Profile pages END****/
 
-
-
-
-
-
-
-
+.search-results {
+    padding: 20px 40px;
+    margin-bottom: 200px;
+}
 
 .footer {
     position: absolute;

@@ -58,7 +58,7 @@ def search(request):
         recipe_list = form.result_set()
     else:
         recipe_list = []
-    return render(request, 'core/main/search_results.html', {'recipe_list': recipe_list})
+    return render(request, 'core/main/search_results.html', {'recipe_list': recipe_list, 'form': form})
 
 
 def ingredient_search(request):

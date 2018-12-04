@@ -1,10 +1,10 @@
-{% extends 'core/main/content.html' %}
+{% extends 'core/base.html' %}
 
 {% block title %}Search Results{% endblock %}
 
-{% block main %}
-<div class="container-fluid">
-    <h1>Search</h1>
+{% block content %}
+<div class="container-fluid search-results">
+    <strong>Showing results for: </strong><i>'{{ form.q.value }}'</i>
     {% include 'core/recipes/recipe_list.html' %}
 </div>
 {% endblock %}
