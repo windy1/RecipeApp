@@ -4,6 +4,9 @@ from core.models import Category
 
 
 class CategoryTable:
+    """
+    Structures and builds the category table displayed in the header and produces the resulting HTML.
+    """
 
     def __init__(self, rows=8, columns=3):
         self.rows = rows
@@ -13,6 +16,11 @@ class CategoryTable:
         self._build_cells()
 
     def render(self):
+        """
+        Returns the resulting HTML for the table.
+
+        :return: category table HTML
+        """
         html = '<table class="dropdown-menu-right dropdown-menu">'
         for row in range(self.rows):
             html += '<tr>'
@@ -73,4 +81,10 @@ class CategoryTable:
 
 
 def category_table(request):
+    """
+    Context processor. Registered in settings.py, this method inserts a CategoryTable into the context of each request.
+
+    :param request: incoming request
+    :return: context of category_table
+    """
     return {'category_table': CategoryTable()}

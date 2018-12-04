@@ -6,6 +6,9 @@ from core.category_table import CategoryTable
 
 
 class CategoryTableTestCase(TestCase):
+    """
+    A test case for the functionality in core.category_table.CategoryTable
+    """
 
     rows = 8
     columns = 3

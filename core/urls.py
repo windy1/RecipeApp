@@ -16,7 +16,7 @@ urlpatterns = [
     path('new/', main.new, name='new'),
     path('search/', main.search, name='search'),
     path('ingredient-search', main.ingredient_search, name='ingredient_search'),
-    path('ingredient-search/results', main.ingredient_search, name='ingredient_search_results'),
+    path('ingredient-search/results', main.ingredient_search_results, name='ingredient_search_results'),
 
     path('accounts/signup/', accounts.signup, name='signup'),
     path('accounts/preferences/', accounts.preferences, name='preferences'),

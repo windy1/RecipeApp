@@ -67,3 +67,8 @@ def ingredient_search(request):
 
 def ingredient_search_results(request):
     form = IngredientSearchForm(request.GET)
+    if form.is_valid():
+        recipes = form.match_recipes()
+    else:
+        recipes = []
+    return render(request, 'core/main/ingredient_search_results.html', {'recipe_list': recipes})

@@ -1,9 +1,11 @@
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import Q
 
 from core.models import UserProfile, IngredientName, Recipe
+from core.utils import RawQueries
 
 
 class SignUpForm(UserCreationForm):
@@ -49,14 +51,16 @@ class IngredientSearchForm(forms.Form):
     ingredients = forms.CharField(max_length=1024, required=True)
 
     def match_recipes(self):
-        Recipe.objects.filter(ingredient__ingredient__in=self.ingredient_set())
+        id_set = ','.join([str(_.id) for _ in self.ingredient_set()])
+        return Recipe.objects.raw(RawQueries.ingredient_search_select, id_set)
 
     def ingredient_set(self):
         assert self.is_valid()
         val = self.cleaned_data['ingredients']
         ing_list = []
         for ing_name in val.split(','):
-            ing = IngredientName.objects.get(name=ing_name)
-            if ing is not None:
-                ing_list.append(ing)
+            try:
+                ing_list.append(IngredientName.objects.get(name=ing_name))
+            except ObjectDoesNotExist:
+                pass
         return ing_list

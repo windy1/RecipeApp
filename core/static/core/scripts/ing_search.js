@@ -5,8 +5,6 @@ $(function() {
     });
 
     $('.ing-search-form').submit(function(e) {
-        e.preventDefault();
-
         let hiddenIn = $(this).find('#ingredients');
         let inputs = $('.ing-list .ing-item');
         let len = inputs.length;

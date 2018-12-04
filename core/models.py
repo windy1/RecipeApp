@@ -32,11 +32,13 @@ class Recipe(models.Model):
     is_featured = models.BooleanField(default=False)
 
     def avg_rating(self):
+        """
+        Returns the average rating of this recipe based on all reviews submitted by users.
+
+        :return: average rating
+        """
         result = self.review_set.aggregate(Avg('rating'))['rating__avg']
-        if result is None:
-            return 2.5
-        else:
-            return result
+        return result if result else 0
 
     def avg_percent_rating(self):
         return str(self.avg_rating() * 30) + '%'
@@ -44,8 +46,13 @@ class Recipe(models.Model):
     def avg_percent_rating_large(self):
         return str(self.avg_rating() * 50) + '%'
 
-
     def user_can_review(self, user):
+        """
+        Returns true if the specified user is permitted to review this recipe.
+
+        :param user: to check permission of
+        :return: true if user can review the recipe
+        """
         has_reviewed = Review.objects.filter(user=user, recipe=self).count() > 0
         return (user.is_authenticated and not has_reviewed and self.user is not user) or user.is_superuser
 

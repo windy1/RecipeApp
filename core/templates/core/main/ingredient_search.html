@@ -21,7 +21,7 @@
         </li>
     </ul>
 
-    <form class="ing-search-form" method="get" action="#">
+    <form class="ing-search-form" method="get" action="{% url 'ingredient_search_results' %}">
         <input type="hidden" id="ingredients" name="ingredients" value="">
         <input type="submit" class="btn btn-primary btn-block" value="Search">
     </form>
