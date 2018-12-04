@@ -11,7 +11,7 @@
 
         <div class = "contect_img_container">
             {% if recipe.image %}
-                <img class="recipeviewimage" src="{% static recipe.image.url %}">
+                <img src="{% static recipe.image.url %}">
             {% endif %}
         </div>
 
@@ -30,7 +30,7 @@
     <div class = "row recipe_quick_info_container">
 
         <div class = "recipe_quick_info">
-            <p class = "quick_info_text">{{ recipe.prep_time }}</p>
+            <p class = "quick_info_text">{{ recipe.prep_time }} </p>
             <p>Prep (min)</p>
         </div>
 

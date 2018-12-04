@@ -361,31 +361,39 @@ img {vertical-align: middle;}
     font-size: 25px;
     margin-left: 37%;
 }
-
-.recipeviewimage{
-    margin-left: -50px;
-    width: 180%;
-    border-radius: 10px;
+.user_name{
+    text-align: center;
+    margin-top: 3%;
 }
-
-.recipeviewimage:hover{
-    margin-top: -20px;
-    margin-left: -100px;
-    transition: 2s ease-in-out;
-}
-
 .contect_img_container{
+    margin-left: 20px;
     border: 1px solid rgba(12, 84, 96, 0.61);
     width: 45%;
-    height: 450px;
+    height: 380px;
     border-radius: 10px;
     overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contect_img_container img{
+    flex-shrink: 0;
+    max-width: 180%;
+    max-height: 380px;
+}
+
+.contect_img_container img:hover{
+    max-height: 400px;
+    transition: 2s;
 }
 
 .recipe_quick_info_container{
     margin-top: 10px;
     padding: 10px;
     background-color: var(--primary);
+    max-height: 120px;
 }
 .recipe_quick_info{
     text-align: center;
@@ -397,6 +405,7 @@ img {vertical-align: middle;}
 
 .quick_info_text{
     font-size: 35px;
+    margin-bottom: -9%;
 }
 
 #description{
@@ -440,6 +449,58 @@ img {vertical-align: middle;}
 /*}*/
 
 /* Recipe detail page END */
+
+/***** User Profile pages BEGIN ****/
+
+.user_profile_img_placeholder{
+    width: auto;
+    height: 150px;
+    background-color: #0c5460;
+    border-radius: 5px;
+}
+
+.user_profile_img_placeholder2{
+    width: 200px;
+    height: 200px;
+    background-color: #0c5460;
+    border-radius: 5px;
+}
+
+.user_name_on_side_menu{
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.user_recipe_section_header{
+    font-family: Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 30px;
+    color: #5b5b5b;
+    padding-top: 15px;
+    padding-left: 40px;
+}
+
+.right_section_container{
+    width: 80%;
+}
+
+
+.hr2{
+    position: center;
+    margin-left: 1%;
+    width: 100%;
+    border: 0.5px solid rgba(128, 128, 128, 0.51);
+}
+
+/***** User Profile pages END****/
+
+
+
+
+
+
+
+
 
 .footer {
     text-align: center;

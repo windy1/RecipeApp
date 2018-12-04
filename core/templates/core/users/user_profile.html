@@ -1,17 +1,21 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block content %}
-<div class="container-fluid">
-    <h1>{{ profile.user.username }}</h1>
+{% extends 'core/users/user_account_base.html' %}
+{% block title %}User | Profile{% endblock %}
 
-    {% if request.user == profile.user %}
+{% block user_account_content %}
 
-{#            <img src="{% static profile.image.url %}">#}
+<div class = "right_section_container">
+    <div class="user_recipe_section_header">{{ profile.user.username }}</div>
+    <hr class="hr2">
 
-        <a href="{% url 'preferences' %}" class="btn btn-primary">View preferences</a>
-    {% endif %}
-
-    <h2>Bio</h2>
-    <p>{{ profile.bio }}</p>
+    <div class = "row box_in_right_section_container">
+        <div class = "user_profile_img_placeholder2"></div>
+        <div class="row">
+            <div>
+                <h2>Bio</h2>
+                <p>{{ profile.bio }}</p>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

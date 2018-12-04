@@ -1,11 +1,11 @@
-{% extends 'core/main/content.html' %}
+{% extends 'core/users/user_account_base.html' %}
+{% block title %}User | My Recipes{% endblock %}
 
-{% block title %}Home | My Recipes{% endblock %}
-
-{% block main %}
-<div class="container-fluid">
-    <h1>{{ user.username }}'s recipes</h1>
-    <a href="{% url 'submit_recipe' %}">Create a new recipe</a>
-    {% include 'core/recipes/recipe_list.html' %}
-</div>
+{% block user_account_content %}
+             <div class = "right_section_container">
+                <div class="user_recipe_section_header">{{ user.username }}'s recipes</div>
+                <hr class="hr2">
+                <a class="btn btn-secondary"  style="margin-left: 84%" href="{% url 'submit_recipe' %}">Create a new recipe</a>
+                {% include 'core/recipes/recipe_list.html' %}
+            </div>
 {% endblock %}
