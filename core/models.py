@@ -44,6 +44,10 @@ class Recipe(models.Model):
     def avg_percent_rating(self):
         return str(self.avg_rating() * 30) + '%'
 
+    def avg_percent_rating_large(self):
+        return str(self.avg_rating() * 50) + '%'
+
+
     def user_can_review(self, user):
         has_reviewed = Review.objects.filter(user=user, recipe=self).count() > 0
         return (user.is_authenticated and not has_reviewed and self.user is not user) or user.is_superuser

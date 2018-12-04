@@ -272,7 +272,6 @@ img {vertical-align: middle;}
 
 .recipe_container{
     margin-top: -40px;
-
 }
 .recipe_block{
     overflow: hidden;
@@ -348,171 +347,99 @@ img {vertical-align: middle;}
 
 
 
-/* Recipe detail page Start*/
+/* Recipe Detail page Start*/
 
-#ingredients{
-    font-size: 30px;
-}
-.holder{
-    height:100%;
-    width: 100%;
-    border: 6px #eea298;
-    border-style: groove;
-    background-color: rgba(238, 191, 94, 0.05);
-
-
-}
-
-.board {
-  margin: 10px;
-  height: 510px;
-  width: 600px;
-  font-weight: bold;
-    text-align: center;
-  float:right;
+.title_rating_description_container {
+    margin-left: 10%;
+    width: 40%;
     border-style:none;
-    padding-right:80px;
-
+}
+.recipe_title {
+    text-align: center;
+}
+.star-rating-content-page{
+    font-size: 25px;
+    margin-left: 37%;
 }
 
 .recipeviewimage{
-    padding-left:40px;
-    max-width:500px;
-    max-height:500px;
-    padding-top: 4px;
-
-}
-#description1{
-    font-size: 25px;
-    padding-top:5px;
-
+    margin-left: -50px;
+    width: 180%;
+    border-radius: 10px;
 }
 
-#recipename{
-    padding-top:40px;
+.recipeviewimage:hover{
+    margin-top: -20px;
+    margin-left: -100px;
+    transition: 2s ease-in-out;
+}
+
+.contect_img_container{
+    border: 1px solid rgba(12, 84, 96, 0.61);
+    width: 45%;
+    height: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recipe_quick_info_container{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--primary);
+}
+.recipe_quick_info{
     text-align: center;
-    font-size:50px;
-}
-#description{
-    padding: 20px;
-    text-align: center;
-    font-size: 25px;
-}
-#name{
-    padding-top: 20px;
-    font-size:20px;
+    color: white;
+    border-right: 1px solid rgb(255, 255, 255);
+    padding-left: 9%;
+    padding-right: 9%;
 }
 
-#board2{
-
-    height: 200px;
-    width: 100%;
-    color:black;
-
-    /*border: 5px solid #73b8ee;
-    background-color: #b8daff;*/
-
-}
-div.relative{
-    position:relative;
-    left: 93px;
-    padding-top: 30px;
-    padding-left: 145px;
-}
-
-#rating{
-    font-size:25px;
-
-    padding-top:15px;
-
-}
-#cat{
-    font-size:40px;
-}
-#board3{
-    height: 320px;
-    width: 100%;
-    font-family:fantasy;
-    color:black;
-    padding-left: 77px;
-    padding-top: 30px;
-    /*border: 5px solid rgba(238, 191, 9, 0.8);
-    background-color: rgba(240, 200, 148, 0.39);*/
-}
-#board4{
-    height: 250px;
-    width: 100%;
-    font-family: "Times New Roman", Times, serif;;
-    color:black;
-    font-size: 30px;
-    padding-left: 80px;
-
-
-}
-.row{
-    padding-left: 210px;
-    padding-top: 20px;
-    
-}
-.row2{
-    padding-left: 50px;
-    padding-top: 20px;
-}
-
-
-.recipe_info{
-    padding-left: 55px;
-    font-size: 27px;
-}
-
-#cal{
-    padding-right: 30px;
-
-}
-.Ing{
-    position:relative;
-    left: 93px;
-    padding-left: 145px;
-
-}
-
-.hr{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width:2px;
-    border-color:lightsteelblue;
-}
-
-#board5{
-    border-right: 2px solid #464740;
-    padding-right: 40px;
-    height: 45px;
-}
-
-#board6{
-    border-right: 2px solid #464740;
-    padding-right: 169px;
-    height: 45px;
-}
-
-.board7{
-    padding-top: 30px;
-    padding-bottom: 10px;
-}
-
-#ingsize{
-    font-size: 30px;
-}
-#dirsize{
-    font-size: 30px;
-}
-#rat{
+.quick_info_text{
     font-size: 35px;
 }
 
-/* Recipe detail page END*/
+#description{
+    padding-top: 30px;
+    font-size: 18px;
+}
+
+#recipename{
+    padding:40px;
+    text-align: center;
+    font-size:50px;
+}
+
+.hr{
+    position: center;
+    margin-top: -15px;
+    width: 96%;
+    border: 0.5px solid rgba(128, 128, 128, 0.51);
+}
+
+.recipe_info_section_headers{
+    font-family: Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 30px;
+    color: #5b5b5b;
+    padding-top: 15px;
+    padding-left: 40px;
+    padding-bottom: -10px;
+}
+
+.ingredient_direction_section_container{
+    min-height: 300px;
+}
+
+.review_container{
+    width: 50%;
+    padding-left: 40px;
+}
+/*#cat{*/
+    /*font-size:40px;*/
+/*}*/
+
+/* Recipe detail page END */
 
 .footer {
     text-align: center;
@@ -523,4 +450,10 @@ div.relative{
     margin-top: 200px;
     padding: 20px;
     font-size: 11px;
+}
+
+/**Bro don't change the row class that effects everything **/
+.row{
+    padding-left: 50px;
+    padding-top: 20px;
 }

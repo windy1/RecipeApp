@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-  {% load static %}
+{% load static %}
 <!--author: Ziming Dong-->
 
 {% block title %}Recipe detail{% endblock %}
@@ -7,96 +7,89 @@
 {% block content %}
 
 
-<div class="row container-fluid">
-        <div>
-          {% if recipe.image %}
+    <div class="row container-fluid">
+
+        <div class = "contect_img_container">
+            {% if recipe.image %}
                 <img class="recipeviewimage" src="{% static recipe.image.url %}">
-          {% endif %}
+            {% endif %}
         </div>
 
-    <div class="board">
+        <div class="title_rating_description_container">
+                <h1 class="recipe_title" > {{ recipe.name }} </h1>
 
-        <h5 id="recipename"> {{ recipe.name }} </h5>
-        <h2 id="rat">{{ recipe.avg_rating }}</h2>
-        <p id="name"><span>👨‍🍳</span> Recipe by: {{ recipe.user.username }}</p>
-        <h6 id="description1"><span>"</span>{{ recipe.summary }}<span>"</span></h6>
-    </div>
-
-</div>
-
-
-<hr class="hr">
-<div class="container">
-    <div class = "row board7">
-{#            <h1>#}
-{##}
-{#        {% for category in recipe.categories.all %}#}
-{#            <div class = "recipe_info" >Categories：[ {{ category.display_name }} ]</div>#}
-{#        {% endfor %}#}
-{#            </h1>#}
-            <div id="board5">
-            <p class= "recipe_info"><span>⏰</span> Prepare Time: {{ recipe.prep_time }}</p>
-        </div>
-            <p class = "recipe_info"><span>⏰</span> Cook Time: {{ recipe.cook_time }}</p></div>
-
-    <div class= "row">
-    <div id = "board6">
-        <p class = "recipe_info"><span>🥄</span> Servings: {{ recipe.servings }} </p>
-    </div>
-        <p class = "recipe_info"><span>🥄</span> Calories: {{ recipe.calories }} </p>
-
-     </div>
-</div>
-
-
-
-<hr class="hr">
-    <div class="Ing">
-        <h1 id="ingsize"> <span>🥘‍</span>Ingredients:</h1>
-    </div>
-
-    <div class="container">
-    <div id="board3">
-        <div >
-            <h1>
-                <ul>
-    {% for ing in ingredients %}
-        <li id="ingredients">{{ ing.quantity }} {{ ing.ingredient.name }}</li>
-    {% endfor %}
-    </ul>
-            </h1>
+                <div class="star-ratings star-rating-content-page ">
+                    <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+                </div>
+             <p class="user_name"> By: {{ recipe.user.username }}</p>
+             <p id="description">Description: {{ recipe.summary }}</p>
         </div>
     </div>
-</div>
 
-<hr class="hr">
-    <div class="relative">
-        <h1 id="ingsize"> <span>📖</span> Directions:</h1>
-    </div>
-    <div class="container">
-    <div id="board4">
-        <div >
-            <p>
+    <div class = "row recipe_quick_info_container">
 
-    {% for dir in directions %}
-        <h1 id="dirsize">{{ dir.text }}</h1>
-    {% endfor %}
-
-
-            </p>
+        <div class = "recipe_quick_info">
+            <p class = "quick_info_text">{{ recipe.prep_time }}</p>
+            <p>Prep (min)</p>
         </div>
+
+        <div class = "recipe_quick_info">
+            <p class = "quick_info_text">{{ recipe.cook_time }}</p>
+            <p>Cook (min)</p>
+        </div>
+
+        <div class = "recipe_quick_info">
+            <p class = "quick_info_text">{{ recipe.servings }} </p>
+            <p>Servings</p>
+        </div>
+
+        <div class = "recipe_quick_info" style="border: none">
+            <p class = "quick_info_text">{{ recipe.calories }}</p>
+            <p>Calories</p>
+        </div>
+
     </div>
-</div>
+
+
+    <div class="recipe_info_section_headers">
+        <p>Ingredients</p>
+    </div>
+
+    <hr class="hr">
+
+    <div class = "ingredient_direction_section_container" >
+        <ul>
+            {% for ing in ingredients %}
+                <li id="ingredients">{{ ing.quantity }} {{ ing.ingredient.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="recipe_info_section_headers">
+        <p>Directions</p>
+    </div>
+
+    <hr class="hr">
+
+    <div class = "ingredient_direction_section_container">
+        {% for dir in directions %}
+            <div>{{ dir.text }}</div>
+        {% endfor %}
+    </div>
+
+
 
 <hr class="hr">
 
     {% if can_review %}
-        <div class="col-6 relative">
-            <h1 id="rating">Leave a review   <span>✍️</span></h1>
+        <div class="review_container">
+            <h1>Leave a review</h1>
             <form action="{% url 'submit_review' recipe.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <textarea class="form-control" name="text" id="text"></textarea>
+                    <textarea class="form-control" name="text" id="text" placeholder="What did you think of this recipe?"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="rating"id="rating">  Rating  </label>  <span>★</span>  <span>★</span>  <span>★</span>  <span>★</span> <span>☆</span>
@@ -109,9 +102,6 @@
                 </div>
             </form>
         </div>
-
-
-
     {% endif %}
 
 
