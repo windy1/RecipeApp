@@ -84,7 +84,9 @@
             <a href="{% url 'signup' %}" role="button" class="btn btn-secondary login_signup_buttons">Sign up</a>
         {% else %}
 
+            <a class="btn btn-secondary login_signup_buttons"   href="{% url 'submit_recipe' %}">Upload Recipe</a>
             <div class=" btn btn-primary login_signup_buttons pull-right dropdown ">
+
               <a href="#" class="dropdown-toggle" id = "my_account_button" data-toggle="dropdown" role="button" aria-expanded="false">
                     {{ request.user.username }}
               </a>
