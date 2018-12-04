@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block scripts %}
+<script src="{% static 'core/scripts/ing_search.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid ingredient-search">
+
+    <h2>Ingredient search</h2>
+    <p class="text-muted">Search for recipes by the ingredient you have on hand!</p>
+
+    <ul class="list-group ing-list">
+        <li class="list-group-item"><strong>Ingredients</strong></li>
+        <li class="list-group-item ing-item">
+            <input class="form-control" type="text">
+        </li>
+        <li class="list-group-item item-add-ing">
+            <button type="button" class="btn btn-secondary btn-block btn-add-ing"><span class="oi oi-plus"></span></button>
+        </li>
+    </ul>
+
+    <form class="ing-search-form" method="get" action="#">
+        <input type="hidden" id="ingredients" name="ingredients" value="">
+        <input type="submit" class="btn btn-primary btn-block" value="Search">
+    </form>
+
+</div>
+{% endblock %}

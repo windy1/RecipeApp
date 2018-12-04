@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db.models import Q
 
-from core.models import UserProfile
+from core.models import UserProfile, IngredientName, Recipe
 
 
 class SignUpForm(UserCreationForm):
@@ -35,3 +36,27 @@ class SaveUserProfileForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     q = forms.CharField(required=True)
+
+    def result_set(self):
+        assert self.is_valid()
+        query = self.cleaned_data['q']
+        return Recipe.objects.filter(
+            Q(name__icontains=query) | Q(user__username__icontains=query) | Q(summary__icontains=query)
+        )
+
+
+class IngredientSearchForm(forms.Form):
+    ingredients = forms.CharField(max_length=1024, required=True)
+
+    def match_recipes(self):
+        Recipe.objects.filter(ingredient__ingredient__in=self.ingredient_set())
+
+    def ingredient_set(self):
+        assert self.is_valid()
+        val = self.cleaned_data['ingredients']
+        ing_list = []
+        for ing_name in val.split(','):
+            ing = IngredientName.objects.get(name=ing_name)
+            if ing is not None:
+                ing_list.append(ing)
+        return ing_list

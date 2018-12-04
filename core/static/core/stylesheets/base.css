@@ -1,6 +1,8 @@
 /*Disable horizantal scroll */
-html, body {
+html {
+    position: relative;
     max-width: 100%;
+    min-height: 100%;
     overflow-x: hidden;
     overflow-x: -moz-hidde-unscrollable;
 }
@@ -503,6 +505,8 @@ img {vertical-align: middle;}
 
 
 .footer {
+    position: absolute;
+    bottom: 0;
     text-align: center;
     min-height: 100px;
     width: 100%;
@@ -517,4 +521,8 @@ img {vertical-align: middle;}
 .row{
     padding-left: 50px;
     padding-top: 20px;
+}
+
+.content-main {
+    margin-bottom: 200px;
 }

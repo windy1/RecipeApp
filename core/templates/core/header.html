@@ -24,59 +24,59 @@
     <div id = "browse_button_container">
         <div class=" browse_button_container dropdown dropdown-menu-right">
             <a href="#" class="btn btn-primary dropdown-toggle browse_button" data-toggle="dropdown">Browse</a>
-            <table class="dropdown-menu-right dropdown-menu">
-
-                <tr>
-
-                <th><a class = "dropdown_category_text" href="#">Countries</a></th>
-                <th><a class = "dropdown_category_text" href="#">Meat Lover</a></th>
-                <th><a class = "dropdown_category_text" href="#">Drinks</a></th>
-                </tr>
-                <tr>
-                <td><a class = "menu_item" href="#">Turkey</a></td>
-                <td><a class = "menu_item" href="#">Chicken</a></td>
-                <td><a class = "menu_item" href="#">Smoothies</a></td>
-                </tr>
-                <tr>
-                <td><a class = "menu_item"  href="#">China</a></td>
-                <td><a class = "menu_item"  href="#">Steak</a></td>
-                <td><a class = "menu_item"  href="#">Alcoholic</a></td>
-                </tr>
-                <tr>
-                <td><a class = "menu_item"  href="#">United States</a></td>
-                <td><a class = "menu_item"  href="#">Fish</a></td>
-                <td><a class = "menu_item"  href="#">Soft</a></td>
-                </tr>
-
-                <tr>
-                <th><a class = "dropdown_category_text" href="#">Vegetarian</a></th>
-                <th><a class = "dropdown_category_text" href="#">Dessert</a></th>
-                <th><a class = "dropdown_category_text" href="#">Vegan</a></th>
-                </tr>
-                <tr>
-                <td><a class = "menu_item" href="#">Cheesy</a></td>
-                <td><a class = "menu_item" href="#">Cakes</a></td>
-                <td><a class = "menu_item" href="#">Legumes</a></td>
-                </tr>
-                <tr>
-                <td><a class = "menu_item"  href="#">Salads</a></td>
-                <td><a class = "menu_item"  href="#">Pie</a></td>
-                <td><a class = "menu_item"  href="#">Whole Grains</a></td>
-                </tr>
-                <tr>
-                <td><a class = "menu_item"  href="#">Soup</a></td>
-                <td><a class = "menu_item"  href="#">Cold</a></td>
-                <td><a class = "menu_item"  href="#">Fruit</a></td>
-                </tr>
-
-                <!--- the bottom tr code is not useful other than adding a blank row ---->
-                <tr>
-                    <td><a style="color: white">-</a></td>
-                </tr>
-
-            </table>
+            {{ category_table.render|safe }}
+{#            <table class="dropdown-menu-right dropdown-menu">#}
+{#                <tr>#}
+{#                    <th class = "dropdown_category_text">Country</th>#}
+{#                    <th class = "dropdown_category_text">Meat Lover</th>#}
+{#                    <th class = "dropdown_category_text">Drinks</th>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item" href="#">Turkey</a></td>#}
+{#                    <td><a class = "menu_item" href="#">Chicken</a></td>#}
+{#                    <td><a class = "menu_item" href="#">Smoothies</a></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item"  href="#">China</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Steak</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Alcoholic</a></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item"  href="#">United States</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Fish</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Soft</a></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <th class = "dropdown_category_text">Vegetarian</th>#}
+{#                    <th class = "dropdown_category_text">Dessert</th>#}
+{#                    <th class = "dropdown_category_text">Vegan</th>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item" href="#">Cheesy</a></td>#}
+{#                    <td><a class = "menu_item" href="#">Cakes</a></td>#}
+{#                    <td><a class = "menu_item" href="#">Legumes</a></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item"  href="#">Salads</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Pie</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Whole Grains</a></td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <td><a class = "menu_item"  href="#">Soup</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Cold</a></td>#}
+{#                    <td><a class = "menu_item"  href="#">Fruit</a></td>#}
+{#                </tr>#}
+{##}
+{#                <!--- the bottom tr code is not useful other than adding a blank row ---->#}
+{#                <tr>#}
+{#                    <td><a style="color: white">-</a></td>#}
+{#                </tr>#}
+{##}
+{#            </table>#}
         </div>
     </div>
+
+    <a href="{% url 'ingredient_search' %}" class="header-link">Ingredient search</a>
 
     <span class="btn-group login_signup_buttons_container" role="group">
         {% if not request.user.is_authenticated %}

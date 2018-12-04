@@ -1,9 +1,8 @@
 from django.conf import settings
-from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
 
-from core.forms.users import SearchForm
+from core.forms.users import SearchForm, IngredientSearchForm
 from core.models import Recipe
 from core.utils import RawQueries
 
@@ -56,10 +55,15 @@ def search(request):
     """
     form = SearchForm(request.GET)
     if form.is_valid():
-        query = form.cleaned_data['q']
-        recipe_list = Recipe.objects.filter(
-            Q(name__icontains=query) | Q(user__username__icontains=query) | Q(summary__icontains=query)
-        )
+        recipe_list = form.result_set()
     else:
         recipe_list = []
     return render(request, 'core/main/search_results.html', {'recipe_list': recipe_list})
+
+
+def ingredient_search(request):
+    return render(request, 'core/main/ingredient_search.html')
+
+
+def ingredient_search_results(request):
+    form = IngredientSearchForm(request.GET)
