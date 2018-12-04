@@ -356,6 +356,11 @@ img {vertical-align: middle;}
     width: 40%;
     border-style:none;
 }
+
+.recipe-detail{
+    padding: 50px;
+}
+
 .recipe_title {
     text-align: center;
 }
@@ -501,9 +506,14 @@ img {vertical-align: middle;}
 
 .right_section_container{
     width: 80%;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: -20px;
 }
 
-
+.account_content_container{
+    padding: 30px 30px 0px 50px;
+}
 .hr2{
     position: center;
     margin-left: 1%;
@@ -532,11 +542,12 @@ img {vertical-align: middle;}
 }
 
 /**Bro don't change the row class that effects everything **/
-.row{
-    padding-left: 50px;
-    padding-top: 20px;
-}
+/*.row{*/
+    /*padding-left: 50px;*/
+    /*padding-top: 20px;*/
+/*}*/
 
 .content-main {
     margin-bottom: 200px;
+    padding: 50px;
 }

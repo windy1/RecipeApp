@@ -24,7 +24,10 @@
 
         <div class="col-8">
             <h2>{{ recipe.name }}</h2>
-            <!-- TODO: Stars go here -->
+            <div class="star-ratings star-rating-content-page ">
+            <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+            </div>
             <i class="text-muted">by {{ recipe.user.username }}</i>
             <p class="text-muted">{{ recipe.summary }}</p>
         </div>

@@ -1,5 +1,5 @@
 :root{
-    --header_top_margin: 10px;
+    --header_top_margin: 22px;
     --header_obj_heights: 40px;
 }
 
@@ -13,12 +13,12 @@
 }
 
 .header-link {
-    margin-top: 20px;
+    margin-top:35px;
 }
 
 #logo{
     /*margin-left: 20px;*/
-    margin-top: -20px;
+    margin-top: -5px;
     padding: 10px;
     width: 75px;
     height: 90px;
@@ -94,27 +94,26 @@
     transition-delay: 3s;: 2s;
 }
 
-td:hover{
+.dropdown-menu td:hover{
     background-color: rgba(146, 184, 255, 0.09);
     text-align: left;
 }
 
-th{
+.dropdown-menu th{
     background-color: rgba(255, 165, 0, 0.69);
     padding: 10px;
 }
 
-th:hover{
+.dropdown-menu th:hover{
     background-color: rgba(255, 165, 0, 0.79);
-    padding: 10px;
 }
 
-td a {
+.dropdown-menu td a {
     display:block;
     width:100%;
 }
 
-th a {
+.dropdown-menu th a {
     display:block;
     width:100%;
 }
