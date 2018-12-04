@@ -38,4 +38,5 @@ def preferences(request):
             saved = True
     else:
         form = SaveUserProfileForm(instance=profile)
-    return render(request, 'core/accounts/preferences.html', {'profile': profile, 'form': form, 'saved': saved})
+    context = {'profile': profile, 'form': form, 'saved': saved, 'explore': 'preferences'}
+    return render(request, 'core/accounts/preferences.html', context)

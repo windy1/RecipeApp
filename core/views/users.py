@@ -11,7 +11,8 @@ def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     profile, created = UserProfile.get_or_create(user)
     errors = request.session.pop('form_errors', None)
-    return render(request, 'core/users/user_profile.html', {'profile': profile, 'form_errors': errors})
+    context = {'profile': profile, 'form_errors': errors, 'explore': 'user_profile'}
+    return render(request, 'core/users/user_profile.html', context)
 
 
 def user_recipes(request, username):
