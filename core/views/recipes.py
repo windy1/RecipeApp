@@ -64,6 +64,9 @@ def submit_recipe(request):
 
 @login_required
 def edit_recipe(request, recipe_id):
+    """
+    Submits changes to an already created recipe.
+    """
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.user != recipe.user:
         return HttpResponseForbidden()

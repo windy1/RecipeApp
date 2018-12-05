@@ -62,15 +62,19 @@ def search(request):
 
 
 def ingredient_search(request):
+    """
+    Displays the "ingredient search" view.
+    """
     return render(request, 'core/main/ingredient_search.html')
 
 
 def ingredient_search_results(request):
+    """
+    Submits and displays the results of an "ingredient search".
+    """
     form = IngredientSearchForm(request.GET)
     if form.is_valid():
         recipes = form.match_recipes()
     else:
         recipes = []
-    for r in recipes:
-        print(r)
     return render(request, 'core/main/ingredient_search_results.html', {'recipe_list': recipes})

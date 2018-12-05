@@ -15,6 +15,10 @@ class CategoryTable:
         self._fetch_categories()
         self._build_cells()
 
+    ########################
+    # == Public methods == #
+    ########################
+
     def render(self):
         """
         Returns the resulting HTML for the table.
@@ -30,6 +34,10 @@ class CategoryTable:
         html += '</table>'
         return html
 
+    #########################
+    # == Private methods == #
+    #########################
+
     def _fetch_categories(self):
         self.parents = list(Category.objects.filter(parent=None))
         self.children = {}
@@ -40,11 +48,13 @@ class CategoryTable:
         for row in range(self.rows):
             for column in range(self.columns):
                 if row % 4 == 0:
+                    # insert a row of "header categories" every 4 rows
                     if len(self.parents) == 0:
                         raise self.TableError('ran out of parent categories on row %d, column %d' % (row, column))
                     category = self.parents.pop(0)
                     self.cells[row][column] = self.Cell(category, is_header=True)
                 else:
+                    # insert the next child of the last "header category" in this column
                     parent = self._header_cell_for(row, column).category
                     children = self.children[parent]
                     if len(children) == 0:
@@ -62,6 +72,10 @@ class CategoryTable:
                 return cell
             row -= 1
 
+    ##############
+    # == Cell == #
+    ##############
+
     class Cell:
 
         def __init__(self, category=None, is_header=False):
@@ -69,6 +83,11 @@ class CategoryTable:
             self.is_header = is_header
 
         def render(self):
+            """
+            Renders a single cell in the table.
+
+            :return: cell html
+            """
             html = '<th class="dropdown_category_text">' if self.is_header else '<td>'
             html += '<a href="' + reverse('category_detail', kwargs={'name': self.category.name}) + '">'
             html += self.category.display_name

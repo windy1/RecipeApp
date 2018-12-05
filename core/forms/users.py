@@ -1,11 +1,10 @@
 from django import forms
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
 from core.models import UserProfile, IngredientName, Recipe, Ingredient
-from core.utils import RawQueries
 
 
 class SignUpForm(UserCreationForm):
