@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="summary">Summary</label>
-        <textarea class="form-control" maxlength="1000" name="summary" id="summary"></textarea>
+        <textarea class="form-control" maxlength="1000" name="summary" id="summary">{% if form.summary.value %}{{ form.summary.value }}{% endif %}</textarea>
     </div>
 
     <div class="form-group">

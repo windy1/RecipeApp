@@ -22,14 +22,3 @@ class RawQueries:
         HAVING      review_count >= %s
         ORDER BY    review_count DESC;
         """
-
-    ingredient_search_select = """
-        SELECT      rec.*, COUNT(ing.id) AS match_count
-        FROM        core_recipe AS rec
-        JOIN        core_ingredient AS ing 
-        ON          ing.recipe_id = rec.id 
-        AND         ing.ingredient_id IN (%s)
-        GROUP BY    rec.id
-        HAVING      match_count >= 1
-        ORDER BY    match_count DESC;
-        """

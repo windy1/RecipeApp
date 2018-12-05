@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import Q
 
-from core.models import UserProfile, IngredientName, Recipe
+from core.models import UserProfile, IngredientName, Recipe, Ingredient
 from core.utils import RawQueries
 
 
@@ -51,8 +51,8 @@ class IngredientSearchForm(forms.Form):
     ingredients = forms.CharField(max_length=1024, required=True)
 
     def match_recipes(self):
-        id_set = ','.join([str(_.id) for _ in self.ingredient_set()])
-        return Recipe.objects.raw(RawQueries.ingredient_search_select, id_set)
+        q = Ingredient.objects.filter(ingredient__in=self.ingredient_set()).select_related('recipe')
+        return set(_.recipe for _ in q)
 
     def ingredient_set(self):
         assert self.is_valid()

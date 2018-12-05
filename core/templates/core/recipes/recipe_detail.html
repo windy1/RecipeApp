@@ -16,14 +16,13 @@
             </div>
         </div>
 
-{#        <div class = "contect_img_container">#}
-{#            {% if recipe.image %}#}
-{#                <img src="{% static recipe.image.url %}" alt="Recipe image">#}
-{#            {% endif %}#}
-{#        </div>#}
-
         <div class="col-8">
             <h2>{{ recipe.name }}</h2>
+
+            {% if request.user == recipe.user %}
+                <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-primary">Edit info</a>
+            {% endif %}
+
             <div class="star-ratings star-rating-content-page ">
             <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
             <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
@@ -31,17 +30,6 @@
             <i class="text-muted">by {{ recipe.user.username }}</i>
             <p class="text-muted">{{ recipe.summary }}</p>
         </div>
-
-{#        <div class="title_rating_description_container">#}
-{#                <h1 class="recipe_title" > {{ recipe.name }} </h1>#}
-{##}
-{#                <div class="star-ratings star-rating-content-page ">#}
-{#                    <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>#}
-{#                    <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>#}
-{#                </div>#}
-{#             <p class="user_name"> By: {{ recipe.user.username }}</p>#}
-{#             <p id="description">Description: {{ recipe.summary }}</p>#}
-{#        </div>#}
     </div>
 
     <div class = "row recipe_quick_info_container">

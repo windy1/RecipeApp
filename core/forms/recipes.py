@@ -34,8 +34,8 @@ class SubmitRecipeForm(forms.ModelForm):
         model = Recipe
         fields = ('name', 'summary', 'servings', 'calories', 'categories', 'image')
 
-    def __init__(self, post=None, files=None):
-        super().__init__(data=post, files=files)
+    def __init__(self, post=None, files=None, instance=None):
+        super().__init__(data=post, files=files, instance=instance)
         self.fields['prep_time_unit'].widget.attrs.update({'class': 'form-control'})
         self.fields['cook_time_unit'].widget.attrs.update({'class': 'form-control'})
         self.fields['categories'].queryset = Category.objects.filter(assignable=True)

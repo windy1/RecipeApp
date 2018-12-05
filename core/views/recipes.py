@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.http import HttpResponseForbidden
 
 from core.forms.recipes import ReviewRecipeForm, SubmitRecipeForm
 from core.models import Recipe
@@ -59,3 +60,11 @@ def submit_recipe(request):
     else:
         form = SubmitRecipeForm()
     return render(request, 'core/recipes/recipe_submit.html', {'form': form})
+
+
+@login_required
+def edit_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if request.user != recipe.user:
+        return HttpResponseForbidden()
+    return render(request, 'core/recipes/recipe_edit.html', {'recipe': recipe})

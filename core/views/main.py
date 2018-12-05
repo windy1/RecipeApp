@@ -71,4 +71,6 @@ def ingredient_search_results(request):
         recipes = form.match_recipes()
     else:
         recipes = []
+    for r in recipes:
+        print(r)
     return render(request, 'core/main/ingredient_search_results.html', {'recipe_list': recipes})

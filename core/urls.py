@@ -31,6 +31,7 @@ urlpatterns = [
     path('submit/', recipes.submit_recipe, name='submit_recipe'),
     path('recipes/<int:recipe_id>/', recipes.recipe_detail, name='recipe_detail'),
     path('recipes/<int:recipe_id>/review', recipes.submit_review, name='submit_review'),
+    path('recipes/<int:recipe_id>/edit', recipes.edit_recipe, name='edit_recipe'),
 
     path('api/', include('api.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
