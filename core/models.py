@@ -53,8 +53,9 @@ class Recipe(models.Model):
         :param user: to check permission of
         :return: true if user can review the recipe
         """
-        has_reviewed = Review.objects.filter(user=user, recipe=self).count() > 0
-        return (user.is_authenticated and not has_reviewed and self.user is not user) or user.is_superuser
+        return (user.is_authenticated
+                and Review.objects.filter(user=user, recipe=self).count() == 0
+                and self.user is not user) or user.is_superuser
 
     def __str__(self):
         return '%s by %s' % (self.name, self.user.username)
