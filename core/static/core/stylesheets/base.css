@@ -31,13 +31,12 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active
     color: white;
 }
 
-
 /****************************************** Body *********************************************/
 
-/*-----SLIDE SHOW begin -------*/
+/*-----------------SLIDE SHOW begin -----------------------------------*/
 * {box-sizing: border-box}
 .mySlides {display: none}
-img {vertical-align: middle;}
+
 
 /* Slideshow container */
 .slideshow-container {
@@ -49,49 +48,6 @@ img {vertical-align: middle;}
     max-height: 340px;
     overflow: hidden;
     border-bottom: 1px solid #c2c2c2;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* The dots/bullets/indicators */
-.dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
 }
 
 .text {
@@ -125,6 +81,7 @@ img {vertical-align: middle;}
     margin: -2% 50% 1% 22%;
     padding-left: 20px
 }
+
 /** Slide 2 text **/
 .dessert_text_line1{
     background-color: rgba(195, 255, 146, 0.85);
@@ -234,7 +191,7 @@ img {vertical-align: middle;}
 }
 /*-----Slide Show End ----- */
 
-/* Featured Popular Trending New Catergory bottons css start*/
+/*------------- Featured Popular Trending New Catergory bottons css start ----------*/
 .button_container{
     margin-left: 9%;
     width: 100%;
@@ -266,11 +223,11 @@ img {vertical-align: middle;}
     border-bottom: 3px solid yellow;
 
 }
-/*filter button css end */
+/*---------------------------filter button css end -----------------------*/
 
 
 
-/* Recipe display css start */
+/*-------------------------- Recipe_List CSS start --------------------*/
 
 .recipe_container{
     margin-top: -40px;
@@ -295,7 +252,7 @@ img {vertical-align: middle;}
     transition: all .5s ease;
 }
 
-.recipe_block_view:hover{
+.recipe_block:hover .recipe_block_view{
     margin-left: -40px ;
     margin-top: -150px;
     width: 400px;
@@ -337,19 +294,12 @@ img {vertical-align: middle;}
     z-index: 0;
 }
 
-/*.recipe_rating_description{*/
-    /*position: relative;*/
-    /*bottom: 0px;*/
-    /*background-color: #4065ff;*/
-    /*width: 250px;*/
-    /*height: 100px;*/
-/*}*/
-/* Recipe display css end */
+
+/*------------------------------ Recipe_List CSS END ------------------------------*/
 
 
 
-
-/* Recipe Detail page Start*/
+/*------------------------------ Recipe_Detail CSS Start ------------------------------*/
 
 .title_rating_description_container {
     margin-left: 10%;
@@ -459,13 +409,13 @@ img {vertical-align: middle;}
     width: 50%;
     padding-left: 40px;
 }
-/*#cat{*/
-    /*font-size:40px;*/
-/*}*/
 
-/* Recipe detail page END */
+/*------------------------------ Recipe_Detail CSS END ------------------------------*/
 
-/***** User Profile pages BEGIN ****/
+
+
+
+/*------------------------------ User Profile CSS BEGIN ------------------------------*/
 
 .user_profile_img_placeholder_sidemenu{
     width: auto;
@@ -532,7 +482,7 @@ img {vertical-align: middle;}
     padding: 2%;
 }
 
-/***** User Profile pages END****/
+/*------------------------------ User Profile CSS END ------------------------------*/
 
 
 
@@ -553,12 +503,6 @@ img {vertical-align: middle;}
     padding: 20px;
     font-size: 11px;
 }
-
-/**Bro don't change the row class that effects everything **/
-/*.row{*/
-    /*padding-left: 50px;*/
-    /*padding-top: 20px;*/
-/*}*/
 
 .content-main {
     margin-bottom: 200px;

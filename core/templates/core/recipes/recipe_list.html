@@ -2,18 +2,40 @@
 
 {% load static %}
 
+    <!-- So in the back end we create recipes objects and store them in a database
+         The code below iterates through the database and extracts specific fields of the
+         recipe objects and we use html and css to style those specific fields. For images we
+         store the path to the images in our database rather than the image file itself, so we retrieve
+         the path which is the src path of the image, which we store in our media folder under the name
+         of the user that uploaded the recipe. Once we get the fields we just style them using css.
+         This code is used to display all recipe blocks.-->
 <div class="row">
+
+    <!-- Loop the iterates through the database-->
     {% for recipe in recipe_list %}
+        <!-- Gets recipe id which is also the url to the recipe detail page-->
         <a class="recipe_block" href={% url 'recipe_detail' recipe.id %}>
+
+            <!--If there is an image get the image path -->
             {% if recipe.image %}
                  <img class="recipe_block_view" src="{% static recipe.image.url %}">
             {% endif %}
+            <!-- Gets the recipe name-->
             <p class="text-dark recipe_block_recipe_title">{{ recipe.name }}</p>
+
+            <!-- The section below the recipe image  -->
             <div id ="recipe_block_info">
+                <!-- The ratings are unicode that are overload and the top layer gets
+                     colored yellow based on width. The width is calculated based on the rating avg
+                     which is all calculated in the back-end, then return as a number cast to a string
+                     and concatenated with a percentage sign so that the css width attribute recognizes it.
+                     We use Jinja to add python statements into out html code-->
                 <div class="star-ratings">
                     <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                     <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
                 </div>
+
+                <!-- Gets author name and recipe summary -->
                 <p>
                     By: {{ recipe.user.username }}<br>
                     Description: {{ recipe.summary }}
@@ -23,6 +45,7 @@
     {% endfor %}
 </div>
 
+    <!-- If there is no recipe print.. -->
 {% else %}
     <p>No recipes are available.</p>
 {% endif %}

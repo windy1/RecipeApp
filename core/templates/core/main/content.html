@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-
+    <!-- Slideshow -->
     <div class="slideshow-container">
             <!-- Full-width images with number and caption text -->
           <div class="mySlides">
@@ -44,14 +44,7 @@
 
         </div>
 
-{#    <div style="text-align:center">#}
-{#        <span class="dot" onclick="currentSlide(1)"></span>#}
-{#        <span class="dot" onclick="currentSlide(2)"></span>#}
-{#        <span class="dot" onclick="currentSlide(3)"></span>#}
-{#        <span class="dot" onclick="currentSlide(4)"></span>#}
-{#        <span class="dot" onclick="currentSlide(5)"></span>#}
-{#    </div>#}
-
+    <!-- Side menu-->
     <div class="row content-main">
         <div class="col-1 explore-select">
             <ul class="list-group">
@@ -66,36 +59,8 @@
         </div>
     </div>
 
+  <!--Slideshow JavaScript -->
     <script>
-    // Uncomment the script below and comment out the other portion to be able to use the
-    // arrows to move throught the slide show
-    {#var slideIndex = 1;#}
-    {#showSlides(slideIndex);#}
-    {##}
-    {#// Next/previous controls#}
-    {#function plusSlides(n) {#}
-    {#  showSlides(slideIndex += n);#}
-    {##}
-    {#// Thumbnail image controls#}
-    {#function currentSlide(n) {#}
-    {#  showSlides(slideIndex = n);#}
-    {##}
-    {#function showSlides(n) {#}
-    {#  var i;#}
-    {#  var slides = document.getElementsByClassName("mySlides");#}
-    {#  var dots = document.getElementsByClassName("dot");#}
-    {#  if (n > slides.length) {slideIndex = 1}#}
-    {#  if (n < 1) {slideIndex = slides.length}#}
-    {#  for (i = 0; i < slides.length; i++) {#}
-    {#      slides[i].style.display = "none";#}
-    {#  }#}
-    {#  for (i = 0; i < dots.length; i++) {#}
-    {#      dots[i].className = dots[i].className.replace(" active", "");#}
-    {#  }#}
-    {#  slides[slideIndex-1].style.display = "block";#}
-    {#  dots[slideIndex-1].className += " active";#}
-
-
         var slideIndex = 0;
         showSlides();
 

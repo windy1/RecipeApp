@@ -1,13 +1,15 @@
 {% extends 'core/base.html' %}
 {% load static %}
-<!--author: Ziming Dong-->
-
 {% block title %}Recipe detail{% endblock %}
 
 {% block content %}
+
 <div class="container-fluid recipe-detail">
+
+    <!-- Recipe img and to the right of that recipe title, rating, author and summery -->
     <div class="row">
 
+        <!-- Recipe IMG -->
         <div class="col-4 col-recipe-img">
             <div class="contect_img_container">
                 {% if recipe.image %}
@@ -16,22 +18,29 @@
             </div>
         </div>
 
+
         <div class="col-8">
+            <!--Recipe Title -->
             <h2>{{ recipe.name }}</h2>
 
+            <!-- Edit recipe info button. NOTE: displays only if user is logged in and the recipe belongs to that user account  -->
             {% if request.user == recipe.user %}
                 <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-primary">Edit info</a>
             {% endif %}
 
+            <!-- Rating Stars-->
             <div class="star-ratings star-rating-content-page ">
-            <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-            <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
+                <div class="star-ratings-top" style="width: {{ recipe.avg_percent_rating_large }}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div class="star-ratings-bottom"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>
             </div>
+            <!-- Recipe Author -->
             <i class="text-muted">by {{ recipe.user.username }}</i>
+            <!--Recipe Summary -->
             <p class="text-muted">{{ recipe.summary }}</p>
         </div>
     </div>
 
+    <!-- Prep Time | Cook Time | Serving | Calories -->
     <div class = "row recipe_quick_info_container">
         <div class = "recipe_quick_info">
             <p class = "quick_info_text">{{ recipe.prep_time }} </p>
@@ -51,7 +60,7 @@
         </div>
     </div>
 
-
+    <!-- Ingredients Sections -->
     <div class="recipe_info_section_headers">
         <p>Ingredients</p>
     </div>
@@ -66,7 +75,7 @@
         </ul>
     </div>
 
-
+    <!-- Directions section -->
     <div class="recipe_info_section_headers">
         <p>Directions</p>
     </div>
@@ -85,6 +94,7 @@
 
 <hr class="hr">
 
+    <!-- Review and Rate section -->
     {% if can_review %}
         <div class="review_container">
             <h5>Leave a review</h5>
