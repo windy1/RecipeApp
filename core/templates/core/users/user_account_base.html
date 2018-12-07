@@ -1,12 +1,16 @@
 {% extends 'core/base.html' %}
 {% block title %}Home | My Recipes{% endblock %}
-
+{% load static %}
 {% block content %}
 
         <div class="row container-fluid account_content_container">
             <div class="col-1 col-2 explore-select">
                 <ul class="list-group">
-                    <li class="list-group-item" ><div class = "user_profile_img_placeholder"></div></li>
+                    <li class="list-group-item" >
+                        <div class = "user_profile_img_placeholder_sidemenu">
+                            <img class = "default_profile_img_sidemenu" src="{% static 'images/DefaultAvatar.jpg'%}">
+                        </div>
+                    </li>
                     <li class="list-group-item user_name_on_side_menu" >Username: {{ user.username }}</li>
                     <li class="list-group-item {% if explore == 'user_profile' %}active{% endif %}"><a href="{% url 'user_profile' request.user.username %}">Your profile</a></li>
                     <li class="list-group-item {% if explore == 'user_recipes' %}active{% endif %}"><a href="{% url 'user_recipes' request.user.username %}">Your recipes</a></li>

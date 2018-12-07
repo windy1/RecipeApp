@@ -22,7 +22,7 @@ class SubmitRecipeForm(forms.ModelForm):
     """
 
     # the units that are accepted by the form
-    time_units = [('minutes', 'minutes'), ('hours', 'hours'), ('days', 'days')]
+    time_units = [('min', 'minutes'), ('hr', 'hours'), ('days', 'days')]
 
     # fields
     prep_time_num = forms.IntegerField(min_value=1, max_value=60)

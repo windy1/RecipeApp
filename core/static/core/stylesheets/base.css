@@ -366,42 +366,30 @@ img {vertical-align: middle;}
 }
 .star-rating-content-page{
     font-size: 25px;
-    margin-left: 37%;
+    margin-bottom: 2%;
 }
 .user_name{
     text-align: center;
     margin-top: 3%;
 }
 
-.col-recipe-img {
-
-}
-
 .contect_img_container{
-    /*margin-left: 20px;*/
     border: 1px solid #c2c2c2;
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
     overflow: hidden;
-    /*display: block;*/
-    /*margin: auto;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
 }
-
+.contect_img_container:hover{
+    border-radius: 25%;
+    transition: 1s;
+}
 .contect_img_container img {
+    padding: 9%;
     display: block;
-    margin: auto;
-    max-height: 350px;
-    transition: 2s;
+    margin-top: 7%;
+    width: 170%;
     transform: translate(-25%, -15%);
-}
-
-.contect_img_container img:hover{
-    max-height: 400px;
-    transition: 2s;
 }
 
 .recipe_quick_info_container{
@@ -412,23 +400,26 @@ img {vertical-align: middle;}
     border-bottom: 1px solid #c2c2c2;
     max-height: 120px;
 }
-
-.recipe-detail {
-    margin-bottom: 200px;
-}
-
 .recipe_quick_info{
     text-align: center;
+    font-family: Chalkduster, fantasy;
     color: white;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 25%;
     border-right: 1px solid rgb(255, 255, 255);
 }
-
+.quick_info_text_bottom{
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+}
 .quick_info_text{
     font-size: 35px;
-    margin-bottom: -9%;
+    margin-bottom: -2%;
 }
+
+.recipe-detail {
+    margin-bottom: 5%;
+}
+
 
 #description{
     padding-top: 30px;
@@ -476,20 +467,32 @@ img {vertical-align: middle;}
 
 /***** User Profile pages BEGIN ****/
 
-.user_profile_img_placeholder{
+.user_profile_img_placeholder_sidemenu{
     width: auto;
     height: 150px;
-    background-color: #0c5460;
+    border: 2px solid rgba(12, 84, 96, 0.4);
     border-radius: 5px;
+    overflow: hidden;
 }
 
-.user_profile_img_placeholder2{
+.default_profile_img_sidemenu{
+    margin-left: -10px;
+    width: auto;
+    height: 150px;
+}
+
+.user_profile_img_placeholder{
     width: 200px;
     height: 200px;
-    background-color: #0c5460;
+    border: 2px solid rgba(12, 84, 96, 0.4);
     border-radius: 5px;
+    overflow: hidden;
 }
 
+.default_profile_img{
+    width: 200px;
+    height: 200px;
+}
 .user_name_on_side_menu{
     font-size: 12px;
     margin-top: -10px;
@@ -505,14 +508,16 @@ img {vertical-align: middle;}
 }
 
 .right_section_container{
-    width: 80%;
+    width: 82%;
     padding-left: 30px;
     padding-right: 30px;
     margin-top: -20px;
+    margin-bottom: 20%;
 }
 
 .account_content_container{
     padding: 30px 30px 0px 50px;
+    margin-bottom: 10%;
 }
 .hr2{
     position: center;
@@ -521,7 +526,15 @@ img {vertical-align: middle;}
     border: 0.5px solid rgba(128, 128, 128, 0.51);
 }
 
+.profile_bio_container{
+    margin-left: 8%;
+    width: 750px;
+    padding: 2%;
+}
+
 /***** User Profile pages END****/
+
+
 
 .search-results {
     padding: 20px 40px;

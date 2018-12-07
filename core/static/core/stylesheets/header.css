@@ -27,6 +27,7 @@
     position: absolute !important;
     right: 2%;
 }
+
 .login_signup_buttons{
     margin-top: var(--header_top_margin);
     height: var( --header_obj_heights);

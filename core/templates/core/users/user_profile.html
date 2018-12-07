@@ -9,9 +9,11 @@
     <hr class="hr2">
 
     <div class = "row box_in_right_section_container">
-        <div class = "user_profile_img_placeholder2"></div>
+        <div class = "user_profile_img_placeholder">
+            <img class = "default_profile_img" src="{% static 'images/DefaultAvatar.jpg'%}">
+        </div>
         <div class="row">
-            <div>
+            <div class = "profile_bio_container">
                 <h2>Bio</h2>
                 <p>{{ profile.bio }}</p>
             </div>
